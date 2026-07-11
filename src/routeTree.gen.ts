@@ -10,7 +10,9 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as ProfilesRouteImport } from './routes/profiles'
+import { Route as PainRouteImport } from './routes/pain'
 import { Route as AttributesRouteImport } from './routes/attributes'
+import { Route as AttributeStoriesRouteImport } from './routes/attribute-stories'
 import { Route as ArchetypesRouteImport } from './routes/archetypes'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ArchetypesIdRouteImport } from './routes/archetypes.$id'
@@ -20,9 +22,19 @@ const ProfilesRoute = ProfilesRouteImport.update({
   path: '/profiles',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PainRoute = PainRouteImport.update({
+  id: '/pain',
+  path: '/pain',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AttributesRoute = AttributesRouteImport.update({
   id: '/attributes',
   path: '/attributes',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AttributeStoriesRoute = AttributeStoriesRouteImport.update({
+  id: '/attribute-stories',
+  path: '/attribute-stories',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ArchetypesRoute = ArchetypesRouteImport.update({
@@ -44,14 +56,18 @@ const ArchetypesIdRoute = ArchetypesIdRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/archetypes': typeof ArchetypesRouteWithChildren
+  '/attribute-stories': typeof AttributeStoriesRoute
   '/attributes': typeof AttributesRoute
+  '/pain': typeof PainRoute
   '/profiles': typeof ProfilesRoute
   '/archetypes/$id': typeof ArchetypesIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/archetypes': typeof ArchetypesRouteWithChildren
+  '/attribute-stories': typeof AttributeStoriesRoute
   '/attributes': typeof AttributesRoute
+  '/pain': typeof PainRoute
   '/profiles': typeof ProfilesRoute
   '/archetypes/$id': typeof ArchetypesIdRoute
 }
@@ -59,7 +75,9 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/archetypes': typeof ArchetypesRouteWithChildren
+  '/attribute-stories': typeof AttributeStoriesRoute
   '/attributes': typeof AttributesRoute
+  '/pain': typeof PainRoute
   '/profiles': typeof ProfilesRoute
   '/archetypes/$id': typeof ArchetypesIdRoute
 }
@@ -68,16 +86,27 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/archetypes'
+    | '/attribute-stories'
     | '/attributes'
+    | '/pain'
     | '/profiles'
     | '/archetypes/$id'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/archetypes' | '/attributes' | '/profiles' | '/archetypes/$id'
+  to:
+    | '/'
+    | '/archetypes'
+    | '/attribute-stories'
+    | '/attributes'
+    | '/pain'
+    | '/profiles'
+    | '/archetypes/$id'
   id:
     | '__root__'
     | '/'
     | '/archetypes'
+    | '/attribute-stories'
     | '/attributes'
+    | '/pain'
     | '/profiles'
     | '/archetypes/$id'
   fileRoutesById: FileRoutesById
@@ -85,7 +114,9 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   ArchetypesRoute: typeof ArchetypesRouteWithChildren
+  AttributeStoriesRoute: typeof AttributeStoriesRoute
   AttributesRoute: typeof AttributesRoute
+  PainRoute: typeof PainRoute
   ProfilesRoute: typeof ProfilesRoute
 }
 
@@ -98,11 +129,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProfilesRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/pain': {
+      id: '/pain'
+      path: '/pain'
+      fullPath: '/pain'
+      preLoaderRoute: typeof PainRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/attributes': {
       id: '/attributes'
       path: '/attributes'
       fullPath: '/attributes'
       preLoaderRoute: typeof AttributesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/attribute-stories': {
+      id: '/attribute-stories'
+      path: '/attribute-stories'
+      fullPath: '/attribute-stories'
+      preLoaderRoute: typeof AttributeStoriesRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/archetypes': {
@@ -144,7 +189,9 @@ const ArchetypesRouteWithChildren = ArchetypesRoute._addFileChildren(
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   ArchetypesRoute: ArchetypesRouteWithChildren,
+  AttributeStoriesRoute: AttributeStoriesRoute,
   AttributesRoute: AttributesRoute,
+  PainRoute: PainRoute,
   ProfilesRoute: ProfilesRoute,
 }
 export const routeTree = rootRouteImport

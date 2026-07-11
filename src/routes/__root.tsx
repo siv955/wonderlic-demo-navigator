@@ -18,10 +18,12 @@ import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 
 const NAV = [
-  { to: "/attributes", label: "Find by Attribute" },
-  { to: "/", label: "Find by Pain" },
+  { to: "/", label: "Start" },
+  { to: "/pain", label: "Business Pain Finder" },
+  { to: "/attributes", label: "Attribute Finder" },
   { to: "/archetypes", label: "Archetype Library" },
   { to: "/profiles", label: "Profile Directory" },
+  { to: "/attribute-stories", label: "Attribute Stories" },
 ] as const;
 
 
@@ -153,7 +155,7 @@ function NotFoundComponent() {
           to="/"
           className="mt-6 inline-flex items-center justify-center rounded-full bg-primary px-5 py-2 text-sm font-semibold text-primary-foreground transition-colors hover:opacity-90"
         >
-          Back to Find by Pain
+          Back to Start
         </Link>
       </div>
     </div>

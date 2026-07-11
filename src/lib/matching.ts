@@ -38,14 +38,23 @@ export interface AttrThresholds {
   low: number;
 }
 
+export interface SelectedScore {
+  attribute: string;
+  direction: Direction;
+  score: number | null;
+  satisfied: boolean;
+  missing: boolean;
+}
+
 export interface AttrMatchResult {
   profile: Profile;
   matched: number;
   total: number;
   totalGap: number;
-  selectedScores: { attribute: string; direction: Direction; score: number; satisfied: boolean }[];
+  selectedScores: SelectedScore[];
   isExact: boolean;
   weak: boolean;
+  hasMissing: boolean;
 }
 
 export function matchProfiles(
@@ -59,16 +68,27 @@ export function matchProfiles(
   const scored: AttrMatchResult[] = profiles.map((profile) => {
     let matched = 0;
     let totalGap = 0;
-    const selectedScores = valid.map((c) => {
-      const score = profile.scores[c.attribute] ?? 50;
-      const satisfied = c.direction === "high" ? score >= thresholds.high : score <= thresholds.low;
+    let hasMissing = false;
+    const selectedScores: SelectedScore[] = valid.map((c) => {
+      const raw = profile.scores[c.attribute];
+      const missing = typeof raw !== "number";
+      if (missing) {
+        hasMissing = true;
+        return { attribute: c.attribute, direction: c.direction, score: null, satisfied: false, missing: true };
+      }
+      const score = raw as number;
+      const satisfied =
+        c.direction === "high" ? score >= thresholds.high : score <= thresholds.low;
       if (satisfied) matched += 1;
       const gap =
-        c.direction === "high" ? Math.max(0, thresholds.high - score) : Math.max(0, score - thresholds.low);
+        c.direction === "high"
+          ? Math.max(0, thresholds.high - score)
+          : Math.max(0, score - thresholds.low);
       totalGap += gap;
-      return { attribute: c.attribute, direction: c.direction, score, satisfied };
+      return { attribute: c.attribute, direction: c.direction, score, satisfied, missing: false };
     });
-    const isExact = matched === valid.length;
+    // Missing scores exclude exact-match eligibility
+    const isExact = !hasMissing && matched === valid.length;
     return {
       profile,
       matched,
@@ -77,6 +97,7 @@ export function matchProfiles(
       selectedScores,
       isExact,
       weak: matched < Math.ceil(valid.length / 2),
+      hasMissing,
     };
   });
 
