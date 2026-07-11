@@ -1,0 +1,170 @@
+[
+  {
+    "name": "Adaptability",
+    "type": "Develop"
+  },
+  {
+    "name": "Aesthetic Openness",
+    "type": "Develop"
+  },
+  {
+    "name": "Ambition",
+    "type": "Develop"
+  },
+  {
+    "name": "Applied Interest",
+    "type": "Develop"
+  },
+  {
+    "name": "Assertiveness",
+    "type": "Develop"
+  },
+  {
+    "name": "Change Adoption",
+    "type": "Develop"
+  },
+  {
+    "name": "Compassion",
+    "type": "Develop"
+  },
+  {
+    "name": "Courtesy",
+    "type": "Develop"
+  },
+  {
+    "name": "Creative Interest",
+    "type": "Develop"
+  },
+  {
+    "name": "Curiosity",
+    "type": "Develop"
+  },
+  {
+    "name": "Decision Making",
+    "type": "Develop"
+  },
+  {
+    "name": "Diligence",
+    "type": "Develop"
+  },
+  {
+    "name": "Emotional Connection",
+    "type": "Develop"
+  },
+  {
+    "name": "Enterprising Interest",
+    "type": "Develop"
+  },
+  {
+    "name": "Enthusiasm",
+    "type": "Develop"
+  },
+  {
+    "name": "Fluid Reasoning",
+    "type": "Develop"
+  },
+  {
+    "name": "Influence",
+    "type": "Develop"
+  },
+  {
+    "name": "Investigative Interest",
+    "type": "Develop"
+  },
+  {
+    "name": "Orderliness",
+    "type": "Develop"
+  },
+  {
+    "name": "Organization and Planning",
+    "type": "Develop"
+  },
+  {
+    "name": "Pattern Recognition",
+    "type": "Develop"
+  },
+  {
+    "name": "Quantitative Reasoning",
+    "type": "Develop"
+  },
+  {
+    "name": "Results Focus",
+    "type": "Develop"
+  },
+  {
+    "name": "Select - Applied",
+    "type": "Select"
+  },
+  {
+    "name": "Select - Cog",
+    "type": "Select"
+  },
+  {
+    "name": "Select - Cooperation",
+    "type": "Select"
+  },
+  {
+    "name": "Select - Creative",
+    "type": "Select"
+  },
+  {
+    "name": "Select - Dependability",
+    "type": "Select"
+  },
+  {
+    "name": "Select - Enterprising",
+    "type": "Select"
+  },
+  {
+    "name": "Select - Investigative",
+    "type": "Select"
+  },
+  {
+    "name": "Select - Open-Mindedness",
+    "type": "Select"
+  },
+  {
+    "name": "Select - Sociability",
+    "type": "Select"
+  },
+  {
+    "name": "Select - Stress Tolerance2",
+    "type": "Select"
+  },
+  {
+    "name": "Select - Structured",
+    "type": "Select"
+  },
+  {
+    "name": "Select - Supportive",
+    "type": "Select"
+  },
+  {
+    "name": "Self-Development",
+    "type": "Develop"
+  },
+  {
+    "name": "Spatial Reasoning",
+    "type": "Develop"
+  },
+  {
+    "name": "Stability",
+    "type": "Develop"
+  },
+  {
+    "name": "Stress Tolerance",
+    "type": "Develop"
+  },
+  {
+    "name": "Structured Interest",
+    "type": "Develop"
+  },
+  {
+    "name": "Supportive Interest",
+    "type": "Develop"
+  },
+  {
+    "name": "Teamwork",
+    "type": "Develop"
+  }
+]

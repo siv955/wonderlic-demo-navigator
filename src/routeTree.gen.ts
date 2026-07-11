@@ -9,38 +9,109 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as ProfilesRouteImport } from './routes/profiles'
+import { Route as AttributesRouteImport } from './routes/attributes'
+import { Route as ArchetypesRouteImport } from './routes/archetypes'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ArchetypesIdRouteImport } from './routes/archetypes.$id'
 
+const ProfilesRoute = ProfilesRouteImport.update({
+  id: '/profiles',
+  path: '/profiles',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AttributesRoute = AttributesRouteImport.update({
+  id: '/attributes',
+  path: '/attributes',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ArchetypesRoute = ArchetypesRouteImport.update({
+  id: '/archetypes',
+  path: '/archetypes',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ArchetypesIdRoute = ArchetypesIdRouteImport.update({
+  id: '/$id',
+  path: '/$id',
+  getParentRoute: () => ArchetypesRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/archetypes': typeof ArchetypesRouteWithChildren
+  '/attributes': typeof AttributesRoute
+  '/profiles': typeof ProfilesRoute
+  '/archetypes/$id': typeof ArchetypesIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/archetypes': typeof ArchetypesRouteWithChildren
+  '/attributes': typeof AttributesRoute
+  '/profiles': typeof ProfilesRoute
+  '/archetypes/$id': typeof ArchetypesIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/archetypes': typeof ArchetypesRouteWithChildren
+  '/attributes': typeof AttributesRoute
+  '/profiles': typeof ProfilesRoute
+  '/archetypes/$id': typeof ArchetypesIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/archetypes'
+    | '/attributes'
+    | '/profiles'
+    | '/archetypes/$id'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/archetypes' | '/attributes' | '/profiles' | '/archetypes/$id'
+  id:
+    | '__root__'
+    | '/'
+    | '/archetypes'
+    | '/attributes'
+    | '/profiles'
+    | '/archetypes/$id'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  ArchetypesRoute: typeof ArchetypesRouteWithChildren
+  AttributesRoute: typeof AttributesRoute
+  ProfilesRoute: typeof ProfilesRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/profiles': {
+      id: '/profiles'
+      path: '/profiles'
+      fullPath: '/profiles'
+      preLoaderRoute: typeof ProfilesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/attributes': {
+      id: '/attributes'
+      path: '/attributes'
+      fullPath: '/attributes'
+      preLoaderRoute: typeof AttributesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/archetypes': {
+      id: '/archetypes'
+      path: '/archetypes'
+      fullPath: '/archetypes'
+      preLoaderRoute: typeof ArchetypesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -48,11 +119,33 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/archetypes/$id': {
+      id: '/archetypes/$id'
+      path: '/$id'
+      fullPath: '/archetypes/$id'
+      preLoaderRoute: typeof ArchetypesIdRouteImport
+      parentRoute: typeof ArchetypesRoute
+    }
   }
 }
 
+interface ArchetypesRouteChildren {
+  ArchetypesIdRoute: typeof ArchetypesIdRoute
+}
+
+const ArchetypesRouteChildren: ArchetypesRouteChildren = {
+  ArchetypesIdRoute: ArchetypesIdRoute,
+}
+
+const ArchetypesRouteWithChildren = ArchetypesRoute._addFileChildren(
+  ArchetypesRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  ArchetypesRoute: ArchetypesRouteWithChildren,
+  AttributesRoute: AttributesRoute,
+  ProfilesRoute: ProfilesRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
