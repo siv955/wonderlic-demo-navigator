@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as ProfilesRouteImport } from './routes/profiles'
 import { Route as PainRouteImport } from './routes/pain'
 import { Route as AttributesRouteImport } from './routes/attributes'
+import { Route as AttributeStoriesRouteImport } from './routes/attribute-stories'
 import { Route as ArchetypesRouteImport } from './routes/archetypes'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ArchetypesIdRouteImport } from './routes/archetypes.$id'
@@ -29,6 +30,11 @@ const PainRoute = PainRouteImport.update({
 const AttributesRoute = AttributesRouteImport.update({
   id: '/attributes',
   path: '/attributes',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AttributeStoriesRoute = AttributeStoriesRouteImport.update({
+  id: '/attribute-stories',
+  path: '/attribute-stories',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ArchetypesRoute = ArchetypesRouteImport.update({
@@ -50,6 +56,7 @@ const ArchetypesIdRoute = ArchetypesIdRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/archetypes': typeof ArchetypesRouteWithChildren
+  '/attribute-stories': typeof AttributeStoriesRoute
   '/attributes': typeof AttributesRoute
   '/pain': typeof PainRoute
   '/profiles': typeof ProfilesRoute
@@ -58,6 +65,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/archetypes': typeof ArchetypesRouteWithChildren
+  '/attribute-stories': typeof AttributeStoriesRoute
   '/attributes': typeof AttributesRoute
   '/pain': typeof PainRoute
   '/profiles': typeof ProfilesRoute
@@ -67,6 +75,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/archetypes': typeof ArchetypesRouteWithChildren
+  '/attribute-stories': typeof AttributeStoriesRoute
   '/attributes': typeof AttributesRoute
   '/pain': typeof PainRoute
   '/profiles': typeof ProfilesRoute
@@ -77,6 +86,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/archetypes'
+    | '/attribute-stories'
     | '/attributes'
     | '/pain'
     | '/profiles'
@@ -85,6 +95,7 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/archetypes'
+    | '/attribute-stories'
     | '/attributes'
     | '/pain'
     | '/profiles'
@@ -93,6 +104,7 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/archetypes'
+    | '/attribute-stories'
     | '/attributes'
     | '/pain'
     | '/profiles'
@@ -102,6 +114,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   ArchetypesRoute: typeof ArchetypesRouteWithChildren
+  AttributeStoriesRoute: typeof AttributeStoriesRoute
   AttributesRoute: typeof AttributesRoute
   PainRoute: typeof PainRoute
   ProfilesRoute: typeof ProfilesRoute
@@ -128,6 +141,13 @@ declare module '@tanstack/react-router' {
       path: '/attributes'
       fullPath: '/attributes'
       preLoaderRoute: typeof AttributesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/attribute-stories': {
+      id: '/attribute-stories'
+      path: '/attribute-stories'
+      fullPath: '/attribute-stories'
+      preLoaderRoute: typeof AttributeStoriesRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/archetypes': {
@@ -169,6 +189,7 @@ const ArchetypesRouteWithChildren = ArchetypesRoute._addFileChildren(
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   ArchetypesRoute: ArchetypesRouteWithChildren,
+  AttributeStoriesRoute: AttributeStoriesRoute,
   AttributesRoute: AttributesRoute,
   PainRoute: PainRoute,
   ProfilesRoute: ProfilesRoute,
