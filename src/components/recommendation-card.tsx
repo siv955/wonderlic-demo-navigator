@@ -9,16 +9,23 @@ export function RecommendationCard({
   primaryId,
   backupId,
   rationale,
+  painFraming,
+  painOptional,
 }: {
   primaryId: string;
   backupId?: string;
   rationale: string;
+  /** Customer pain framing string. If omitted, uses the archetype's useWhenCustomerSays. */
+  painFraming?: string;
+  /** When true, labels the pain framing as "Optional pain framing" (attribute-first flow). */
+  painOptional?: boolean;
 }) {
   const primary = archetypeById(primaryId);
   const backup = backupId ? archetypeById(backupId) : undefined;
   if (!primary) return null;
   const tracks = TALK_TRACKS[primary.id];
-  const fullPlan = buildFullPlan(primary);
+  const framing = painFraming || primary.useWhenCustomerSays;
+  const fullPlan = buildFullPlan(primary, { painFraming: framing, painOptional });
 
   return (
     <Card className="border-border/60 shadow-sm">
@@ -48,15 +55,27 @@ export function RecommendationCard({
           </div>
         </div>
 
-        <div className="rounded-xl border border-border bg-soft-purple/50 p-4">
-          <p className="text-xs font-semibold uppercase tracking-wide text-blurple">Why this fits</p>
-          <p className="mt-1.5 text-sm text-wonderlic-blue">{rationale}</p>
+        <div className={`rounded-xl border p-4 ${painOptional ? "border-dashed border-border bg-muted/40" : "border-blue-lilac bg-soft-purple/60"}`}>
+          <p className="text-xs font-semibold uppercase tracking-wide text-blurple">
+            {painOptional ? "Optional pain framing" : "Customer pain framing"}
+          </p>
+          <p className="mt-1.5 text-sm text-wonderlic-blue">&ldquo;{framing}&rdquo;</p>
+          <p className="mt-2 text-xs text-muted-foreground">
+            <span className="font-semibold text-wonderlic-blue">Why this match works:</span> {rationale}
+          </p>
           {backup && (
-            <p className="mt-3 text-xs text-muted-foreground">
+            <p className="mt-2 text-xs text-muted-foreground">
               <span className="font-semibold text-wonderlic-blue">Backup:</span>{" "}
               {backup.memoryHook} — use if the pain leans more toward {backup.developAnchor.toLowerCase()}.
             </p>
           )}
+        </div>
+
+        <div className="rounded-xl border border-border bg-card p-4">
+          <p className="text-xs font-semibold uppercase tracking-wide text-blurple">Value tie-back</p>
+          <p className="mt-1.5 text-sm text-wonderlic-blue">
+            {primary.developHandoff}
+          </p>
         </div>
 
         <div className="grid gap-4 md:grid-cols-2">

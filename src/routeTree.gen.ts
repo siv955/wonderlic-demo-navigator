@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as ProfilesRouteImport } from './routes/profiles'
+import { Route as PainRouteImport } from './routes/pain'
 import { Route as AttributesRouteImport } from './routes/attributes'
 import { Route as ArchetypesRouteImport } from './routes/archetypes'
 import { Route as IndexRouteImport } from './routes/index'
@@ -18,6 +19,11 @@ import { Route as ArchetypesIdRouteImport } from './routes/archetypes.$id'
 const ProfilesRoute = ProfilesRouteImport.update({
   id: '/profiles',
   path: '/profiles',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PainRoute = PainRouteImport.update({
+  id: '/pain',
+  path: '/pain',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AttributesRoute = AttributesRouteImport.update({
@@ -45,6 +51,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/archetypes': typeof ArchetypesRouteWithChildren
   '/attributes': typeof AttributesRoute
+  '/pain': typeof PainRoute
   '/profiles': typeof ProfilesRoute
   '/archetypes/$id': typeof ArchetypesIdRoute
 }
@@ -52,6 +59,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/archetypes': typeof ArchetypesRouteWithChildren
   '/attributes': typeof AttributesRoute
+  '/pain': typeof PainRoute
   '/profiles': typeof ProfilesRoute
   '/archetypes/$id': typeof ArchetypesIdRoute
 }
@@ -60,6 +68,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/archetypes': typeof ArchetypesRouteWithChildren
   '/attributes': typeof AttributesRoute
+  '/pain': typeof PainRoute
   '/profiles': typeof ProfilesRoute
   '/archetypes/$id': typeof ArchetypesIdRoute
 }
@@ -69,15 +78,23 @@ export interface FileRouteTypes {
     | '/'
     | '/archetypes'
     | '/attributes'
+    | '/pain'
     | '/profiles'
     | '/archetypes/$id'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/archetypes' | '/attributes' | '/profiles' | '/archetypes/$id'
+  to:
+    | '/'
+    | '/archetypes'
+    | '/attributes'
+    | '/pain'
+    | '/profiles'
+    | '/archetypes/$id'
   id:
     | '__root__'
     | '/'
     | '/archetypes'
     | '/attributes'
+    | '/pain'
     | '/profiles'
     | '/archetypes/$id'
   fileRoutesById: FileRoutesById
@@ -86,6 +103,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   ArchetypesRoute: typeof ArchetypesRouteWithChildren
   AttributesRoute: typeof AttributesRoute
+  PainRoute: typeof PainRoute
   ProfilesRoute: typeof ProfilesRoute
 }
 
@@ -96,6 +114,13 @@ declare module '@tanstack/react-router' {
       path: '/profiles'
       fullPath: '/profiles'
       preLoaderRoute: typeof ProfilesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/pain': {
+      id: '/pain'
+      path: '/pain'
+      fullPath: '/pain'
+      preLoaderRoute: typeof PainRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/attributes': {
@@ -145,6 +170,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   ArchetypesRoute: ArchetypesRouteWithChildren,
   AttributesRoute: AttributesRoute,
+  PainRoute: PainRoute,
   ProfilesRoute: ProfilesRoute,
 }
 export const routeTree = rootRouteImport
