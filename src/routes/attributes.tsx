@@ -85,13 +85,13 @@ function AttributeFinder() {
                     <SelectValue placeholder="Select an attribute…" />
                   </SelectTrigger>
                   <SelectContent className="max-h-72">
-                    {attributes.map((a) => (
+                    {attributes.filter((a) => a.type !== "Select").map((a) => (
                       <SelectItem key={a.name} value={a.name}>
                         <span>{a.name}</span>
-                        <span className="ml-2 text-xs text-muted-foreground">{a.type}</span>
                       </SelectItem>
                     ))}
                   </SelectContent>
+
                 </Select>
                 <ToggleGroup
                   type="single"
