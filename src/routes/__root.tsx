@@ -18,11 +18,12 @@ import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 
 const NAV = [
-  { to: "/", label: "Find by Pain" },
   { to: "/attributes", label: "Find by Attribute" },
+  { to: "/", label: "Find by Pain" },
   { to: "/archetypes", label: "Archetype Library" },
   { to: "/profiles", label: "Profile Directory" },
 ] as const;
+
 
 function BrandMark() {
   return (
