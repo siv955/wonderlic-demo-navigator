@@ -249,13 +249,20 @@ function ListBlock({
   );
 }
 
-export function buildFullPlan(a: Archetype) {
+export function buildFullPlan(
+  a: Archetype,
+  opts?: { painFraming?: string; painOptional?: boolean },
+) {
   const t = TALK_TRACKS[a.id];
+  const framing = opts?.painFraming || a.useWhenCustomerSays;
+  const painLabel = opts?.painOptional ? "OPTIONAL PAIN FRAMING" : "CUSTOMER PAIN FRAMING";
   return [
     `WONDERLIC DEMO PLAN — ${a.memoryHook}`,
-    `Demo profile: ${a.demoProfileName}`,
+    `Recommended profile: ${a.demoProfileName}`,
     "",
-    `USE WHEN CUSTOMER SAYS: ${a.useWhenCustomerSays}`,
+    `${painLabel}: ${framing}`,
+    "",
+    `WHY THIS MATCH WORKS: ${a.developAnchorLogic}`,
     "",
     `SELECT STORY: ${a.selectStory}`,
     `Select signals: ${a.selectSignals.join(", ")}`,
@@ -265,16 +272,17 @@ export function buildFullPlan(a: Archetype) {
     `TEAM DYNAMICS → ${a.teamDynamicsSection} → ${a.teamDynamicsPage}`,
     a.tdManagerInsight,
     "",
-    `30-SECOND TALK TRACK:\n${t.short}`,
-    "",
-    `3-MINUTE TALK TRACK:\n${t.long}`,
-    "",
     `ASK WONDERLIC: ${t.askWonderlic}`,
     "",
     `SCREENS TO SHOW:\n- ${t.screensToShow.join("\n- ")}`,
     "",
     `SCREENS TO SKIP:\n- ${t.screensToSkip.join("\n- ")}`,
     "",
+    `60-SECOND TALK TRACK:\n${t.short}`,
+    "",
+    `VALUE TIE-BACK: ${a.developHandoff}`,
+    "",
     `CAUTIONS:\n- ${t.cautions.join("\n- ")}`,
   ].join("\n");
 }
+
