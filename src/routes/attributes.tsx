@@ -60,6 +60,14 @@ function AttributeFinder() {
   ]);
   const [high, setHigh] = useState(70);
   const [low, setLow] = useState(30);
+  const [context, setContext] = useState<DemoContext>({
+    problemRole: "",
+    industry: "",
+    businessPain: "",
+    demoFocus: "any",
+  });
+  const updateContext = (patch: Partial<DemoContext>) =>
+    setContext((c) => ({ ...c, ...patch }));
 
   const results = useMemo(
     () => matchProfiles(conditions, profiles, { high, low }),
