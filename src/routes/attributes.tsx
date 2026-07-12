@@ -169,6 +169,8 @@ function AttributeFinder() {
             <ThresholdSlider label="Low threshold" hint="Score ≤" value={low} onChange={setLow} />
           </div>
 
+          <ContextInputs context={context} onChange={updateContext} />
+
           <p className="text-xs text-muted-foreground">
             Attribute Finder is for demo prep flexibility. For canonical stories, use the{" "}
             <Link to="/archetypes" className="font-semibold text-blurple hover:underline">
@@ -185,6 +187,7 @@ function AttributeFinder() {
         emptyMsg="No exact match found. See closest matches below."
         exact
         conditions={conditions}
+        context={context}
       />
 
       {noExact && bestClose && (
@@ -211,7 +214,60 @@ function AttributeFinder() {
         results={results.close}
         emptyMsg="Add or adjust conditions to see options."
         conditions={conditions}
+        context={context}
       />
+    </div>
+  );
+}
+
+function ContextInputs({
+  context,
+  onChange,
+}: {
+  context: DemoContext;
+  onChange: (patch: Partial<DemoContext>) => void;
+}) {
+  return (
+    <div className="rounded-xl border border-dashed border-border bg-muted/30 p-4">
+      <div className="flex items-center justify-between">
+        <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
+          Optional context
+        </p>
+        <p className="text-[11px] text-muted-foreground">Shapes the story language — all fields optional</p>
+      </div>
+      <div className="mt-3 grid gap-3 sm:grid-cols-2">
+        <Input
+          value={context.problemRole}
+          onChange={(e) => onChange({ problemRole: e.target.value })}
+          placeholder="Problem role — e.g., Production supervisor"
+          className="h-10 bg-background"
+        />
+        <Input
+          value={context.industry}
+          onChange={(e) => onChange({ industry: e.target.value })}
+          placeholder="Industry — e.g., Manufacturing"
+          className="h-10 bg-background"
+        />
+        <Textarea
+          value={context.businessPain}
+          onChange={(e) => onChange({ businessPain: e.target.value })}
+          placeholder="Business pain heard in discovery (optional)"
+          className="min-h-[40px] bg-background"
+          rows={2}
+        />
+        <Select value={context.demoFocus} onValueChange={(v) => onChange({ demoFocus: v })}>
+          <SelectTrigger className="h-10 bg-background">
+            <SelectValue placeholder="Demo focus" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="any">Demo focus — any</SelectItem>
+            <SelectItem value="select">Select</SelectItem>
+            <SelectItem value="develop">Develop</SelectItem>
+            <SelectItem value="team-dynamics">Team Dynamics</SelectItem>
+            <SelectItem value="full">Full platform</SelectItem>
+          </SelectContent>
+        </Select>
+      </div>
     </div>
   );
 }
