@@ -12,6 +12,7 @@ import {
 } from "@/components/ui/select";
 import { profiles, archetypes, archetypeById } from "@/data";
 import { StoryBadge } from "@/components/story-badge";
+import { FlexibleProfileBadge } from "@/components/flexible-profile-badge";
 import { Search, ChevronDown } from "lucide-react";
 
 export const Route = createFileRoute("/profiles")({
@@ -103,6 +104,7 @@ function ProfileDirectory() {
       <div className="grid gap-3">
         {list.map((p) => {
           const arch = p.associatedArchetypeId ? archetypeById(p.associatedArchetypeId) : null;
+          const isCore = p.coreOrExtra === "Core";
           return (
             <Card key={p.id} className="border-border/60 shadow-sm">
               <CardContent className="p-5">
@@ -110,10 +112,11 @@ function ProfileDirectory() {
                   <div className="min-w-0">
                     <div className="flex flex-wrap items-center gap-2">
                       <h2 className="font-display text-xl font-normal text-wonderlic-blue">{p.name}</h2>
-                      <StoryBadge variant={p.coreOrExtra === "Core" ? "core" : "extra"}>
+                      <StoryBadge variant={isCore ? "core" : "extra"}>
                         {p.coreOrExtra}
                       </StoryBadge>
-                      {arch && (
+                      {!isCore && <FlexibleProfileBadge />}
+                      {isCore && arch && (
                         <Link
                           to="/archetypes/$id"
                           params={{ id: arch.id }}
@@ -124,8 +127,20 @@ function ProfileDirectory() {
                       )}
                     </div>
                     <p className="mt-1 text-xs text-muted-foreground">{p.email}</p>
-                    {p.roleFlavor && (
+                    {isCore && p.roleFlavor && (
                       <p className="mt-2 max-w-2xl text-sm text-muted-foreground">{p.roleFlavor}</p>
+                    )}
+                    {!isCore && p.roleFlavor && (
+                      <div className="mt-2 max-w-2xl rounded-lg border border-dashed border-border bg-muted/40 p-3">
+                        <p className="text-[11px] font-semibold uppercase tracking-wide text-muted-foreground">
+                          Original demo build context
+                        </p>
+                        <p className="mt-1 text-sm text-muted-foreground">{p.roleFlavor}</p>
+                        <p className="mt-1 text-[11px] italic text-muted-foreground">
+                          This is not a fixed persona. Use this profile flexibly based on the
+                          attribute pattern and customer context.
+                        </p>
+                      </div>
                     )}
                   </div>
                 </div>
@@ -134,6 +149,29 @@ function ProfileDirectory() {
                   <AttrList title="Best high" items={p.bestHighAttributes} tone="high" />
                   <AttrList title="Best low" items={p.bestLowAttributes} tone="low" />
                 </div>
+
+                {!isCore && (
+                  <div className="mt-3 grid gap-3 md:grid-cols-2">
+                    <div className="rounded-lg border border-border bg-card p-3">
+                      <p className="text-[11px] font-semibold uppercase tracking-wide text-muted-foreground">
+                        Useful for attribute patterns
+                      </p>
+                      <p className="mt-1 text-xs text-wonderlic-blue">
+                        {buildUsefulPattern(p.bestHighAttributes, p.bestLowAttributes)}
+                      </p>
+                    </div>
+                    <div className="rounded-lg border border-select/40 bg-select-ice p-3">
+                      <p className="text-[11px] font-semibold uppercase tracking-wide text-select">
+                        Cautions
+                      </p>
+                      <p className="mt-1 text-xs text-wonderlic-blue">
+                        Do not lock this profile into a specific job title. Shape the story with
+                        the customer&rsquo;s role, industry, and pain. Coach the behavior — don&rsquo;t
+                        moralize the person.
+                      </p>
+                    </div>
+                  </div>
+                )}
 
                 <Collapsible className="mt-4">
                   <CollapsibleTrigger className="group inline-flex items-center gap-1.5 rounded-full border border-border bg-card px-3 py-1.5 text-xs font-semibold text-muted-foreground hover:text-blurple">
@@ -203,4 +241,12 @@ function ScoreGrid({ scores }: { scores: Record<string, number> }) {
       ))}
     </div>
   );
+}
+
+function buildUsefulPattern(highs: string[], lows: string[]) {
+  const h = highs.slice(0, 3).map((a) => `high ${a}`);
+  const l = lows.slice(0, 3).map((a) => `low ${a}`);
+  const combined = [...h, ...l];
+  if (combined.length === 0) return "Attribute patterns TBD — use scores view.";
+  return `Works well for stories built on ${combined.join(", ")}.`;
 }
