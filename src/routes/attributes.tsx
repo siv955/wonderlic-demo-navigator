@@ -349,19 +349,27 @@ function ProfileMatchCard({
   result,
   exact,
   conditions,
+  context,
 }: {
   result: AttrMatchResult;
   exact?: boolean;
   conditions: AttrCondition[];
+  context: DemoContext;
 }) {
   const [showPlan, setShowPlan] = useState(false);
   const { profile, matched, total, selectedScores, weak, hasMissing } = result;
-  const arch = profile.associatedArchetypeId ? archetypeById(profile.associatedArchetypeId) : null;
+  const isCore = profile.coreOrExtra === "Core";
+  const arch = isCore && profile.associatedArchetypeId ? archetypeById(profile.associatedArchetypeId) : null;
 
-  const storyAngle = buildStoryAngle(profile, selectedScores, arch);
-  const talkStarter = buildTalkStarter(profile, selectedScores, arch);
-  const painFraming = buildOptionalPainFraming(conditions);
+  const storyAngle = arch
+    ? buildCoreStoryAngle(profile, selectedScores, arch)
+    : buildFlexibleStoryAngle(profile, selectedScores, context);
+  const talkStarter = arch
+    ? buildCoreTalkStarter(profile, arch)
+    : buildFlexibleTalkStarter(profile, selectedScores, context);
+  const painFraming = buildOptionalPainFraming(conditions, context);
   const unsatisfied = selectedScores.filter((s) => !s.satisfied && !s.missing);
+  const roleFramings = !arch ? buildRoleFramings(selectedScores, context) : [];
 
   return (
     <Card className="border-border/60 shadow-sm transition-shadow hover:shadow-md">
@@ -371,14 +379,19 @@ function ProfileMatchCard({
             <h3 className="truncate font-display text-lg font-normal text-wonderlic-blue">
               {profile.name}
             </h3>
-            <p className="mt-0.5 line-clamp-2 text-xs text-muted-foreground">
-              {profile.roleFlavor || (arch ? arch.roleFraming : "—")}
-            </p>
+            {isCore ? (
+              <p className="mt-0.5 line-clamp-2 text-xs text-muted-foreground">
+                {profile.roleFlavor || (arch ? arch.roleFraming : "—")}
+              </p>
+            ) : (
+              <p className="mt-0.5 text-xs text-muted-foreground">
+                Best available profile match for this attribute pattern.
+              </p>
+            )}
           </div>
           <div className="flex flex-wrap items-center gap-1.5">
-            <StoryBadge variant={profile.coreOrExtra === "Core" ? "core" : "extra"}>
-              {profile.coreOrExtra}
-            </StoryBadge>
+            <StoryBadge variant={isCore ? "core" : "extra"}>{profile.coreOrExtra}</StoryBadge>
+            {!isCore && <FlexibleProfileBadge />}
             {exact ? (
               <StoryBadge variant="exact">Exact match</StoryBadge>
             ) : (
@@ -402,7 +415,7 @@ function ProfileMatchCard({
 
         <div className="rounded-lg border border-border bg-muted/50 p-3">
           <p className="text-[11px] font-semibold uppercase tracking-wide text-muted-foreground">
-            Selected attributes
+            Attribute pattern matched
           </p>
           <ul className="mt-1.5 space-y-1">
             {selectedScores.map((s) => (
@@ -430,12 +443,39 @@ function ProfileMatchCard({
         <div className="rounded-xl border border-blue-lilac bg-soft-purple/60 p-4">
           <div className="flex items-start justify-between gap-2">
             <p className="text-xs font-semibold uppercase tracking-wide text-blurple">
-              Suggested story angle
+              {arch ? "Suggested story angle" : "Generic story angle"}
             </p>
             <CopyButton text={storyAngle} label="Story angle" size="icon" />
           </div>
           <p className="mt-2 text-sm leading-relaxed text-wonderlic-blue">{storyAngle}</p>
+          {!arch && (
+            <p className="mt-2 text-[11px] italic text-muted-foreground">
+              Why this profile works: the selected scores line up with this profile&rsquo;s{" "}
+              {profile.bestHighAttributes.length > 0
+                ? `high ${profile.bestHighAttributes.slice(0, 2).join(" / ")}`
+                : "pattern"}
+              {profile.bestLowAttributes.length > 0
+                ? ` and low ${profile.bestLowAttributes.slice(0, 2).join(" / ")}`
+                : ""}
+              .
+            </p>
+          )}
         </div>
+
+        {!arch && roleFramings.length > 0 && (
+          <div className="rounded-xl border border-border bg-card p-4">
+            <p className="text-[11px] font-semibold uppercase tracking-wide text-muted-foreground">
+              Optional role-specific framing
+            </p>
+            <ul className="mt-2 space-y-2 text-xs text-wonderlic-blue">
+              {roleFramings.map((f, i) => (
+                <li key={i}>
+                  <span className="font-semibold">{f.role}:</span> {f.body}
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
 
         {arch && (
           <div className="grid gap-3 sm:grid-cols-2">
@@ -478,7 +518,7 @@ function ProfileMatchCard({
           <p className="mt-1 text-xs text-wonderlic-blue">
             {arch
               ? arch.tdBuildNotes
-              : "Do not use Develop to tell termination stories (theft, no-call/no-show, total inability). Frame gaps as coachable behavior, not disqualifying traits."}
+              : "This is a flexible profile, not a fixed persona. Do not lock them into a specific job title or paint attribute gaps as disqualifying — frame everything as coachable behavior shaped by role and context."}
           </p>
         </div>
 
@@ -508,7 +548,8 @@ function ProfileMatchCard({
             </>
           ) : (
             <span className="text-xs text-muted-foreground">
-              No canonical archetype linked — use this profile for a custom attribute story.
+              Flexible profile — shape the story with the customer&rsquo;s role and pain instead of
+              a canonical archetype.
             </span>
           )}
         </div>
@@ -528,42 +569,92 @@ function ProfileMatchCard({
   );
 }
 
-function buildStoryAngle(
-  profile: { name: string; bestHighAttributes: string[]; bestLowAttributes: string[] },
-  selected: { attribute: string; direction: Direction; satisfied: boolean; missing: boolean }[],
-  arch: ReturnType<typeof archetypeById> | null,
+function buildCoreStoryAngle(
+  profile: { name: string },
+  selected: SelectedLite[],
+  arch: NonNullable<ReturnType<typeof archetypeById>>,
 ) {
   const hits = selected
     .filter((s) => s.satisfied)
     .map((s) => `${s.direction} ${s.attribute}`)
     .join(", ");
-  if (arch) {
-    return `${profile.name} lets you tell the "${arch.memoryHook}" story with ${hits || "this attribute mix"}. Frame it as coachable behavior around ${arch.developAnchor}, not a hiring miss.`;
-  }
-  const bestHigh = profile.bestHighAttributes.slice(0, 2).join(" + ");
-  const bestLow = profile.bestLowAttributes.slice(0, 2).join(" + ");
-  return `Use ${profile.name} to tell a story built on ${hits || "the selected pattern"}. Their profile leans on ${bestHigh || "—"} and gaps in ${bestLow || "—"} — coach the behavior, don't judge the person.`;
+  return `${profile.name} lets you tell the "${arch.memoryHook}" story with ${hits || "this attribute mix"}. Frame it as coachable behavior around ${arch.developAnchor}, not a hiring miss.`;
 }
 
-function buildTalkStarter(
+type SelectedLite = { attribute: string; direction: Direction; satisfied: boolean; missing: boolean };
+
+function buildFlexibleStoryAngle(
+  profile: { name: string },
+  selected: SelectedLite[],
+  context: DemoContext,
+) {
+  const hits = selected.filter((s) => s.satisfied);
+  if (hits.length === 0) {
+    return `${profile.name} is a flexible profile match for this pattern. Use the customer's role and pain to shape the story — do not lock this person into a specific job.`;
+  }
+  const parts = hits
+    .map((s) => (s.direction === "high" ? `high ${s.attribute}` : `low ${s.attribute}`))
+    .join(", ");
+  const roleClause = context.problemRole
+    ? ` In a ${context.problemRole.toLowerCase()} role,`
+    : "";
+  const painClause = context.businessPain ? ` given the pain you heard,` : "";
+  return `${profile.name} can support a story about someone whose scores line up with ${parts}.${roleClause}${painClause} this could show up as coachable behavior — not a fixed personality — that the manager can shape with clear expectations and feedback.`;
+}
+
+function buildCoreTalkStarter(
   profile: { name: string; firstName?: string },
-  selected: { attribute: string; direction: Direction; satisfied: boolean; missing: boolean }[],
-  arch: ReturnType<typeof archetypeById> | null,
+  arch: NonNullable<ReturnType<typeof archetypeById>>,
 ) {
   const first = profile.firstName || profile.name.split(" ")[0];
-  if (arch) {
-    return TALK_TRACKS[arch.id]?.short ||
-      `Meet ${first}. ${arch.roleFraming}. Develop → ${arch.developAnchor} shows the manager the specific coaching move that turns this behavior around.`;
-  }
-  const primary = selected.find((s) => s.satisfied) || selected[0];
-  const dir = primary?.direction === "high" ? "leans into" : "gaps on";
-  return `Meet ${first}. This is a demo built around ${primary?.attribute || "the selected attributes"}. Show how the profile ${dir} ${primary?.attribute || "the pattern"} and how a manager can coach it.`;
+  return (
+    TALK_TRACKS[arch.id]?.short ||
+    `Meet ${first}. ${arch.roleFraming}. Develop → ${arch.developAnchor} shows the manager the specific coaching move that turns this behavior around.`
+  );
 }
 
-function buildOptionalPainFraming(conditions: AttrCondition[]) {
+function buildFlexibleTalkStarter(
+  profile: { name: string; firstName?: string },
+  selected: SelectedLite[],
+  context: DemoContext,
+) {
+  const first = profile.firstName || profile.name.split(" ")[0];
+  const primary = selected.find((s) => s.satisfied) || selected[0];
+  const role = context.problemRole ? ` — imagine them in a ${context.problemRole.toLowerCase()} role` : "";
+  return `Meet ${first}${role}. This is a flexible profile built to support an attribute story around ${primary?.attribute || "the selected pattern"}. Use their scores to show the behavior a manager would coach, not a fixed job title.`;
+}
+
+function buildOptionalPainFraming(conditions: AttrCondition[], context?: DemoContext) {
+  if (context?.businessPain) return context.businessPain;
   const parts = conditions
     .filter((c) => c.attribute)
     .map((c) => `${c.direction} ${c.attribute}`);
   if (parts.length === 0) return "Attribute-first demo — no customer pain provided.";
   return `Customer described a pattern that maps to ${parts.join(" + ")}.`;
+}
+
+function buildRoleFramings(selected: SelectedLite[], context: DemoContext) {
+  const hits = selected.filter((s) => s.satisfied);
+  if (hits.length === 0) return [];
+  const pattern = hits
+    .map((s) => (s.direction === "high" ? `high ${s.attribute}` : `low ${s.attribute}`))
+    .join(" + ");
+
+  const framings: { role: string; body: string }[] = [];
+  if (context.problemRole) {
+    framings.push({
+      role: context.problemRole,
+      body: `This could support a story about someone whose ${pattern} pattern shows up in the specific behaviors that role demands — coachable with clear expectations from the manager.`,
+    });
+  } else {
+    framings.push({
+      role: "Sales rep",
+      body: `Could show up as someone who learns the product and improves with coaching, but may not naturally push for bigger goals, competitive targets, or proactive territory ownership.`,
+    });
+    framings.push({
+      role: "Frontline / operations",
+      body: `Could show up as someone who improves when coached but does not naturally seek broader ownership or stretch responsibility without clear expectations.`,
+    });
+  }
+  return framings;
 }
