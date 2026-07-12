@@ -114,14 +114,13 @@ function ArchetypeDetail() {
 
       <section className="grid gap-4 rounded-2xl border border-border bg-card p-6 md:grid-cols-[minmax(0,2fr)_minmax(0,1fr)]">
         <div className="space-y-4">
-          <div className="grid gap-3 sm:grid-cols-2">
-            <SnapshotField label="Story" value={`${a.firstName} ${a.lastName}`} />
+          <div className="grid gap-3 sm:grid-cols-3">
+            <SnapshotField label="Role framing" value={a.roleCategory ?? a.workerCategory} />
             <SnapshotField label="Develop anchor" value={g.develop.primary} />
             <SnapshotField
               label="Team Dynamics"
               value={`${g.teamDynamics.section} → ${g.teamDynamics.page}`}
             />
-            <SnapshotField label="Demo profile" value={a.demoProfileName} />
           </div>
           <div className="rounded-lg border border-border bg-soft-purple/40 p-3 text-sm">
             <p className="text-[11px] font-semibold uppercase tracking-wide text-blurple">

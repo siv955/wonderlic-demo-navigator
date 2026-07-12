@@ -15,6 +15,7 @@ import { Toaster } from "@/components/ui/sonner";
 import { BookOpen } from "lucide-react";
 
 import appCss from "../styles.css?url";
+import wonderlicW from "../assets/wonderlic-w.png.asset.json";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 
 const NAV = [
@@ -30,14 +31,11 @@ const NAV = [
 function BrandMark() {
   return (
     <Link to="/" className="flex items-center gap-2.5">
-      <span className="grid grid-cols-3 gap-[3px]" aria-hidden>
-        <span className="h-2 w-2 rounded-full bg-blurple" />
-        <span className="h-2 w-2 rounded-full bg-lavender" />
-        <span className="h-2 w-2 rounded-full bg-select" />
-        <span className="h-2 w-2 rounded-full bg-wisteria" />
-        <span className="h-2 w-2 rounded-full bg-develop" />
-        <span className="h-2 w-2 rounded-full bg-blue-lilac" />
-      </span>
+      <img
+        src={wonderlicW.url}
+        alt="Wonderlic"
+        className="h-8 w-auto"
+      />
       <span className="font-display text-[17px] font-light tracking-tight text-wonderlic-blue">
         wonderlic <span className="font-semibold">Demo Story Finder</span>
       </span>
