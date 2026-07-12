@@ -62,7 +62,7 @@ function ArchetypeDetail() {
     `${a.memoryHook} · Full Demo Plan`,
     ``,
     `Profile to open: ${a.demoProfileName}`,
-    `Primary Develop attribute: ${g.develop.primary}`,
+    `Primary Develop attribute: ${g.develop.primaryDirection === "low" ? "Low" : "High"} ${g.develop.primary}`,
     `Team Dynamics: ${g.teamDynamics.section} → ${g.teamDynamics.page}`,
     ``,
     `-- STRENGTH --`,
@@ -115,7 +115,10 @@ function ArchetypeDetail() {
       <section className="grid gap-4 rounded-2xl border border-border bg-card p-6 md:grid-cols-[minmax(0,2fr)_minmax(0,1fr)]">
         <div className="space-y-4">
           <div className="grid gap-3 sm:grid-cols-2">
-            <SnapshotField label="Develop anchor" value={g.develop.primary} />
+            <SnapshotField
+              label="Develop anchor"
+              value={`${g.develop.primaryDirection === "low" ? "Low" : "High"} ${g.develop.primary}`}
+            />
             <SnapshotField
               label="Team Dynamics"
               value={`${g.teamDynamics.section} → ${g.teamDynamics.page}`}
@@ -279,7 +282,7 @@ function ArchetypeDetail() {
 
         {/* DEVELOP */}
         <TabsContent value="develop" className="mt-6 space-y-4">
-          <Section title={`Primary attribute · ${g.develop.primary}`}>
+          <Section title={`Primary attribute · ${g.develop.primaryDirection === "low" ? "Low" : "High"} ${g.develop.primary}`}>
             <p className="text-sm leading-relaxed text-wonderlic-blue">{g.develop.whyAnchor}</p>
           </Section>
           <Section title="In plain English">

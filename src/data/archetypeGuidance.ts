@@ -18,6 +18,7 @@ export interface ArchetypeGuidance {
   };
   develop: {
     primary: string;
+    primaryDirection: "low" | "high";
     whyAnchor: string;
     supporting: string[];
     plainEnglish: string;
@@ -95,6 +96,7 @@ export const ARCHETYPE_GUIDANCE: Record<ArchetypeId, ArchetypeGuidance> = {
     },
     develop: {
       primary: "Enterprising Interest",
+      primaryDirection: "low",
       whyAnchor:
         "It's the cleanest way to explain the difference between 'liking people' and 'being energized by the commercial push.' Results Focus and Influence support the story, but Enterprising Interest is what makes the gap recognizable.",
       supporting: ["Results Focus", "Influence", "Assertiveness"],
@@ -206,6 +208,7 @@ export const ARCHETYPE_GUIDANCE: Record<ArchetypeId, ArchetypeGuidance> = {
     },
     develop: {
       primary: "Diligence",
+      primaryDirection: "low",
       whyAnchor:
         "Diligence is the difference between a good conversation and a deal that actually keeps moving. It's the follow-up, the documentation, the next-step discipline, and the loop closure that protect what Derek already created in the room.",
       supporting: [
@@ -323,6 +326,7 @@ export const ARCHETYPE_GUIDANCE: Record<ArchetypeId, ArchetypeGuidance> = {
     },
     develop: {
       primary: "Compassion",
+      primaryDirection: "low",
       whyAnchor:
         "It pulls through cleanly to Team Dynamics and supports the friction story once translated into business language. Compassion here is emotional intelligence and communication behavior, not a moral rating.",
       supporting: ["Teamwork", "Courtesy", "Emotional Connection"],
@@ -434,6 +438,7 @@ export const ARCHETYPE_GUIDANCE: Record<ArchetypeId, ArchetypeGuidance> = {
     },
     develop: {
       primary: "Results Focus",
+      primaryDirection: "low",
       whyAnchor:
         "It's the cleanest way to explain follow-through and reliable output in frontline work. Diligence, Orderliness, and Organization and Planning support the story, but Results Focus is what makes the coachable execution behavior visible.",
       supporting: [
@@ -551,6 +556,7 @@ export const ARCHETYPE_GUIDANCE: Record<ArchetypeId, ArchetypeGuidance> = {
     },
     develop: {
       primary: "Influence",
+      primaryDirection: "low",
       whyAnchor:
         "Influence is the difference between being trusted and being able to move performance. It's the coachable muscle that turns Isabelle's care into clear expectations, direct feedback, and follow-through.",
       supporting: ["Assertiveness", "Results Focus", "Decision Making"],
@@ -662,6 +668,7 @@ export const ARCHETYPE_GUIDANCE: Record<ArchetypeId, ArchetypeGuidance> = {
     },
     develop: {
       primary: "Stability",
+      primaryDirection: "low",
       whyAnchor:
         "Stability is where the coachable pressure response lives. Under load, it's the difference between staying steady enough to delegate and pulling everything back into your own hands.",
       supporting: ["Stress Tolerance", "Open-Mindedness", "Decision Making"],
