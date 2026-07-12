@@ -242,3 +242,11 @@ function ScoreGrid({ scores }: { scores: Record<string, number> }) {
     </div>
   );
 }
+
+function buildUsefulPattern(highs: string[], lows: string[]) {
+  const h = highs.slice(0, 3).map((a) => `high ${a}`);
+  const l = lows.slice(0, 3).map((a) => `low ${a}`);
+  const combined = [...h, ...l];
+  if (combined.length === 0) return "Attribute patterns TBD — use scores view.";
+  return `Works well for stories built on ${combined.join(", ")}.`;
+}
