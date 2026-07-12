@@ -18,6 +18,7 @@ export interface ArchetypeGuidance {
   };
   develop: {
     primary: string;
+    primaryDirection: "low" | "high";
     whyAnchor: string;
     supporting: string[];
     plainEnglish: string;
