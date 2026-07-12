@@ -62,7 +62,7 @@ function ArchetypeDetail() {
     `${a.memoryHook} · Full Demo Plan`,
     ``,
     `Profile to open: ${a.demoProfileName}`,
-    `Primary Develop attribute: ${g.develop.primary}`,
+    `Primary Develop attribute: ${g.develop.primaryDirection === "low" ? "Low" : "High"} ${g.develop.primary}`,
     `Team Dynamics: ${g.teamDynamics.section} → ${g.teamDynamics.page}`,
     ``,
     `-- STRENGTH --`,
@@ -282,7 +282,7 @@ function ArchetypeDetail() {
 
         {/* DEVELOP */}
         <TabsContent value="develop" className="mt-6 space-y-4">
-          <Section title={`Primary attribute · ${g.develop.primary}`}>
+          <Section title={`Primary attribute · ${g.develop.primaryDirection === "low" ? "Low" : "High"} ${g.develop.primary}`}>
             <p className="text-sm leading-relaxed text-wonderlic-blue">{g.develop.whyAnchor}</p>
           </Section>
           <Section title="In plain English">
