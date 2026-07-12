@@ -49,7 +49,7 @@ function ArchetypeDetail() {
   const profile = profileById(a.demoProfileId);
 
   const recapText = [
-    `${a.memoryHook}, Recap`,
+    `${a.memoryHook} · Recap`,
     "",
     "Current state / pain:",
     ...g.recap.currentState.map((b) => `• ${b}`),
@@ -59,7 +59,7 @@ function ArchetypeDetail() {
   ].join("\n");
 
   const fullPlan = [
-    `${a.memoryHook}, Full Demo Plan`,
+    `${a.memoryHook} · Full Demo Plan`,
     ``,
     `Profile to open: ${a.demoProfileName}`,
     `Primary Develop attribute: ${g.develop.primary}`,
