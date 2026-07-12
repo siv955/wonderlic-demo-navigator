@@ -7,13 +7,13 @@ import { ArrowRight } from "lucide-react";
 export const Route = createFileRoute("/archetypes")({
   head: () => ({
     meta: [
-      { title: "Archetype Library — Wonderlic Demo Story Finder" },
+      { title: "Archetype Library, Wonderlic Demo Story Finder" },
       {
         name: "description",
         content:
           "The six canonical Wonderlic demo archetypes with memory hooks, Select signals, Develop anchors, Team Dynamics paths, and talk tracks.",
       },
-      { property: "og:title", content: "Archetype Library — Wonderlic Demo Story Finder" },
+      { property: "og:title", content: "Archetype Library, Wonderlic Demo Story Finder" },
       { property: "og:description", content: "The six canonical demo archetypes, ready to run." },
     ],
   }),

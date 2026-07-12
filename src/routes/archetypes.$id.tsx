@@ -16,13 +16,13 @@ export const Route = createFileRoute("/archetypes/$id")({
   head: ({ params }) => {
     const a = archetypeById(params.id);
     if (!a) {
-      return { meta: [{ title: "Archetype not found — Wonderlic Demo Story Finder" }] };
+      return { meta: [{ title: "Archetype not found, Wonderlic Demo Story Finder" }] };
     }
     return {
       meta: [
-        { title: `${a.memoryHook} — Demo Guidance` },
+        { title: `${a.memoryHook}, Demo Guidance` },
         { name: "description", content: a.customerPain.slice(0, 155) },
-        { property: "og:title", content: `${a.memoryHook} — Demo Guidance` },
+        { property: "og:title", content: `${a.memoryHook}, Demo Guidance` },
         { property: "og:description", content: a.roleFraming },
       ],
     };
@@ -49,7 +49,7 @@ function ArchetypeDetail() {
   const profile = profileById(a.demoProfileId);
 
   const recapText = [
-    `${a.memoryHook} — Recap`,
+    `${a.memoryHook} · Recap`,
     "",
     "Current state / pain:",
     ...g.recap.currentState.map((b) => `• ${b}`),
@@ -59,7 +59,7 @@ function ArchetypeDetail() {
   ].join("\n");
 
   const fullPlan = [
-    `${a.memoryHook} — Full Demo Plan`,
+    `${a.memoryHook} · Full Demo Plan`,
     ``,
     `Profile to open: ${a.demoProfileName}`,
     `Primary Develop attribute: ${g.develop.primary}`,
@@ -115,13 +115,11 @@ function ArchetypeDetail() {
       <section className="grid gap-4 rounded-2xl border border-border bg-card p-6 md:grid-cols-[minmax(0,2fr)_minmax(0,1fr)]">
         <div className="space-y-4">
           <div className="grid gap-3 sm:grid-cols-2">
-            <SnapshotField label="Story" value={`${a.firstName} ${a.lastName}`} />
             <SnapshotField label="Develop anchor" value={g.develop.primary} />
             <SnapshotField
               label="Team Dynamics"
               value={`${g.teamDynamics.section} → ${g.teamDynamics.page}`}
             />
-            <SnapshotField label="Demo profile" value={a.demoProfileName} />
           </div>
           <div className="rounded-lg border border-border bg-soft-purple/40 p-3 text-sm">
             <p className="text-[11px] font-semibold uppercase tracking-wide text-blurple">

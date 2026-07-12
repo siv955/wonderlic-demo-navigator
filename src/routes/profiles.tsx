@@ -18,12 +18,12 @@ import { Search, ChevronDown } from "lucide-react";
 export const Route = createFileRoute("/profiles")({
   head: () => ({
     meta: [
-      { title: "Profile Directory — Wonderlic Demo Story Finder" },
+      { title: "Profile Directory, Wonderlic Demo Story Finder" },
       {
         name: "description",
         content: "Every Wonderlic demo profile with best-high / best-low attributes, story uses, and full scores.",
       },
-      { property: "og:title", content: "Profile Directory — Wonderlic Demo Story Finder" },
+      { property: "og:title", content: "Profile Directory, Wonderlic Demo Story Finder" },
       { property: "og:description", content: "Searchable demo profile directory." },
     ],
   }),
@@ -166,7 +166,7 @@ function ProfileDirectory() {
                       </p>
                       <p className="mt-1 text-xs text-wonderlic-blue">
                         Do not lock this profile into a specific job title. Shape the story with
-                        the customer&rsquo;s role, industry, and pain. Coach the behavior — don&rsquo;t
+                        the customer&rsquo;s role, industry, and pain. Coach the behavior, don&rsquo;t
                         moralize the person.
                       </p>
                     </div>
@@ -201,7 +201,7 @@ function AttrList({ title, items, tone }: { title: string; items: string[]; tone
     <div className="rounded-lg border border-border bg-muted/40 p-3">
       <p className="text-[11px] font-semibold uppercase tracking-wide text-muted-foreground">{title}</p>
       <div className="mt-2 flex flex-wrap gap-1.5">
-        {items.length === 0 && <span className="text-xs text-muted-foreground">—</span>}
+        {items.length === 0 && <span className="text-xs text-muted-foreground">, </span>}
         {items.map((a) => (
           <span
             key={a}
@@ -247,6 +247,6 @@ function buildUsefulPattern(highs: string[], lows: string[]) {
   const h = highs.slice(0, 3).map((a) => `high ${a}`);
   const l = lows.slice(0, 3).map((a) => `low ${a}`);
   const combined = [...h, ...l];
-  if (combined.length === 0) return "Attribute patterns TBD — use scores view.";
+  if (combined.length === 0) return "Attribute patterns TBD, use scores view.";
   return `Works well for stories built on ${combined.join(", ")}.`;
 }

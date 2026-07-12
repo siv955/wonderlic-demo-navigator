@@ -9,13 +9,13 @@ import { RecommendationCard } from "@/components/recommendation-card";
 export const Route = createFileRoute("/pain")({
   head: () => ({
     meta: [
-      { title: "Find by Business Pain — Wonderlic Demo Story Finder" },
+      { title: "Find by Business Pain, Wonderlic Demo Story Finder" },
       {
         name: "description",
         content:
           "Type the customer's pain or pick a chip to get the right Wonderlic archetype, demo profile, and full demo plan.",
       },
-      { property: "og:title", content: "Find by Business Pain — Wonderlic Demo Story Finder" },
+      { property: "og:title", content: "Find by Business Pain, Wonderlic Demo Story Finder" },
       {
         property: "og:description",
         content: "From customer language to a ready-to-run demo in seconds.",
@@ -126,7 +126,7 @@ function PainFinder() {
       ) : query.trim() ? (
         <EmptyState
           title="No pain matched yet"
-          body="Try one of the chips above, or rephrase — e.g. 'reps do not follow up' or 'managers avoid hard conversations.'"
+          body="Try one of the chips above, or rephrase, e.g. 'reps do not follow up' or 'managers avoid hard conversations.'"
         />
       ) : (
         <EmptyState
