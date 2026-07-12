@@ -3,6 +3,8 @@ import { useMemo, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Slider } from "@/components/ui/slider";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
 import {
   Select,
   SelectContent,
@@ -19,9 +21,18 @@ import {
   type AttrMatchResult,
 } from "@/lib/matching";
 import { StoryBadge } from "@/components/story-badge";
+import { FlexibleProfileBadge } from "@/components/flexible-profile-badge";
 import { CopyButton } from "@/components/copy-button";
 import { RecommendationCard } from "@/components/recommendation-card";
 import { Plus, Trash2, ArrowRight, AlertTriangle, ChevronDown } from "lucide-react";
+
+export interface DemoContext {
+  problemRole: string;
+  industry: string;
+  businessPain: string;
+  demoFocus: string;
+}
+
 
 export const Route = createFileRoute("/attributes")({
   head: () => ({
