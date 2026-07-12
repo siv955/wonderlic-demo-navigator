@@ -309,12 +309,14 @@ function ResultsBlock({
   emptyMsg,
   exact,
   conditions,
+  context,
 }: {
   title: string;
   results: AttrMatchResult[];
   emptyMsg: string;
   exact?: boolean;
   conditions: AttrCondition[];
+  context: DemoContext;
 }) {
   return (
     <section>
@@ -334,6 +336,7 @@ function ResultsBlock({
               result={r}
               exact={exact}
               conditions={conditions}
+              context={context}
             />
           ))}
         </div>
