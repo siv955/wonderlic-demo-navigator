@@ -7,6 +7,7 @@ type Variant =
   | "team-dynamics"
   | "core"
   | "extra"
+  | "flexible"
   | "exact"
   | "near"
   | "caution"
@@ -18,6 +19,7 @@ const STYLES: Record<Variant, string> = {
   "team-dynamics": "bg-purple-chalk text-blurple border border-blue-lilac",
   core: "bg-wonderlic-blue text-white border-transparent",
   extra: "bg-muted text-muted-foreground border border-border",
+  flexible: "bg-purple-chalk text-blurple border border-blue-lilac",
   exact: "bg-blurple text-white border-transparent",
   near: "bg-soft-purple text-blurple border border-blue-lilac",
   caution: "bg-select-ice text-wonderlic-blue border border-select/60",
