@@ -12,6 +12,7 @@ import {
 } from "@/components/ui/select";
 import { profiles, archetypes, archetypeById } from "@/data";
 import { StoryBadge } from "@/components/story-badge";
+import { FlexibleProfileBadge } from "@/components/flexible-profile-badge";
 import { Search, ChevronDown } from "lucide-react";
 
 export const Route = createFileRoute("/profiles")({
