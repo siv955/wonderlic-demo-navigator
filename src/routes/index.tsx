@@ -5,16 +5,16 @@ import { ArrowRight, MessageSquareQuote, SlidersHorizontal, Library, Users } fro
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Start — Wonderlic Demo Story Finder" },
+      { title: "Start, Wonderlic Demo Story Finder" },
       {
         name: "description",
         content:
           "Sales demo prep in seconds. Start from customer pain, an attribute pattern, or browse the archetype and profile libraries.",
       },
-      { property: "og:title", content: "Start — Wonderlic Demo Story Finder" },
+      { property: "og:title", content: "Start, Wonderlic Demo Story Finder" },
       {
         property: "og:description",
-        content: "Pick the right archetype, profile, Team Dynamics page, and talk track — fast.",
+        content: "Pick the right archetype, profile, Team Dynamics page, and talk track, fast.",
       },
     ],
   }),
@@ -43,7 +43,7 @@ function StartPage() {
           icon={<MessageSquareQuote className="h-6 w-6" />}
           eyebrow="Recommended"
           title="Start with Business Pain"
-          body="You heard the customer say something in discovery — 'reps don't follow up,' 'managers avoid feedback.' Get the recommended story, profile, and demo plan."
+          body="You heard the customer say something in discovery, 'reps don't follow up,' 'managers avoid feedback.' Get the recommended story, profile, and demo plan."
         />
         <StartCard
           to="/attributes"
@@ -68,7 +68,7 @@ function StartPage() {
           icon={<Users className="h-6 w-6" />}
           eyebrow="Directory"
           title="Browse Profiles"
-          body="Every demo profile — core and extras — searchable by name, role, or attribute pattern."
+          body="Every demo profile, core and extras, searchable by name, role, or attribute pattern."
           compact
         />
       </div>

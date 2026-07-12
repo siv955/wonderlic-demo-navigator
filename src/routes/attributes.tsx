@@ -37,13 +37,13 @@ export interface DemoContext {
 export const Route = createFileRoute("/attributes")({
   head: () => ({
     meta: [
-      { title: "Attribute Finder — Wonderlic Demo Story Finder" },
+      { title: "Attribute Finder, Wonderlic Demo Story Finder" },
       {
         name: "description",
         content:
-          "Pick up to four attribute conditions to surface demo profiles that fit — with story angle, talk track, and full demo plan.",
+          "Pick up to four attribute conditions to surface demo profiles that fit, with story angle, talk track, and full demo plan.",
       },
-      { property: "og:title", content: "Attribute Finder — Wonderlic Demo Story Finder" },
+      { property: "og:title", content: "Attribute Finder, Wonderlic Demo Story Finder" },
       {
         property: "og:description",
         content: "Attribute-first demo prep for flexible stories.",
@@ -97,7 +97,7 @@ function AttributeFinder() {
         </h1>
         <p className="max-w-2xl text-sm text-muted-foreground">
           Pick up to four attributes with a High or Low direction. The finder returns exact
-          matches, then the closest options ranked by fit — each with a suggested story angle and a
+          matches, then the closest options ranked by fit, each with a suggested story angle and a
           copyable demo plan.
         </p>
       </header>
@@ -196,7 +196,7 @@ function AttributeFinder() {
             <span className="font-semibold">No exact match.</span>{" "}
             {bestClose.profile.name} is closest ({bestClose.matched} of {bestClose.total} conditions
             satisfied). If the story you actually want is stronger on the unsatisfied attribute
-            below, consider a different profile — try the{" "}
+            below, consider a different profile, try the{" "}
             <Link to="/archetypes" className="font-semibold text-blurple hover:underline">
               Archetype Library
             </Link>{" "}
@@ -233,19 +233,19 @@ function ContextInputs({
         <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
           Optional context
         </p>
-        <p className="text-[11px] text-muted-foreground">Shapes the story language — all fields optional</p>
+        <p className="text-[11px] text-muted-foreground">Shapes the story language, all fields optional</p>
       </div>
       <div className="mt-3 grid gap-3 sm:grid-cols-2">
         <Input
           value={context.problemRole}
           onChange={(e) => onChange({ problemRole: e.target.value })}
-          placeholder="Problem role — e.g., Production supervisor"
+          placeholder="Problem role, e.g., Production supervisor"
           className="h-10 bg-background"
         />
         <Input
           value={context.industry}
           onChange={(e) => onChange({ industry: e.target.value })}
-          placeholder="Industry — e.g., Manufacturing"
+          placeholder="Industry, e.g., Manufacturing"
           className="h-10 bg-background"
         />
         <Textarea
@@ -260,7 +260,7 @@ function ContextInputs({
             <SelectValue placeholder="Demo focus" />
           </SelectTrigger>
           <SelectContent>
-            <SelectItem value="any">Demo focus — any</SelectItem>
+            <SelectItem value="any">Demo focus, any</SelectItem>
             <SelectItem value="select">Select</SelectItem>
             <SelectItem value="develop">Develop</SelectItem>
             <SelectItem value="team-dynamics">Team Dynamics</SelectItem>
@@ -381,7 +381,7 @@ function ProfileMatchCard({
             </h3>
             {isCore ? (
               <p className="mt-0.5 line-clamp-2 text-xs text-muted-foreground">
-                {profile.roleFlavor || (arch ? arch.roleFraming : "—")}
+                {profile.roleFlavor || (arch ? arch.roleFraming : ", ")}
               </p>
             ) : (
               <p className="mt-0.5 text-xs text-muted-foreground">
@@ -513,12 +513,12 @@ function ProfileMatchCard({
 
         <div className="rounded-lg border border-select/30 bg-select-ice p-3">
           <p className="text-[11px] font-semibold uppercase tracking-wide text-select">
-            Caution — what not to overclaim
+            Caution, what not to overclaim
           </p>
           <p className="mt-1 text-xs text-wonderlic-blue">
             {arch
               ? arch.tdBuildNotes
-              : "This is a flexible profile, not a fixed persona. Do not lock them into a specific job title or paint attribute gaps as disqualifying — frame everything as coachable behavior shaped by role and context."}
+              : "This is a flexible profile, not a fixed persona. Do not lock them into a specific job title or paint attribute gaps as disqualifying, frame everything as coachable behavior shaped by role and context."}
           </p>
         </div>
 
@@ -548,7 +548,7 @@ function ProfileMatchCard({
             </>
           ) : (
             <span className="text-xs text-muted-foreground">
-              Flexible profile — shape the story with the customer&rsquo;s role and pain instead of
+              Flexible profile, shape the story with the customer&rsquo;s role and pain instead of
               a canonical archetype.
             </span>
           )}
@@ -590,7 +590,7 @@ function buildFlexibleStoryAngle(
 ) {
   const hits = selected.filter((s) => s.satisfied);
   if (hits.length === 0) {
-    return `${profile.name} is a flexible profile match for this pattern. Use the customer's role and pain to shape the story — do not lock this person into a specific job.`;
+    return `${profile.name} is a flexible profile match for this pattern. Use the customer's role and pain to shape the story, do not lock this person into a specific job.`;
   }
   const parts = hits
     .map((s) => (s.direction === "high" ? `high ${s.attribute}` : `low ${s.attribute}`))
@@ -599,7 +599,7 @@ function buildFlexibleStoryAngle(
     ? ` In a ${context.problemRole.toLowerCase()} role,`
     : "";
   const painClause = context.businessPain ? ` given the pain you heard,` : "";
-  return `${profile.name} can support a story about someone whose scores line up with ${parts}.${roleClause}${painClause} this could show up as coachable behavior — not a fixed personality — that the manager can shape with clear expectations and feedback.`;
+  return `${profile.name} can support a story about someone whose scores line up with ${parts}.${roleClause}${painClause} this could show up as coachable behavior, not a fixed personality, that the manager can shape with clear expectations and feedback.`;
 }
 
 function buildCoreTalkStarter(
@@ -620,7 +620,7 @@ function buildFlexibleTalkStarter(
 ) {
   const first = profile.firstName || profile.name.split(" ")[0];
   const primary = selected.find((s) => s.satisfied) || selected[0];
-  const role = context.problemRole ? ` — imagine them in a ${context.problemRole.toLowerCase()} role` : "";
+  const role = context.problemRole ? `, imagine them in a ${context.problemRole.toLowerCase()} role` : "";
   return `Meet ${first}${role}. This is a flexible profile built to support an attribute story around ${primary?.attribute || "the selected pattern"}. Use their scores to show the behavior a manager would coach, not a fixed job title.`;
 }
 
@@ -629,7 +629,7 @@ function buildOptionalPainFraming(conditions: AttrCondition[], context?: DemoCon
   const parts = conditions
     .filter((c) => c.attribute)
     .map((c) => `${c.direction} ${c.attribute}`);
-  if (parts.length === 0) return "Attribute-first demo — no customer pain provided.";
+  if (parts.length === 0) return "Attribute-first demo, no customer pain provided.";
   return `Customer described a pattern that maps to ${parts.join(" + ")}.`;
 }
 
@@ -644,7 +644,7 @@ function buildRoleFramings(selected: SelectedLite[], context: DemoContext) {
   if (context.problemRole) {
     framings.push({
       role: context.problemRole,
-      body: `This could support a story about someone whose ${pattern} pattern shows up in the specific behaviors that role demands — coachable with clear expectations from the manager.`,
+      body: `This could support a story about someone whose ${pattern} pattern shows up in the specific behaviors that role demands, coachable with clear expectations from the manager.`,
     });
   } else {
     framings.push({

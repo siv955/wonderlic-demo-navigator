@@ -19,13 +19,13 @@ import { Search, ArrowRight } from "lucide-react";
 export const Route = createFileRoute("/attribute-stories")({
   head: () => ({
     meta: [
-      { title: "Attribute Story Library — Wonderlic Demo Story Finder" },
+      { title: "Attribute Story Library, Wonderlic Demo Story Finder" },
       {
         name: "description",
         content:
           "Plain-English meanings, customer pain language, low/high stories, best demo profiles, Team Dynamics availability, and talk tracks for every Develop attribute.",
       },
-      { property: "og:title", content: "Attribute Story Library — Wonderlic Demo Story Finder" },
+      { property: "og:title", content: "Attribute Story Library, Wonderlic Demo Story Finder" },
       {
         property: "og:description",
         content: "Tell non-core stories like Ambition, Curiosity, Change Adoption, or Assertiveness.",
@@ -88,7 +88,7 @@ function AttributeStoryLibrary() {
         </div>
         <p className="mt-3 text-xs text-muted-foreground">
           Select and Develop are separate assessments. Related Select signals are shown for context
-          only — do not conflate the two.
+          only, do not conflate the two.
         </p>
       </div>
 
@@ -113,7 +113,7 @@ function AttributeStoryCard({ name, story }: { name: string; story?: AttributeSt
 
   const copyBundle = story
     ? [
-        `ATTRIBUTE STORY — ${name}`,
+        `ATTRIBUTE STORY, ${name}`,
         `Meaning: ${story.meaning}`,
         "",
         `Customer pain language:\n- ${story.customerPainLanguage.join("\n- ")}`,
@@ -129,7 +129,7 @@ function AttributeStoryCard({ name, story }: { name: string; story?: AttributeSt
         `Ask Wonderlic: ${story.askWonderlic}`,
         `What not to say: ${story.whatNotToSay}`,
       ].join("\n")
-    : `ATTRIBUTE STORY — ${name}\n(No curated story yet — see Best High / Best Low profiles for demo options.)`;
+    : `ATTRIBUTE STORY, ${name}\n(No curated story yet, see Best High / Best Low profiles for demo options.)`;
 
   return (
     <Card className="border-border/60 shadow-sm">
@@ -141,7 +141,7 @@ function AttributeStoryCard({ name, story }: { name: string; story?: AttributeSt
               <p className="mt-1 text-sm text-muted-foreground">{story.meaning}</p>
             ) : (
               <p className="mt-1 text-xs italic text-muted-foreground">
-                No curated story yet — use Best High / Best Low profiles as a starting point.
+                No curated story yet, use Best High / Best Low profiles as a starting point.
               </p>
             )}
           </div>
@@ -149,7 +149,7 @@ function AttributeStoryCard({ name, story }: { name: string; story?: AttributeSt
             {story?.teamDynamicsAvailable ? (
               <StoryBadge variant="team-dynamics">TD page available</StoryBadge>
             ) : (
-              <StoryBadge variant="caution">No TD page — use proxy</StoryBadge>
+              <StoryBadge variant="caution">No TD page, use proxy</StoryBadge>
             )}
             <CopyButton text={copyBundle} label="Copy story" />
           </div>
@@ -188,7 +188,7 @@ function AttributeStoryCard({ name, story }: { name: string; story?: AttributeSt
         {story && (
           <div className="grid gap-3 md:grid-cols-2">
             <InfoBox
-              title={story.teamDynamicsAvailable ? "Team Dynamics" : "Team Dynamics — not available"}
+              title={story.teamDynamicsAvailable ? "Team Dynamics" : "Team Dynamics, not available"}
               body={
                 story.teamDynamicsAvailable
                   ? `TD → ${story.teamDynamicsPath}`
@@ -200,7 +200,7 @@ function AttributeStoryCard({ name, story }: { name: string; story?: AttributeSt
               title="Related Select signals"
               body={
                 story.relatedSelectSignals.length > 0
-                  ? `${story.relatedSelectSignals.join(", ")} — Select and Develop are separate assessments; use for adjacent screen-in signals only.`
+                  ? `${story.relatedSelectSignals.join(", ")}, Select and Develop are separate assessments; use for adjacent screen-in signals only.`
                   : "None directly. Do not substitute a Select attribute for a Develop story."
               }
               accent="muted"

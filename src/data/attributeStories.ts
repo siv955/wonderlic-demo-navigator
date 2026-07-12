@@ -29,7 +29,7 @@ export const ATTRIBUTE_STORIES: AttributeStory[] = [
       "Pipeline looks good but revenue does not follow",
     ],
     lowStory:
-      "Likable seller who softens the ask — good conversations that stall before a real next step. Coach the commercial push tied to helping the customer.",
+      "Likable seller who softens the ask, good conversations that stall before a real next step. Coach the commercial push tied to helping the customer.",
     highStory:
       "Naturally competitive, energized by targets and closing motion. Coach discipline around discovery so urgency doesn't skip the customer's real problem.",
     teamDynamicsAvailable: true,
@@ -53,23 +53,23 @@ export const ATTRIBUTE_STORIES: AttributeStory[] = [
       "Documentation is thin",
     ],
     lowStory:
-      "Strong live, loose after — the follow-up email, the CRM note, the next-step commit slip under load. Coach repeatable post-call routines.",
+      "Strong live, loose after, the follow-up email, the CRM note, the next-step commit slip under load. Coach repeatable post-call routines.",
     highStory:
       "Naturally disciplined about process and follow-through. Coach where that discipline can turn into rigidity or over-inspection of teammates.",
     teamDynamicsAvailable: false,
     bestProxy: "Getting Work Done Together → Orderliness (team-level proxy for process adherence)",
     relatedSelectSignals: ["Select - Dependability", "Select - Structured"],
     thirtySecondTalkTrack:
-      "Some reps are great in the moment but leak the deal after the call. Develop → Diligence coaches the follow-through without a personality fight — Orderliness carries the story at the team level.",
+      "Some reps are great in the moment but leak the deal after the call. Develop → Diligence coaches the follow-through without a personality fight, Orderliness carries the story at the team level.",
     askWonderlic:
       "Write me a two-week coaching plan to build follow-through and CRM discipline for a rep who is warm with customers but loose with process.",
     whatNotToSay:
-      "Don't use Develop to tell termination stories (no-call/no-show, theft) — that's a Select screen-out. And Orderliness is a proxy, not a rename of Diligence.",
+      "Don't use Develop to tell termination stories (no-call/no-show, theft), that's a Select screen-out. And Orderliness is a proxy, not a rename of Diligence.",
     relatedArchetypeId: "derek",
   },
   {
     attribute: "Compassion",
-    meaning: "How communication and expertise land on other people — emotional intelligence in interaction, not moral character.",
+    meaning: "How communication and expertise land on other people, emotional intelligence in interaction, not moral character.",
     customerPainLanguage: [
       "Our technical people are smart but hard to work with",
       "Knowledge is stuck in one person",
@@ -77,7 +77,7 @@ export const ATTRIBUTE_STORIES: AttributeStory[] = [
       "Teammates route around the expert",
     ],
     lowStory:
-      "Blunt or impatient in communication — teammates avoid the expert, knowledge stays stuck. Coach the interaction pattern, not the personality.",
+      "Blunt or impatient in communication, teammates avoid the expert, knowledge stays stuck. Coach the interaction pattern, not the personality.",
     highStory:
       "High attunement to how information lands. Coach where over-softening a message can obscure the standard.",
     teamDynamicsAvailable: true,
@@ -101,14 +101,14 @@ export const ATTRIBUTE_STORIES: AttributeStory[] = [
       "Rework for stronger employees",
     ],
     lowStory:
-      "Capable but variable output — some days dialed in, some days drifting. Coach expectations, checklist behavior, and the connection to downstream impact.",
+      "Capable but variable output, some days dialed in, some days drifting. Coach expectations, checklist behavior, and the connection to downstream impact.",
     highStory:
       "Naturally pushes work to standard. Coach how they escalate when a teammate is drifting without becoming the enforcer.",
     teamDynamicsAvailable: true,
     teamDynamicsPath: "Getting Work Done Together → Results Focus",
     relatedSelectSignals: ["Select - Dependability", "Select - Cog"],
     thirtySecondTalkTrack:
-      "Riley knows the job — the question is whether the output goes to standard every time. Develop → Results Focus makes the coaching behavior-specific, not a hiring story.",
+      "Riley knows the job, the question is whether the output goes to standard every time. Develop → Results Focus makes the coaching behavior-specific, not a hiring story.",
     askWonderlic:
       "Give me three ways to coach a skilled frontline employee to consistently drive work to standard, connected to the downstream impact.",
     whatNotToSay:
@@ -125,7 +125,7 @@ export const ATTRIBUTE_STORIES: AttributeStory[] = [
       "No accountability",
     ],
     lowStory:
-      "Caring manager who avoids the direct move. Coach the specific behavior — expectation, feedback, follow-up — without asking them to stop caring.",
+      "Caring manager who avoids the direct move. Coach the specific behavior, expectation, feedback, follow-up, without asking them to stop caring.",
     highStory:
       "Comfortable with the direct move. Coach when force lands as pressure and shuts down the team.",
     teamDynamicsAvailable: true,
@@ -141,7 +141,7 @@ export const ATTRIBUTE_STORIES: AttributeStory[] = [
   },
   {
     attribute: "Stability",
-    meaning: "Composure under pressure — response pattern when workload, ambiguity, or stakes spike.",
+    meaning: "Composure under pressure, response pattern when workload, ambiguity, or stakes spike.",
     customerPainLanguage: [
       "Managers get reactive under pressure",
       "Promoted IC pulls work back",
@@ -149,7 +149,7 @@ export const ATTRIBUTE_STORIES: AttributeStory[] = [
       "Manager becomes the bottleneck",
     ],
     lowStory:
-      "Under pressure, pulls tasks back, shows visible frustration, team waits. Coach delegation and the pressure response — small behavior shifts.",
+      "Under pressure, pulls tasks back, shows visible frustration, team waits. Coach delegation and the pressure response, small behavior shifts.",
     highStory:
       "Steady under load. Coach whether calm can slide into slow-to-escalate.",
     teamDynamicsAvailable: false,
@@ -176,10 +176,10 @@ export const ATTRIBUTE_STORIES: AttributeStory[] = [
     highStory:
       "Hungry for the next thing. Coach patience and the mastery of the current role so ambition doesn't outrun readiness.",
     teamDynamicsAvailable: false,
-    bestProxy: "What Drives Us — use the closest motivational page (e.g. Enterprising Interest) as the team-level frame.",
+    bestProxy: "What Drives Us, use the closest motivational page (e.g. Enterprising Interest) as the team-level frame.",
     relatedSelectSignals: ["Select - Enterprising"],
     thirtySecondTalkTrack:
-      "Not everyone wants the next rung — and that's fine. Develop → Ambition helps managers coach growth conversations that fit the person, not a generic career ladder.",
+      "Not everyone wants the next rung, and that's fine. Develop → Ambition helps managers coach growth conversations that fit the person, not a generic career ladder.",
     askWonderlic:
       "Give me a coaching plan for an ambitious high performer who is getting frustrated waiting for the next opportunity.",
     whatNotToSay:
@@ -220,7 +220,7 @@ export const ATTRIBUTE_STORIES: AttributeStory[] = [
     highStory:
       "Eager for the new thing. Coach patience so early adopters don't leave slower teammates behind.",
     teamDynamicsAvailable: false,
-    bestProxy: "Communication & Interaction — use the closest interaction page (e.g. Open-Mindedness proxy).",
+    bestProxy: "Communication & Interaction, use the closest interaction page (e.g. Open-Mindedness proxy).",
     relatedSelectSignals: ["Select - Open-Mindedness"],
     thirtySecondTalkTrack:
       "Change fails when we ignore who needs the 'why' early. Develop → Change Adoption gives the manager a coaching lens for the resistant teammate before rollout day.",
@@ -238,7 +238,7 @@ export const ATTRIBUTE_STORIES: AttributeStory[] = [
       "We can't get honest pushback",
     ],
     lowStory:
-      "Holds back in the moment, brings concerns later or not at all. Coach specific meeting behaviors — the prepared question, the direct ask.",
+      "Holds back in the moment, brings concerns later or not at all. Coach specific meeting behaviors, the prepared question, the direct ask.",
     highStory:
       "Comfortable pushing back. Coach how force lands and when to listen before pressing.",
     teamDynamicsAvailable: false,

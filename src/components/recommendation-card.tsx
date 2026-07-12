@@ -66,7 +66,7 @@ export function RecommendationCard({
           {backup && (
             <p className="mt-2 text-xs text-muted-foreground">
               <span className="font-semibold text-wonderlic-blue">Backup:</span>{" "}
-              {backup.memoryHook} — use if the pain leans more toward {backup.developAnchor.toLowerCase()}.
+              {backup.memoryHook}, use if the pain leans more toward {backup.developAnchor.toLowerCase()}.
             </p>
           )}
         </div>
@@ -112,7 +112,7 @@ export function RecommendationCard({
           <ListBlock title="Screens to skip" items={tracks.screensToSkip} tone="muted" />
         </div>
 
-        <ListBlock title="Cautions — what not to say" items={tracks.cautions} tone="caution" />
+        <ListBlock title="Cautions, what not to say" items={tracks.cautions} tone="caution" />
       </CardContent>
     </Card>
   );
@@ -257,7 +257,7 @@ export function buildFullPlan(
   const framing = opts?.painFraming || a.useWhenCustomerSays;
   const painLabel = opts?.painOptional ? "OPTIONAL PAIN FRAMING" : "CUSTOMER PAIN FRAMING";
   return [
-    `WONDERLIC DEMO PLAN — ${a.memoryHook}`,
+    `WONDERLIC DEMO PLAN, ${a.memoryHook}`,
     `Recommended profile: ${a.demoProfileName}`,
     "",
     `${painLabel}: ${framing}`,

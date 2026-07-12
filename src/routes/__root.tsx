@@ -206,7 +206,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { property: "og:title", content: "Wonderlic Demo Story Finder" },
       {
         property: "og:description",
-        content: "Pick the right archetype, profile, and talk track from a customer pain — fast.",
+        content: "Pick the right archetype, profile, and talk track from a customer pain, fast.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
