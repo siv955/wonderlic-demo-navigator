@@ -210,7 +210,7 @@ function AttributeStoryCard({ name, story }: { name: string; story?: AttributeSt
               title="Related Select signals"
               body={
                 story.relatedSelectSignals.length > 0
-                  ? `${story.relatedSelectSignals.join(", ")}, Select and Develop are separate assessments; use for adjacent screen-in signals only.`
+                  ? `${story.relatedSelectSignals.map(normalizeSelectLabel).join(", ")}. Related Select signals are directional story inputs, not one-to-one equivalents.`
                   : "None directly. Do not substitute a Select attribute for a Develop story."
               }
               accent="muted"
