@@ -147,10 +147,19 @@ function AttributeStoryCard({ name, story }: { name: string; story?: AttributeSt
             )}
           </div>
           <div className="flex flex-wrap items-center gap-2">
+            {story ? (
+              story.relatedArchetypeId ? (
+                <StoryBadge variant="core">Curated</StoryBadge>
+              ) : (
+                <StoryBadge variant="neutral">Draft</StoryBadge>
+              )
+            ) : (
+              <StoryBadge variant="caution">Needs SME review</StoryBadge>
+            )}
             {story?.teamDynamicsAvailable ? (
               <StoryBadge variant="team-dynamics">TD page available</StoryBadge>
             ) : (
-              <StoryBadge variant="caution">No TD page, use proxy</StoryBadge>
+              <StoryBadge variant="caution">No Team Dynamics page</StoryBadge>
             )}
             <CopyButton text={copyBundle} label="Copy story" />
           </div>
