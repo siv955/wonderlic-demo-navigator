@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { ETHAN_GUIDANCE } from "@/data/ethanGuidance";
+import { CALEB_GUIDANCE } from "@/data/calebGuidance";
 import { CopyButton } from "@/components/copy-button";
 import { StoryBadge } from "@/components/story-badge";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
@@ -25,12 +25,12 @@ import {
   Target,
 } from "lucide-react";
 
-type ProductMoment = typeof ETHAN_GUIDANCE.selectMoment;
-type DevelopMoment = typeof ETHAN_GUIDANCE.developMoment;
-type TeamMoment = typeof ETHAN_GUIDANCE.teamDynamicsMoment;
+type ProductMoment = typeof CALEB_GUIDANCE.selectMoment;
+type DevelopMoment = typeof CALEB_GUIDANCE.developMoment;
+type TeamMoment = typeof CALEB_GUIDANCE.teamDynamicsMoment;
 
-export function EthanArchetypeDetail() {
-  const g = ETHAN_GUIDANCE;
+export function CalebArchetypeDetail() {
+  const g = CALEB_GUIDANCE;
 
   const runCardText = [
     `${g.header.name} · ${g.header.memoryHook} · Run This Demo`,
@@ -120,12 +120,12 @@ export function EthanArchetypeDetail() {
         </div>
         <div className="grid gap-3 md:grid-cols-2">
           <ListCard
-            label="Use Ethan when the customer says"
+            label="Use Caleb when the customer says"
             items={g.header.useWhen}
             tone="neutral"
           />
           <ListCard
-            label="Do not use Ethan when"
+            label="Do not use Caleb when"
             items={g.header.doNotUseWhen}
             tone="caution"
           />
@@ -477,7 +477,7 @@ function AtAGlance({
       </div>
       <div className="grid gap-3 md:grid-cols-3">
         <MiniField label="What this moment does" value={purpose} />
-        <MiniField label="Ethan story translation" value={storyTranslation} />
+        <MiniField label="Caleb story translation" value={storyTranslation} />
         <MiniField label="Value tie-back" value={valueTieBack} />
       </div>
     </section>
