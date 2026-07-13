@@ -58,6 +58,9 @@ function ArchetypeDetail() {
   if (a.id === "riley") {
     return <RileyArchetypeDetail />;
   }
+  if (a.id === "isabelle") {
+    return <IsabelleArchetypeDetail />;
+  }
   const g = guidanceFor(a.id as ArchetypeId);
   const r = runThisDemoFor(a.id as ArchetypeId);
   const m = productMomentsFor(a.id as ArchetypeId);
