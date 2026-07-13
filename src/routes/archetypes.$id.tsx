@@ -11,6 +11,7 @@ import { DerekArchetypeDetail } from "@/components/derek-archetype-detail";
 import { EthanArchetypeDetail } from "@/components/ethan-archetype-detail";
 import { CalebArchetypeDetail } from "@/components/caleb-archetype-detail";
 import { RileyArchetypeDetail } from "@/components/riley-archetype-detail";
+import { IsabelleArchetypeDetail } from "@/components/isabelle-archetype-detail";
 
 export const Route = createFileRoute("/archetypes/$id")({
   head: ({ params }) => {
