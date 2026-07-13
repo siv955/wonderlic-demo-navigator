@@ -57,9 +57,9 @@ function ArchetypeDetail() {
     `Anchor on this pain: ${r.anchorOnThisPain}`,
     `Open this profile: ${r.openThisProfile}`,
     `Select point: ${r.selectPoint}`,
-    `Develop attribute: ${r.developAttribute}`,
-    `Team Dynamics: ${r.teamDynamics}`,
-    `Close with: ${r.closeWith}`,
+    `Develop point: ${r.developAttribute}`,
+    `Team Dynamics point: ${r.teamDynamics}`,
+    `Close with this value line: ${r.closeWith}`,
   ].join("\n");
 
   const recapText = [
