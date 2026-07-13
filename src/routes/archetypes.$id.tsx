@@ -41,6 +41,9 @@ export const Route = createFileRoute("/archetypes/$id")({
 
 function ArchetypeDetail() {
   const { archetype: a } = Route.useLoaderData();
+  if (a.id === "derek") {
+    return <DerekArchetypeDetail />;
+  }
   const g = guidanceFor(a.id as ArchetypeId);
   const r = runThisDemoFor(a.id as ArchetypeId);
   const m = productMomentsFor(a.id as ArchetypeId);
