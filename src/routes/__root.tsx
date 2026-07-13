@@ -30,15 +30,8 @@ const NAV = [
 
 function BrandMark() {
   return (
-    <Link to="/" className="flex items-center gap-2.5">
-      <img
-        src={wonderlicW.url}
-        alt="Wonderlic"
-        className="h-8 w-auto"
-      />
-      <span className="font-display text-[17px] font-light tracking-tight text-wonderlic-blue">
-        wonderlic <span className="font-semibold">Demo Story Finder</span>
-      </span>
+    <Link to="/" className="flex items-center" aria-label="Wonderlic Demo Story Finder">
+      <img src={wonderlicW.url} alt="Wonderlic" className="h-9 w-auto" />
     </Link>
   );
 }
