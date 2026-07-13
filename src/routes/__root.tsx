@@ -30,11 +30,19 @@ const NAV = [
 
 function BrandMark() {
   return (
-    <Link to="/" className="flex items-center" aria-label="Wonderlic Demo Story Finder">
-      <img src={wonderlicW.url} alt="Wonderlic" className="h-9 w-auto" />
+    <Link to="/" className="flex items-center gap-2.5" aria-label="Wonderlic Demo Navigator">
+      <img
+        src={wonderlicW.url}
+        alt="Wonderlic"
+        className="h-9 w-auto max-w-none object-contain"
+      />
+      <span className="font-display text-base font-normal leading-tight text-wonderlic-blue">
+        Wonderlic Demo Navigator
+      </span>
     </Link>
   );
 }
+
 
 function TopNav() {
   const pathname = useRouterState({ select: (s) => s.location.pathname });
@@ -168,7 +176,7 @@ function NotFoundComponent() {
         <p className="font-display text-6xl font-light text-blurple">404</p>
         <h1 className="mt-2 font-display text-2xl font-light">Page not found</h1>
         <p className="mt-2 text-sm text-muted-foreground">
-          That route isn't in the Story Finder.
+          That route isn't in the Demo Navigator.
         </p>
         <Link
           to="/"
@@ -215,14 +223,14 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Wonderlic Demo Story Finder" },
+      { title: "Wonderlic Demo Navigator" },
       {
         name: "description",
         content:
           "Internal sales enablement tool for choosing the right Wonderlic demo archetype, profile, Team Dynamics page, and talk track in under 60 seconds.",
       },
       { name: "author", content: "Wonderlic" },
-      { property: "og:title", content: "Wonderlic Demo Story Finder" },
+      { property: "og:title", content: "Wonderlic Demo Navigator" },
       {
         property: "og:description",
         content: "Pick the right archetype, profile, and talk track from a customer pain, fast.",
