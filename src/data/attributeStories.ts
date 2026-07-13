@@ -1,5 +1,12 @@
 import type { ArchetypeId } from "./types";
 
+export type AttributeStoryQuality =
+  | "Curated"
+  | "Draft"
+  | "Needs SME review"
+  | "Proxy only"
+  | "No Team Dynamics page";
+
 export interface AttributeStory {
   attribute: string;
   meaning: string;
@@ -15,6 +22,8 @@ export interface AttributeStory {
   whatNotToSay: string;
   /** Optional link to canonical archetype whose Develop anchor is this attribute. */
   relatedArchetypeId?: ArchetypeId;
+  /** Source-quality tag surfaced to reps. Defaults to "Draft" when omitted. */
+  quality?: AttributeStoryQuality;
 }
 
 // Curated stories for the highest-leverage Develop attributes.
