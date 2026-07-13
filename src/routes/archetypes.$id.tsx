@@ -7,6 +7,7 @@ import { StoryBadge } from "@/components/story-badge";
 import { CopyButton } from "@/components/copy-button";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { ArrowLeft, AlertTriangle, PlayCircle, Megaphone, HelpCircle } from "lucide-react";
+import { DerekArchetypeDetail } from "@/components/derek-archetype-detail";
 
 export const Route = createFileRoute("/archetypes/$id")({
   head: ({ params }) => {
