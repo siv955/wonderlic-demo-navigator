@@ -127,20 +127,14 @@ So when I am looking at a candidate in Select, I am not using this as a replacem
 The overall fit helps you prioritize where to spend time. But once I open the individual result, this is where I want to understand the tradeoffs. If someone has strong capability signals, that may explain why they look credible for the role. But if this manager role requires staying steady under pressure, delegating work, adapting when things change, and keeping decisions moving, I also want to inspect the signals related to stress tolerance, openness, structure, and problem-solving.
 
 That is the hidden risk Simon represents. He may look strong because he can do the work, but if the job requires leading the work through other people, this gives the hiring team a way to pressure-test that before they make the hiring decision.`,
-    interviewGuideReference: `I would also use this to shape the interview. If manager bottlenecks are the business pain, I do not want the hiring manager asking only, "Do you know the operation?" or "How would you handle a busy shift?" Those questions matter, but they do not fully get at the risk.
+    interviewGuideReference: `Behavioral Interview Guides are where I would show how the assessment becomes a more consistent manager interview. If manager bottlenecks are the concern, the value is not that the hiring manager only asks whether the candidate knows the operation. The value is that Wonderlic gives them prebuilt, role-related behavioral questions tied to relevant competencies, so every candidate can be evaluated more consistently against the same success criteria.
 
-I would want the interview guide to help them ask for evidence.
+For Simon, that means the hiring team can probe pressure response, delegation, decision rights, and leading through others instead of relying only on technical credibility or operational experience.`,
+    newHireTipsReference: `New Hire Success Tips are where I would show the handoff from selection into onboarding. Once you decide to hire someone, Wonderlic can help the manager understand how to support that person earlier, so the first 30, 60, and 90 days are more intentional.
 
-Something like: "Tell me about a time you had to let someone else own a decision even though you could have done it faster yourself."
+The value is faster ramping, more efficient onboarding, and fewer surprises after the person is already in seat.
 
-Or: "Walk me through a time your team was under pressure and you had to decide what to delegate versus what to handle personally."
-
-Or: "Tell me about a time you realized you were becoming the bottleneck. What did you change?"
-
-That is a much better use of the assessment. It does not make the decision for the manager. It shows the manager what to probe.`,
-    newHireTipsReference: `And if you do hire or promote someone where delegation and pressure response may need more structure, the value does not stop at the decision. The leader can use the new hire guidance to onboard the manager more intentionally.
-
-For Simon, that might mean setting expectations early around decision rights, escalation rules, delegation routines, and how to inspect work without taking it back. You do not wait until every decision routes through the manager and production slows. You manage to the behavior from the beginning.`,
+For Simon, that might mean setting expectations early around decision rights, escalation rules, delegation routines, and how to inspect work without taking it back. The leader does not have to wait until every decision routes through the manager. They can build delegation and pressure-response routines into onboarding.`,
     midDemoQuestions: [
       "Does that mirror what happens today, where someone is promoted because they know the work, but the bottleneck issue only shows up once they are leading a team?",
       "Are your hiring managers currently probing delegation and pressure response, or does the interview mostly focus on experience and operational knowledge?",
