@@ -247,26 +247,33 @@ function AttrList({ title, items, tone }: { title: string; items: string[]; tone
 }
 
 function ScoreGrid({ scores }: { scores: Record<string, number> }) {
-  const entries = Object.entries(scores).sort((a, b) => a[0].localeCompare(b[0]));
+  const entries = Object.entries(scores)
+    .filter(([k]) => !isSelectKey(k))
+    .sort((a, b) => a[0].localeCompare(b[0]));
   return (
-    <div className="grid grid-cols-2 gap-x-4 gap-y-1.5 text-xs sm:grid-cols-3 lg:grid-cols-4">
-      {entries.map(([k, v]) => (
-        <div key={k} className="flex items-center justify-between border-b border-border/60 py-1">
-          <span className="truncate text-muted-foreground">{normalizeSelectLabel(k)}</span>
-          <span
-            className={`ml-2 shrink-0 rounded-full px-1.5 py-0.5 font-semibold ${
-              v >= 70
-                ? "bg-soft-purple text-blurple"
-                : v <= 30
-                  ? "bg-select-ice text-wonderlic-blue"
-                  : "bg-muted text-wonderlic-blue"
-            }`}
-          >
-            {v}
-          </span>
-        </div>
-      ))}
-    </div>
+    <>
+      <p className="mb-2 text-[11px] italic text-muted-foreground">
+        Develop scores only. Select signals appear separately for core archetypes.
+      </p>
+      <div className="grid grid-cols-2 gap-x-4 gap-y-1.5 text-xs sm:grid-cols-3 lg:grid-cols-4">
+        {entries.map(([k, v]) => (
+          <div key={k} className="flex items-center justify-between border-b border-border/60 py-1">
+            <span className="truncate text-muted-foreground">{k}</span>
+            <span
+              className={`ml-2 shrink-0 rounded-full px-1.5 py-0.5 font-semibold ${
+                v >= 70
+                  ? "bg-soft-purple text-blurple"
+                  : v <= 30
+                    ? "bg-select-ice text-wonderlic-blue"
+                    : "bg-muted text-wonderlic-blue"
+              }`}
+            >
+              {v}
+            </span>
+          </div>
+        ))}
+      </div>
+    </>
   );
 }
 
