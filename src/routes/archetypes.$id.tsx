@@ -12,6 +12,7 @@ import { EthanArchetypeDetail } from "@/components/ethan-archetype-detail";
 import { CalebArchetypeDetail } from "@/components/caleb-archetype-detail";
 import { RileyArchetypeDetail } from "@/components/riley-archetype-detail";
 import { IsabelleArchetypeDetail } from "@/components/isabelle-archetype-detail";
+import { SimonArchetypeDetail } from "@/components/simon-archetype-detail";
 
 export const Route = createFileRoute("/archetypes/$id")({
   head: ({ params }) => {
@@ -60,6 +61,9 @@ function ArchetypeDetail() {
   }
   if (a.id === "isabelle") {
     return <IsabelleArchetypeDetail />;
+  }
+  if (a.id === "simon") {
+    return <SimonArchetypeDetail />;
   }
   const g = guidanceFor(a.id as ArchetypeId);
   const r = runThisDemoFor(a.id as ArchetypeId);
