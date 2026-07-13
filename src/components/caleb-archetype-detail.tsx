@@ -156,6 +156,9 @@ export function CalebArchetypeDetail() {
         </div>
       </section>
 
+      {/* BUSINESS IMPACT LADDER */}
+      <BusinessImpactLadder ladder={g.businessImpactLadder} />
+
       {/* CORE STORY — collapsible */}
       <section className="rounded-2xl border border-border bg-card">
         <Accordion type="single" collapsible>
