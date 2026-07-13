@@ -14,6 +14,7 @@ import type { Profile } from "@/data/types";
 import { ATTRIBUTE_STORIES, attributeStoryByName, type AttributeStory } from "@/data/attributeStories";
 import { StoryBadge } from "@/components/story-badge";
 import { CopyButton } from "@/components/copy-button";
+import { normalizeSelectLabel } from "@/lib/selectLabels";
 import { Search, ArrowRight } from "lucide-react";
 
 export const Route = createFileRoute("/attribute-stories")({
