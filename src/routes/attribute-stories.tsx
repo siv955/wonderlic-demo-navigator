@@ -14,6 +14,7 @@ import type { Profile } from "@/data/types";
 import { ATTRIBUTE_STORIES, attributeStoryByName, type AttributeStory } from "@/data/attributeStories";
 import { StoryBadge } from "@/components/story-badge";
 import { CopyButton } from "@/components/copy-button";
+import { normalizeSelectLabel } from "@/lib/selectLabels";
 import { Search, ArrowRight } from "lucide-react";
 
 export const Route = createFileRoute("/attribute-stories")({
@@ -146,10 +147,19 @@ function AttributeStoryCard({ name, story }: { name: string; story?: AttributeSt
             )}
           </div>
           <div className="flex flex-wrap items-center gap-2">
+            {story ? (
+              story.relatedArchetypeId ? (
+                <StoryBadge variant="core">Curated</StoryBadge>
+              ) : (
+                <StoryBadge variant="neutral">Draft</StoryBadge>
+              )
+            ) : (
+              <StoryBadge variant="caution">Needs SME review</StoryBadge>
+            )}
             {story?.teamDynamicsAvailable ? (
               <StoryBadge variant="team-dynamics">TD page available</StoryBadge>
             ) : (
-              <StoryBadge variant="caution">No TD page, use proxy</StoryBadge>
+              <StoryBadge variant="caution">No Team Dynamics page</StoryBadge>
             )}
             <CopyButton text={copyBundle} label="Copy story" />
           </div>
@@ -200,7 +210,7 @@ function AttributeStoryCard({ name, story }: { name: string; story?: AttributeSt
               title="Related Select signals"
               body={
                 story.relatedSelectSignals.length > 0
-                  ? `${story.relatedSelectSignals.join(", ")}, Select and Develop are separate assessments; use for adjacent screen-in signals only.`
+                  ? `${story.relatedSelectSignals.map(normalizeSelectLabel).join(", ")}. Related Select signals are directional story inputs, not one-to-one equivalents.`
                   : "None directly. Do not substitute a Select attribute for a Develop story."
               }
               accent="muted"

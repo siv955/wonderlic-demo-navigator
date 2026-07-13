@@ -1,6 +1,8 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { archetypeById, profileById, type ArchetypeId } from "@/data";
 import { guidanceFor } from "@/data/archetypeGuidance";
+import { runThisDemoFor } from "@/data/runThisDemo";
+import { normalizeSelectLabel } from "@/lib/selectLabels";
 import { StoryBadge } from "@/components/story-badge";
 import { CopyButton } from "@/components/copy-button";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
@@ -10,7 +12,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { ArrowLeft, ArrowRight, User, AlertTriangle } from "lucide-react";
+import { ArrowLeft, ArrowRight, User, AlertTriangle, PlayCircle, Megaphone } from "lucide-react";
 
 export const Route = createFileRoute("/archetypes/$id")({
   head: ({ params }) => {
@@ -46,7 +48,19 @@ export const Route = createFileRoute("/archetypes/$id")({
 function ArchetypeDetail() {
   const { archetype: a } = Route.useLoaderData();
   const g = guidanceFor(a.id as ArchetypeId);
+  const r = runThisDemoFor(a.id as ArchetypeId);
   const profile = profileById(a.demoProfileId);
+
+  const runCardText = [
+    `${a.memoryHook} · Run This Demo`,
+    "",
+    `Anchor on this pain: ${r.anchorOnThisPain}`,
+    `Open this profile: ${r.openThisProfile}`,
+    `Select point: ${r.selectPoint}`,
+    `Develop attribute: ${r.developAttribute}`,
+    `Team Dynamics: ${r.teamDynamics}`,
+    `Close with: ${r.closeWith}`,
+  ].join("\n");
 
   const recapText = [
     `${a.memoryHook} · Recap`,
@@ -56,39 +70,6 @@ function ArchetypeDetail() {
     "",
     "Future state / goals:",
     ...g.recap.futureState.map((b) => `• ${b}`),
-  ].join("\n");
-
-  const fullPlan = [
-    `${a.memoryHook} · Full Demo Plan`,
-    ``,
-    `Profile to open: ${a.demoProfileName}`,
-    `Primary Develop attribute: ${g.develop.primaryDirection === "low" ? "Low" : "High"} ${g.develop.primary}`,
-    `Team Dynamics: ${g.teamDynamics.section} → ${g.teamDynamics.page}`,
-    ``,
-    `-- STRENGTH --`,
-    g.strength,
-    ``,
-    `-- GAP --`,
-    g.gap,
-    ``,
-    `-- HOW DEVELOP HELPS --`,
-    g.developHelps,
-    ``,
-    `-- DEMO ARC --`,
-    g.demoArc,
-    ``,
-    `-- SELECT --`,
-    g.select.howToSayIt,
-    ``,
-    `-- DEVELOP --`,
-    g.develop.plainEnglish,
-    `Coaching action: ${g.develop.coachingAction}`,
-    ``,
-    `-- TEAM DYNAMICS --`,
-    g.teamDynamics.whatToSay,
-    ``,
-    `-- ASK WONDERLIC --`,
-    g.askWonderlic,
   ].join("\n");
 
   return (
@@ -101,29 +82,66 @@ function ArchetypeDetail() {
         Archetype Library
       </Link>
 
-      {/* 1. Story Snapshot */}
+      {/* Header */}
       <header className="space-y-4">
-        <p className="text-xs font-semibold uppercase tracking-wider text-blurple">
-          {a.workerCategory} · Canonical archetype
-        </p>
+        <div className="flex flex-wrap items-center gap-2">
+          <p className="text-xs font-semibold uppercase tracking-wider text-blurple">
+            {a.workerCategory} · Canonical archetype
+          </p>
+        </div>
         <h1 className="font-display text-5xl font-light leading-tight text-wonderlic-blue">
           {a.memoryHook}
         </h1>
-        <p className="max-w-3xl text-base text-muted-foreground">{a.roleFraming}</p>
+        <div className="flex flex-wrap gap-2">
+          <StoryBadge variant="caution">Primary gap: {r.primaryGapLabel}</StoryBadge>
+          <StoryBadge variant="core">Canonical archetype</StoryBadge>
+        </div>
+        <p className="max-w-3xl text-base text-muted-foreground">{r.shortDefinition}</p>
       </header>
 
-      <section className="grid gap-4 rounded-2xl border border-border bg-card p-6 md:grid-cols-[minmax(0,2fr)_minmax(0,1fr)]">
-        <div className="space-y-4">
-          <div className="grid gap-3 sm:grid-cols-2">
-            <SnapshotField
-              label="Develop anchor"
-              value={`${g.develop.primaryDirection === "low" ? "Low" : "High"} ${g.develop.primary}`}
-            />
-            <SnapshotField
-              label="Team Dynamics"
-              value={`${g.teamDynamics.section} → ${g.teamDynamics.page}`}
-            />
+      {/* RUN THIS DEMO */}
+      <section className="rounded-2xl border-2 border-blurple/40 bg-purple-chalk/60 p-6 shadow-sm">
+        <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
+          <div className="flex items-center gap-2">
+            <PlayCircle className="h-5 w-5 text-blurple" />
+            <h2 className="font-display text-2xl font-normal text-wonderlic-blue">Run This Demo</h2>
           </div>
+          <CopyButton text={runCardText} label="Copy Run This Demo card" />
+        </div>
+        <div className="grid gap-3 md:grid-cols-2">
+          <RunField label="Anchor on this pain" value={r.anchorOnThisPain} />
+          <RunField label="Open this profile" value={r.openThisProfile} />
+          <RunField label="Select point" value={r.selectPoint} />
+          <RunField label="Develop attribute" value={r.developAttribute} />
+          <RunField label="Team Dynamics" value={r.teamDynamics} />
+          <RunField label="Close with" value={r.closeWith} />
+        </div>
+      </section>
+
+      {/* Strength / Gap / How Develop Helps */}
+      <div className="grid gap-4 md:grid-cols-3">
+        <GuidanceCard tone="strength" title="The Strength" body={g.strength} />
+        <GuidanceCard tone="gap" title="The Gap" body={g.gap} />
+        <GuidanceCard tone="develop" title="How Develop Helps" body={g.developHelps} />
+      </div>
+
+      {/* Say this out loud */}
+      <section className="rounded-2xl border border-blue-lilac bg-soft-purple/50 p-6">
+        <div className="mb-3 flex items-center justify-between gap-3">
+          <div className="flex items-center gap-2">
+            <Megaphone className="h-5 w-5 text-blurple" />
+            <h2 className="font-display text-xl font-normal text-wonderlic-blue">
+              Say this out loud
+            </h2>
+          </div>
+          <CopyButton text={r.sayThisOutLoud} label="Copy talk track" />
+        </div>
+        <p className="text-base leading-relaxed text-wonderlic-blue">{r.sayThisOutLoud}</p>
+      </section>
+
+      {/* Snapshot with profile link, use/do-not-use */}
+      <section className="grid gap-4 rounded-2xl border border-border bg-card p-6 md:grid-cols-[minmax(0,2fr)_minmax(0,1fr)]">
+        <div className="space-y-3">
           <div className="rounded-lg border border-border bg-soft-purple/40 p-3 text-sm">
             <p className="text-[11px] font-semibold uppercase tracking-wide text-blurple">
               Use when
@@ -160,9 +178,6 @@ function ArchetypeDetail() {
                   <p className="truncate text-xs text-muted-foreground">{profile.email}</p>
                 </div>
               </div>
-              <div className="mt-3 flex flex-wrap gap-1.5">
-                <StoryBadge variant="core">Core archetype</StoryBadge>
-              </div>
             </div>
             <span className="mt-4 inline-flex items-center gap-1 text-xs font-semibold text-blurple">
               Open in directory <ArrowRight className="h-3 w-3" />
@@ -171,81 +186,18 @@ function ArchetypeDetail() {
         )}
       </section>
 
-      <div className="flex flex-wrap gap-2">
-        <CopyButton text={fullPlan} label="Copy full demo plan" />
-        <CopyButton text={recapText} label="Copy recap slide bullets" />
-      </div>
-
-      <Tabs defaultValue="story" className="w-full">
+      {/* Deeper guidance tabs */}
+      <Tabs defaultValue="select" className="w-full">
         <TabsList className="flex h-auto w-full flex-wrap justify-start gap-1 bg-muted/40 p-1">
-          <TabsTrigger value="story">Story Guidance</TabsTrigger>
           <TabsTrigger value="select">Select</TabsTrigger>
           <TabsTrigger value="develop">Develop</TabsTrigger>
           <TabsTrigger value="td">Team Dynamics</TabsTrigger>
           <TabsTrigger value="tracks">Talk Tracks</TabsTrigger>
           <TabsTrigger value="ask">Ask Wonderlic</TabsTrigger>
+          <TabsTrigger value="arc">Demo arc & screens</TabsTrigger>
           <TabsTrigger value="cautions">Cautions</TabsTrigger>
           <TabsTrigger value="recap">Recap slide</TabsTrigger>
         </TabsList>
-
-        {/* STORY GUIDANCE */}
-        <TabsContent value="story" className="mt-6 space-y-6">
-          <div className="grid gap-4 md:grid-cols-3">
-            <GuidanceCard tone="strength" title="The Strength" body={g.strength} />
-            <GuidanceCard tone="gap" title="The Gap" body={g.gap} />
-            <GuidanceCard tone="develop" title="How Develop Helps" body={g.developHelps} />
-          </div>
-
-          <Section
-            title="Discovery triggers"
-            subtitle="Use this story when the customer says…"
-          >
-            <ul className="grid gap-2 sm:grid-cols-2">
-              {g.discoveryTriggers.map((t) => (
-                <li key={t} className="rounded-lg border border-border bg-card px-3 py-2 text-sm text-wonderlic-blue">
-                  &ldquo;{t}&rdquo;
-                </li>
-              ))}
-            </ul>
-            <div className="mt-4 rounded-lg border border-blue-lilac bg-soft-purple/50 p-3 text-sm">
-              <p className="text-[11px] font-semibold uppercase tracking-wide text-blurple">
-                Clarifying question if ambiguous
-              </p>
-              <p className="mt-1 text-wonderlic-blue">{g.clarifyingQuestion}</p>
-            </div>
-          </Section>
-
-          <Section title="How to tell the story" subtitle="Full demo arc">
-            <p className="whitespace-pre-line text-sm leading-relaxed text-wonderlic-blue">
-              {g.demoArc}
-            </p>
-          </Section>
-
-          <Section title="Screens to show / skip">
-            <div className="grid gap-4 md:grid-cols-2">
-              <div>
-                <p className="text-[11px] font-semibold uppercase tracking-wide text-blurple">
-                  Show
-                </p>
-                <ul className="mt-2 space-y-1.5 text-sm text-wonderlic-blue">
-                  {g.screensToShow.map((s) => (
-                    <li key={s}>• {s}</li>
-                  ))}
-                </ul>
-              </div>
-              <div>
-                <p className="text-[11px] font-semibold uppercase tracking-wide text-muted-foreground">
-                  Skip
-                </p>
-                <ul className="mt-2 space-y-1.5 text-sm text-muted-foreground">
-                  {g.screensToSkip.map((s) => (
-                    <li key={s}>• {s}</li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-          </Section>
-        </TabsContent>
 
         {/* SELECT */}
         <TabsContent value="select" className="mt-6 space-y-4">
@@ -265,13 +217,16 @@ function ArchetypeDetail() {
           <Accordion type="single" collapsible>
             <AccordionItem value="signals" className="rounded-lg border border-border">
               <AccordionTrigger className="px-4 text-sm font-semibold text-muted-foreground">
-                Supporting signals (raw attributes)
+                Related Select signals to inspect
               </AccordionTrigger>
               <AccordionContent className="px-4">
+                <p className="mb-2 text-xs italic text-muted-foreground">
+                  Related Select signals are directional story inputs, not one-to-one equivalents.
+                </p>
                 <div className="flex flex-wrap gap-1.5">
                   {g.select.supportingSignals.map((s) => (
                     <StoryBadge key={s} variant="select">
-                      {s}
+                      {normalizeSelectLabel(s)}
                     </StoryBadge>
                   ))}
                 </div>
@@ -360,6 +315,50 @@ function ArchetypeDetail() {
           </Section>
         </TabsContent>
 
+        {/* DEMO ARC & SCREENS */}
+        <TabsContent value="arc" className="mt-6 space-y-4">
+          <Section title="Discovery triggers" subtitle="Use this story when the customer says…">
+            <ul className="grid gap-2 sm:grid-cols-2">
+              {g.discoveryTriggers.map((t) => (
+                <li key={t} className="rounded-lg border border-border bg-card px-3 py-2 text-sm text-wonderlic-blue">
+                  &ldquo;{t}&rdquo;
+                </li>
+              ))}
+            </ul>
+            <div className="mt-4 rounded-lg border border-blue-lilac bg-soft-purple/50 p-3 text-sm">
+              <p className="text-[11px] font-semibold uppercase tracking-wide text-blurple">
+                Clarifying question if ambiguous
+              </p>
+              <p className="mt-1 text-wonderlic-blue">{g.clarifyingQuestion}</p>
+            </div>
+          </Section>
+          <Section title="Full demo arc">
+            <p className="whitespace-pre-line text-sm leading-relaxed text-wonderlic-blue">
+              {g.demoArc}
+            </p>
+          </Section>
+          <Section title="Screens to show / skip">
+            <div className="grid gap-4 md:grid-cols-2">
+              <div>
+                <p className="text-[11px] font-semibold uppercase tracking-wide text-blurple">Show</p>
+                <ul className="mt-2 space-y-1.5 text-sm text-wonderlic-blue">
+                  {g.screensToShow.map((s) => (
+                    <li key={s}>• {s}</li>
+                  ))}
+                </ul>
+              </div>
+              <div>
+                <p className="text-[11px] font-semibold uppercase tracking-wide text-muted-foreground">Skip</p>
+                <ul className="mt-2 space-y-1.5 text-sm text-muted-foreground">
+                  {g.screensToSkip.map((s) => (
+                    <li key={s}>• {s}</li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </Section>
+        </TabsContent>
+
         {/* CAUTIONS */}
         <TabsContent value="cautions" className="mt-6">
           <Section title="What not to say">
@@ -402,13 +401,11 @@ function ArchetypeDetail() {
   );
 }
 
-function SnapshotField({ label, value }: { label: string; value: string }) {
+function RunField({ label, value }: { label: string; value: string }) {
   return (
-    <div>
-      <p className="text-[11px] font-semibold uppercase tracking-wide text-muted-foreground">
-        {label}
-      </p>
-      <p className="mt-0.5 text-sm font-medium text-wonderlic-blue">{value}</p>
+    <div className="rounded-xl border border-blue-lilac bg-card p-3">
+      <p className="text-[11px] font-semibold uppercase tracking-wide text-blurple">{label}</p>
+      <p className="mt-1 text-sm leading-relaxed text-wonderlic-blue">{value}</p>
     </div>
   );
 }

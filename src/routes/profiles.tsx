@@ -13,6 +13,7 @@ import {
 import { profiles, archetypes, archetypeById } from "@/data";
 import { StoryBadge } from "@/components/story-badge";
 import { FlexibleProfileBadge } from "@/components/flexible-profile-badge";
+import { normalizeSelectLabel, isSelectKey } from "@/lib/selectLabels";
 import { Search, ChevronDown } from "lucide-react";
 
 export const Route = createFileRoute("/profiles")({
@@ -145,10 +146,36 @@ function ProfileDirectory() {
                   </div>
                 </div>
 
-                <div className="mt-4 grid gap-3 md:grid-cols-2">
-                  <AttrList title="Best high" items={p.bestHighAttributes} tone="high" />
-                  <AttrList title="Best low" items={p.bestLowAttributes} tone="low" />
-                </div>
+                {(() => {
+                  const developHigh = p.bestHighAttributes.filter((x) => !isSelectKey(x));
+                  const developLow = p.bestLowAttributes.filter((x) => !isSelectKey(x));
+                  const selectHigh = p.bestHighAttributes.filter(isSelectKey).map(normalizeSelectLabel);
+                  const selectLow = p.bestLowAttributes.filter(isSelectKey).map(normalizeSelectLabel);
+                  const relatedSelect = Array.from(new Set([...selectHigh, ...selectLow]));
+                  return (
+                    <>
+                      <div className="mt-4 grid gap-3 md:grid-cols-2">
+                        <AttrList title="Best high (Develop)" items={developHigh} tone="high" />
+                        <AttrList title="Best low (Develop)" items={developLow} tone="low" />
+                      </div>
+                      {isCore && relatedSelect.length > 0 && (
+                        <div className="mt-3 rounded-lg border border-border bg-card p-3">
+                          <p className="text-[11px] font-semibold uppercase tracking-wide text-muted-foreground">
+                            Related Select signals
+                          </p>
+                          <div className="mt-2 flex flex-wrap gap-1.5">
+                            {relatedSelect.map((a) => (
+                              <StoryBadge key={a} variant="select">{a}</StoryBadge>
+                            ))}
+                          </div>
+                          <p className="mt-2 text-[11px] italic text-muted-foreground">
+                            Related Select signals are directional story inputs, not one-to-one equivalents.
+                          </p>
+                        </div>
+                      )}
+                    </>
+                  );
+                })()}
 
                 {!isCore && (
                   <div className="mt-3 grid gap-3 md:grid-cols-2">
@@ -225,7 +252,7 @@ function ScoreGrid({ scores }: { scores: Record<string, number> }) {
     <div className="grid grid-cols-2 gap-x-4 gap-y-1.5 text-xs sm:grid-cols-3 lg:grid-cols-4">
       {entries.map(([k, v]) => (
         <div key={k} className="flex items-center justify-between border-b border-border/60 py-1">
-          <span className="truncate text-muted-foreground">{k}</span>
+          <span className="truncate text-muted-foreground">{normalizeSelectLabel(k)}</span>
           <span
             className={`ml-2 shrink-0 rounded-full px-1.5 py-0.5 font-semibold ${
               v >= 70
