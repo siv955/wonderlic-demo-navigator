@@ -425,15 +425,17 @@ function TeamPanel({ moment }: { moment: TeamMoment }) {
         text={moment.fullScript}
         copyLabel="Copy Team Dynamics script"
       />
-      <OptionalMoments
-        items={[
-          {
-            label: "Orderliness proxy note (say once)",
-            text: moment.proxyNote,
-            copyLabel: "Copy proxy note",
-          },
-        ]}
-      />
+      {moment.proxyNote ? (
+        <OptionalMoments
+          items={[
+            {
+              label: "Team Dynamics proxy note (say once)",
+              text: moment.proxyNote,
+              copyLabel: "Copy proxy note",
+            },
+          ]}
+        />
+      ) : null}
       <MidDemoQuestions items={moment.midDemoQuestions} copyPrefix="Team question" />
       <ValueTieBack text={moment.valueTieBack} />
       <div className="flex items-start gap-2 rounded-lg border border-amber-200 bg-amber-50 p-3 text-sm">
