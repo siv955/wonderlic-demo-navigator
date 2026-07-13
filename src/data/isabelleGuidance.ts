@@ -127,20 +127,14 @@ So when I am looking at a candidate in Select, I am not using this as a replacem
 The overall fit helps you prioritize where to spend time. But once I open the individual result, this is where I want to understand the tradeoffs. If someone has strong people-oriented signals, that may explain why they come across well and build trust. But if this manager role requires direct feedback, accountability, and difficult conversations, I also want to inspect the signals related to influence, stress tolerance, and follow-through.
 
 That is the hidden risk Isabelle represents. She may look strong because she is supportive, but if the job requires turning trust into clear accountability, this gives the hiring team a way to pressure-test that before they make the hiring decision.`,
-    interviewGuideReference: `I would also use this to shape the interview. If accountability is the business pain, I do not want the hiring manager asking only, "How do you build trust with your team?" or "How would you describe your management style?" Those questions matter, but they do not fully get at the risk.
+    interviewGuideReference: `Behavioral Interview Guides are where I would show how the assessment becomes a more consistent manager interview. If accountability is the concern, the value is not that the hiring manager only asks about leadership style or whether people like working for the candidate. The value is that Wonderlic gives them prebuilt, role-related behavioral questions tied to relevant competencies, so every candidate can be evaluated more consistently against the same success criteria.
 
-I would want the interview guide to help them ask for evidence.
+For Isabelle, that means the hiring team can probe direct feedback, expectation-setting, and accountability behavior instead of relying only on warmth, trust, or manager presence.`,
+    newHireTipsReference: `New Hire Success Tips are where I would show the handoff from selection into onboarding. Once you decide to hire someone, Wonderlic can help the manager understand how to support that person earlier, so the first 30, 60, and 90 days are more intentional.
 
-Something like: "Tell me about a time you had to give direct feedback to someone you liked or had a strong relationship with. What did you say?"
+The value is faster ramping, more efficient onboarding, and fewer surprises after the person is already in seat.
 
-Or: "Walk me through a performance issue you addressed before it became an HR problem."
-
-Or: "Tell me about a time an employee left a conversation clearly understanding what needed to change. How did you make sure the message landed?"
-
-That is a much better use of the assessment. It does not make the decision for the manager. It shows the manager what to probe.`,
-    newHireTipsReference: `And if you do hire or promote someone where accountability may need more structure, the value does not stop at the decision. The leader can use the new hire guidance to onboard the manager more intentionally.
-
-For Isabelle, that might mean setting expectations early around one-on-ones, feedback cadence, documentation, when to escalate, and how to make expectations clear before performance issues linger. You do not wait until the team misses numbers, HR is pulled in, or strong employees are frustrated. You manage to the behavior from the beginning.`,
+For Isabelle, that might mean setting expectations early around one-on-ones, direct feedback, documentation, and how to make expectations clear before performance issues linger. The leader does not have to wait until HR is pulled in late. They can build accountability routines into onboarding.`,
     midDemoQuestions: [
       "Does that mirror what happens today, where someone is liked as a manager but the accountability issue only shows up after they have a team?",
       "Are your hiring managers currently probing for direct feedback and difficult conversation skills, or does the interview mostly focus on leadership style?",
