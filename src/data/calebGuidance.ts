@@ -32,7 +32,7 @@ export const CALEB_GUIDANCE = {
   },
   runThisDemo: {
     anchorOnThisPain:
-      "The organization has people with strong technical ability, but collaboration breaks down because their expertise is hard for others to access, handoffs are painful, or teammates avoid asking them for help.",
+      "The organization has people with strong technical ability, but expertise is hard for others to access, which slows handoffs, limits team capacity, creates quality risk, and makes execution too dependent on one person.",
     select:
       "Use Select to catch the candidate whose technical capability may look strong, but whose collaboration or communication style could make that expertise harder for the team to access.",
     develop:
@@ -40,7 +40,17 @@ export const CALEB_GUIDANCE = {
     teamDynamics:
       "Use Team Dynamics to show how communication style varies across the team, so the manager can coach collaboration without lowering technical standards.",
     valueClose:
-      "Wonderlic helps the customer avoid hiring technical talent that adds capability on paper but slows the team down in practice, then gives managers a practical way to coach how expertise moves through the team.",
+      "Wonderlic helps the customer avoid hiring technical talent that adds capability on paper but slows the team down in practice, then gives managers a practical way to coach how expertise moves through the team so production does not slow, quality issues do not repeat, onboarding does not stretch, and one expert does not become a bottleneck.",
+  },
+  businessImpactLadder: {
+    observablePattern:
+      "Technical expert solves hard problems but creates communication friction.",
+    operationalConsequence:
+      "Handoffs slow down, teammates avoid asking for help, knowledge stays trapped with one person.",
+    businessPain:
+      "Production slows, quality issues repeat, onboarding takes longer, team capacity is constrained by one expert, execution depends too heavily on a bottleneck.",
+    wonderlicValue:
+      "Wonderlic helps identify collaboration risk before hire and gives managers a way to coach communication impact without lowering technical standards.",
   },
   coreStory: [
     "Caleb is not a bad employee. That is why the story works.",
