@@ -109,22 +109,49 @@ function PrinciplesDrawer() {
         </SheetHeader>
         <ol className="mt-6 space-y-4 text-sm leading-relaxed text-muted-foreground">
           {[
-            "Start with customer pain, not product screens.",
-            "Use the customer's language instead of over-defining attributes.",
-            "Select is best for screen-out and screen-in.",
-            "Develop is best for believable, coachable behavior gaps.",
-            "Do not use Develop to tell termination stories (theft, no-call / no-show, total inability).",
-            "Team Dynamics should show manager flexibility, not just one outlier.",
-            "The page supports the story. The page does not decide the story.",
-            "Prepare Ask Wonderlic prompts before the demo.",
-            "Skip the Index unless the buyer is IO, consultant, coach, or highly technical L&D / HR.",
-            "Reference Action Planner only when there is a clear manager-development or goal-setting pain.",
+            {
+              text: "Start with customer pain, not product screens.",
+            },
+            {
+              text: "Use the customer's language instead of over-defining attributes.",
+            },
+            {
+              text: "Select is best for screen-out and screen-in.",
+            },
+            {
+              text: "Develop is best for believable, coachable behavior gaps.",
+            },
+            {
+              text: "Use Develop for coachable behavior gaps. Use Select for baseline fit, role alignment, and screen-out risks.",
+              helper:
+                "Avoid making Develop the main story for extreme termination issues like theft, chronic no-call / no-show, or total inability to perform the work.",
+            },
+            {
+              text: "Team Dynamics should show manager flexibility across the team, not just spotting one outlier.",
+            },
+            {
+              text: "The page supports the story. The page does not decide the story.",
+            },
+            {
+              text: "Prepare Ask Wonderlic prompts before the demo.",
+            },
+            {
+              text: "Usually skip the Index unless the buyer is IO, consultant, coach, or highly technical L&D / HR.",
+            },
+            {
+              text: "Reference Action Planner lightly by default. Go deeper only when goal-setting, manager follow-through, or action tracking is a known pain.",
+            },
           ].map((p, i) => (
             <li key={i} className="flex gap-3">
               <span className="mt-0.5 inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-soft-purple text-xs font-semibold text-blurple">
                 {i + 1}
               </span>
-              <span className="text-wonderlic-blue">{p}</span>
+              <div className="space-y-1">
+                <p className="text-wonderlic-blue">{p.text}</p>
+                {p.helper && (
+                  <p className="text-xs italic text-muted-foreground">{p.helper}</p>
+                )}
+              </div>
             </li>
           ))}
         </ol>
