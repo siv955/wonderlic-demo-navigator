@@ -149,6 +149,11 @@ function PrinciplesDrawer() {
             {
               text: "Reference Action Planner lightly by default. Go deeper when the customer cares about manager follow-through, goal tracking, employee development plans, or post-demo adoption.",
             },
+            {
+              text: "Behavior gap is not the business pain.",
+              helper:
+                "The behavior is the mechanism. Always connect it to the operational or commercial consequence the buyer cares about: missed numbers, slowed production, quality issues, customer impact, turnover, or manager time.",
+            },
 
           ].map((p, i) => (
             <li key={i} className="flex gap-3">
