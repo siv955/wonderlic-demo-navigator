@@ -252,7 +252,7 @@ function ScoreGrid({ scores }: { scores: Record<string, number> }) {
     <div className="grid grid-cols-2 gap-x-4 gap-y-1.5 text-xs sm:grid-cols-3 lg:grid-cols-4">
       {entries.map(([k, v]) => (
         <div key={k} className="flex items-center justify-between border-b border-border/60 py-1">
-          <span className="truncate text-muted-foreground">{k}</span>
+          <span className="truncate text-muted-foreground">{normalizeSelectLabel(k)}</span>
           <span
             className={`ml-2 shrink-0 rounded-full px-1.5 py-0.5 font-semibold ${
               v >= 70
