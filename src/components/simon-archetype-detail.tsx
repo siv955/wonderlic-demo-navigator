@@ -359,14 +359,14 @@ function SelectPanel({ moment }: { moment: ProductMoment }) {
       <OptionalMoments
         items={[
           {
-            label: "Interview Guide reference",
+            label: "Behavioral Interview Guides",
             text: moment.interviewGuideReference,
-            copyLabel: "Copy Interview Guide reference",
+            copyLabel: "Copy Behavioral Interview Guides",
           },
           {
-            label: "New Hire Success Tips reference",
+            label: "New Hire Success Tips",
             text: moment.newHireTipsReference,
-            copyLabel: "Copy New Hire Tips reference",
+            copyLabel: "Copy New Hire Success Tips",
           },
         ]}
       />
