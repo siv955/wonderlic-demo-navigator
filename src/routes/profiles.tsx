@@ -146,10 +146,36 @@ function ProfileDirectory() {
                   </div>
                 </div>
 
-                <div className="mt-4 grid gap-3 md:grid-cols-2">
-                  <AttrList title="Best high" items={p.bestHighAttributes} tone="high" />
-                  <AttrList title="Best low" items={p.bestLowAttributes} tone="low" />
-                </div>
+                {(() => {
+                  const developHigh = p.bestHighAttributes.filter((x) => !isSelectKey(x));
+                  const developLow = p.bestLowAttributes.filter((x) => !isSelectKey(x));
+                  const selectHigh = p.bestHighAttributes.filter(isSelectKey).map(normalizeSelectLabel);
+                  const selectLow = p.bestLowAttributes.filter(isSelectKey).map(normalizeSelectLabel);
+                  const relatedSelect = Array.from(new Set([...selectHigh, ...selectLow]));
+                  return (
+                    <>
+                      <div className="mt-4 grid gap-3 md:grid-cols-2">
+                        <AttrList title="Best high (Develop)" items={developHigh} tone="high" />
+                        <AttrList title="Best low (Develop)" items={developLow} tone="low" />
+                      </div>
+                      {isCore && relatedSelect.length > 0 && (
+                        <div className="mt-3 rounded-lg border border-border bg-card p-3">
+                          <p className="text-[11px] font-semibold uppercase tracking-wide text-muted-foreground">
+                            Related Select signals
+                          </p>
+                          <div className="mt-2 flex flex-wrap gap-1.5">
+                            {relatedSelect.map((a) => (
+                              <StoryBadge key={a} variant="select">{a}</StoryBadge>
+                            ))}
+                          </div>
+                          <p className="mt-2 text-[11px] italic text-muted-foreground">
+                            Related Select signals are directional story inputs, not one-to-one equivalents.
+                          </p>
+                        </div>
+                      )}
+                    </>
+                  );
+                })()}
 
                 {!isCore && (
                   <div className="mt-3 grid gap-3 md:grid-cols-2">
