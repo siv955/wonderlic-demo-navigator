@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { RILEY_GUIDANCE } from "@/data/rileyGuidance";
+import { ISABELLE_GUIDANCE } from "@/data/isabelleGuidance";
 import { CopyButton } from "@/components/copy-button";
 import { StoryBadge } from "@/components/story-badge";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
@@ -25,12 +25,12 @@ import {
   Target,
 } from "lucide-react";
 
-type ProductMoment = typeof RILEY_GUIDANCE.selectMoment;
-type DevelopMoment = typeof RILEY_GUIDANCE.developMoment;
-type TeamMoment = typeof RILEY_GUIDANCE.teamDynamicsMoment;
+type ProductMoment = typeof ISABELLE_GUIDANCE.selectMoment;
+type DevelopMoment = typeof ISABELLE_GUIDANCE.developMoment;
+type TeamMoment = typeof ISABELLE_GUIDANCE.teamDynamicsMoment;
 
-export function RileyArchetypeDetail() {
-  const g = RILEY_GUIDANCE;
+export function IsabelleArchetypeDetail() {
+  const g = ISABELLE_GUIDANCE;
 
   const runCardText = [
     `${g.header.name} · ${g.header.memoryHook} · Run This Demo`,
@@ -120,12 +120,12 @@ export function RileyArchetypeDetail() {
         </div>
         <div className="grid gap-3 md:grid-cols-2">
           <ListCard
-            label="Use Riley when the customer says"
+            label="Use Isabelle when the customer says"
             items={g.header.useWhen}
             tone="neutral"
           />
           <ListCard
-            label="Do not use Riley when"
+            label="Do not use Isabelle when"
             items={g.header.doNotUseWhen}
             tone="caution"
           />
@@ -477,7 +477,7 @@ function AtAGlance({
       </div>
       <div className="grid gap-3 md:grid-cols-3">
         <MiniField label="What this moment does" value={purpose} />
-        <MiniField label="Riley story translation" value={storyTranslation} />
+        <MiniField label="Isabelle story translation" value={storyTranslation} />
         <MiniField label="Value tie-back" value={valueTieBack} />
       </div>
     </section>
