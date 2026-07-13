@@ -38,13 +38,13 @@ export const ISABELLE_GUIDANCE = {
     anchorOnThisPain:
       "Managers care about their people and may be well-liked, but they avoid direct feedback, soften accountability conversations, or allow performance issues to linger until numbers are missed, production or service standards slip, strong employees get frustrated, or HR and senior leaders have to step in.",
     select:
-      "Use Select to catch the manager candidate or promotion candidate who may present as supportive and people-oriented, but may not naturally bring the directness and influence needed to set expectations, address performance, and move difficult conversations forward.",
+      "Use Select to catch the external manager candidate who may present as supportive and people-oriented, but may not naturally bring the directness and influence needed to set expectations, address performance, and move difficult conversations forward.",
     develop:
       "Use Develop to help the manager coach the accountability behavior without asking Isabelle to become harsh: name the gap clearly, connect it to impact, and agree on the next observable behavior.",
     teamDynamics:
       "Use Team Dynamics to show how influence and directness vary across the team, so leaders can coach managers and employees differently instead of assuming everyone will speak up, challenge, or hold the line the same way.",
     valueClose:
-      "Wonderlic helps the customer avoid putting people into manager roles where trust exists but accountability lags, then gives leaders a practical way to coach clearer feedback, expectation-setting, and follow-through before lingering performance issues turn into missed numbers, production drag, HR escalations, or preventable turnover.",
+      "Wonderlic helps avoid hiring external manager candidates who build trust but may not create enough accountability, and helps leaders coach the managers they already have so trust turns into clearer expectations and follow-through before lingering performance issues become missed numbers, production drag, HR escalations, or preventable turnover.",
   },
   businessImpactLadder: {
     observablePattern:
@@ -54,7 +54,7 @@ export const ISABELLE_GUIDANCE = {
     businessPain:
       "Teams miss numbers, production or service standards slip, underperformance becomes normalized, strong employees get frustrated, and preventable turnover risk increases.",
     wonderlicValue:
-      "Wonderlic helps identify accountability risk before manager hire or promotion and gives leaders a practical way to coach direct feedback, expectation-setting, and follow-through.",
+      "Wonderlic helps identify accountability risk before hiring external manager candidates, and helps leaders coach the managers they already have on direct feedback, expectation-setting, and follow-through.",
   },
   coreStory: [
     "Isabelle is not a bad manager. That is why the story works.",
@@ -89,17 +89,17 @@ export const ISABELLE_GUIDANCE = {
       "Key indicators tied to people leadership, accountability, directness, resilience, and role fit.",
       "Candidate Compare if showing tradeoffs between two manager candidates.",
       "Interview Guide if you want to show how the insight becomes a better manager interview.",
-      "New Hire Success Tips if you want to show leader handoff after hire or promotion.",
+      "New Hire Success Tips if you want to show leader handoff after the hiring decision.",
     ],
     productBasics:
       "Every active job can live here, and each job has its own candidate pool. The important thing is that candidates are not being ranked against a generic benchmark. They are being evaluated against what success looks like in this specific role.",
     storyTranslation:
-      "For Isabelle, the hiring or promotion question is not will people like this manager. The question is: would this person look strong because they are supportive and trusted, but still carry the same accountability risk that is already allowing performance issues to linger, standards to slip, or strong employees to carry the cost?",
+      "For Isabelle, the external hiring question is not will people like this manager. The question is: would this candidate look strong because they are supportive and trusted, but still carry the same accountability risk that is already allowing performance issues to linger, standards to slip, or strong employees to carry the cost?",
     ownWords: [
       "The interview may overvalue Isabelle's warmth, supportiveness, or team-first style.",
       "Select helps pressure-test the parts of management that are easier to miss in conversation.",
       "For Isabelle, inspect the people orientation and the accountability signals together.",
-      "The value is avoiding a manager hire or promotion where trust exists, but direct performance leadership is missing.",
+      "The value is avoiding an external manager hire where trust exists, but direct performance leadership is missing.",
       "The business reason this matters is that delayed accountability can become missed numbers, production drag, HR escalation, or preventable turnover.",
     ],
     signalsToInspect: [
@@ -126,7 +126,7 @@ So when I am looking at a candidate in Select, I am not using this as a replacem
 
 The overall fit helps you prioritize where to spend time. But once I open the individual result, this is where I want to understand the tradeoffs. If someone has strong people-oriented signals, that may explain why they come across well and build trust. But if this manager role requires direct feedback, accountability, and difficult conversations, I also want to inspect the signals related to influence, stress tolerance, and follow-through.
 
-That is the hidden risk Isabelle represents. She may look strong because she is supportive, but if the job requires turning trust into clear accountability, this gives the hiring team a way to pressure-test that before they make the hire or promotion decision.`,
+That is the hidden risk Isabelle represents. She may look strong because she is supportive, but if the job requires turning trust into clear accountability, this gives the hiring team a way to pressure-test that before they make the hiring decision.`,
     interviewGuideReference: `I would also use this to shape the interview. If accountability is the business pain, I do not want the hiring manager asking only, "How do you build trust with your team?" or "How would you describe your management style?" Those questions matter, but they do not fully get at the risk.
 
 I would want the interview guide to help them ask for evidence.
@@ -146,10 +146,10 @@ For Isabelle, that might mean setting expectations early around one-on-ones, fee
       "Are your hiring managers currently probing for direct feedback and difficult conversation skills, or does the interview mostly focus on leadership style?",
       "When performance issues linger today, is the bigger issue that managers do not care, or that they struggle to say the hard thing clearly?",
       "What does delayed accountability usually turn into for you: missed numbers, slowed production, HR escalation, stronger employees getting frustrated, or turnover?",
-      "Would this be more useful for external manager hiring, internal promotions, or both?",
+      "Would this be more useful for external manager hiring, or would your current-manager use case be better served through Develop and Team Dynamics?",
     ],
     valueTieBack:
-      "This is where Wonderlic helps you avoid putting someone into a manager role who builds trust but does not create enough accountability. It gives the hiring team objective, job-specific evidence before they spend interview time, ramp time, leader time, and team trust on someone who may recreate the same management gap and allow performance issues to turn into missed numbers, production drag, HR escalation, or preventable turnover.",
+      "This is where Wonderlic helps the hiring team pressure-test role fit before investing interview time, ramp time, leader time, and team trust in an external manager candidate who builds trust but may not create enough accountability, and who could recreate the same performance issues that turn into missed numbers, production drag, HR escalation, or preventable turnover.",
     caution: {
       dontSay:
         "This person cannot manage. Or: Low Influence means they are weak.",
@@ -157,11 +157,11 @@ For Isabelle, that might mean setting expectations early around one-on-ones, fee
         "This is a risk area to understand and probe before moving forward. For this role, direct feedback and accountability are meaningful areas to inspect because the job requires moving people toward behavior change.",
     },
   },
-  selectToDevelopTransition: `So that is the pre-hire or promotion version of Isabelle.
+  selectToDevelopTransition: `So that is the pre-hire version of Isabelle.
 
 But a lot of organizations already have Isabelle on the team. And that is where the conversation changes.
 
-We are no longer asking, "Should we put Isabelle into the manager role?" We already did. Now the question is, "How do we help her use the trust she has built to create clearer accountability?"
+We are no longer asking, "Should we hire Isabelle into the manager role?" We already did. Now the question is, "How do we help her use the trust she has built to create clearer accountability?"
 
 And this is where I think Develop is really useful, because leaders often know the behavior they are frustrated by, but they do not always know how to coach it specifically. They say things like, "you need to be more direct," "you need to hold people accountable," or "you need to have harder conversations."
 
@@ -295,13 +295,13 @@ That is the value of Team Dynamics. It helps the leader stop treating accountabi
   },
   fullClose: `So if I pull this all the way back up, Isabelle is the same human pattern across the platform, but the use case changes.
 
-In Select, the question is: would this person look strong in the hiring or promotion process because they are supportive and trusted, but carry the accountability risk that is already allowing performance issues to linger?
+In Select, the question is: would this external candidate look strong in the hiring process because they are supportive and trusted, but carry the accountability risk that is already allowing performance issues to linger?
 
 In Develop, the question is: if this person is already managing people, how do we coach the accountability behavior specifically enough that it can actually change?
 
 And in Team Dynamics, the question is: how does the leader adapt across the team so direct feedback, expectation-setting, and follow-through become more consistent?
 
-That is the reason this matters beyond the assessment score. You are not just getting a profile. You are getting a more consistent way to make the hire or promotion decision, coach the behavior, and manage the team around the business problem you actually described.
+That is the reason this matters beyond the assessment score. You are not just getting a profile. You are getting a more consistent way to make the external hiring decision, coach the managers you already have, and manage the team around the business problem you actually described.
 
 For a team dealing with supportive managers, soft feedback, lingering performance issues, missed numbers, production drag, HR escalation, or strong employees getting frustrated, this gives you a way to catch the risk earlier and manage the behavior more consistently when it shows up.`,
   recap: {
@@ -311,7 +311,7 @@ For a team dealing with supportive managers, soft feedback, lingering performanc
       "Missed accountability creates business drag: missed numbers, slowed production or service delivery, HR escalation, strong employees carrying the cost, and preventable turnover risk.",
     ],
     futureState: [
-      "Identify manager candidates or promotion candidates who bring both people orientation and the directness required for accountability.",
+      "Identify external manager candidates who bring both people orientation and the directness required for accountability.",
       "Give leaders a more precise way to coach expectation-setting, feedback conversations, and follow-through.",
       "Help leaders flex across the management team so supportive managers can preserve trust while still driving clearer performance outcomes.",
     ],
