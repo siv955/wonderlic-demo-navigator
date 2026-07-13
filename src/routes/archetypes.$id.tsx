@@ -9,6 +9,7 @@ import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { ArrowLeft, AlertTriangle, PlayCircle, Megaphone, HelpCircle } from "lucide-react";
 import { DerekArchetypeDetail } from "@/components/derek-archetype-detail";
 import { EthanArchetypeDetail } from "@/components/ethan-archetype-detail";
+import { CalebArchetypeDetail } from "@/components/caleb-archetype-detail";
 
 export const Route = createFileRoute("/archetypes/$id")({
   head: ({ params }) => {
@@ -48,6 +49,9 @@ function ArchetypeDetail() {
   }
   if (a.id === "ethan") {
     return <EthanArchetypeDetail />;
+  }
+  if (a.id === "caleb") {
+    return <CalebArchetypeDetail />;
   }
   const g = guidanceFor(a.id as ArchetypeId);
   const r = runThisDemoFor(a.id as ArchetypeId);
