@@ -30,7 +30,7 @@ export const DEREK_GUIDANCE = {
   },
   runThisDemo: {
     anchorOnThisPain:
-      "Strong live conversations are not consistently turning into clean follow-up, documented next steps, or reliable pipeline or case visibility.",
+      "Strong live conversations are not consistently turning into clean follow-up, documented next steps, or reliable pipeline or case visibility, which creates stalled deals, unreliable pipeline visibility, customer loop closure issues, and manager time spent chasing updates.",
     select:
       "Use Select to catch the candidate who may shine in live customer conversations, but lack the dependability and structure needed to protect the deal or customer relationship after the interaction.",
     develop:
@@ -38,7 +38,17 @@ export const DEREK_GUIDANCE = {
     teamDynamics:
       "Use Team Dynamics to show who needs more structure and inspection, who already creates structure naturally, and how the manager should flex instead of treating everyone the same.",
     valueClose:
-      "Wonderlic helps the customer avoid hiring into the same follow-through problem, then gives managers a practical way to coach and manage the behavior when it shows up on the team.",
+      "Wonderlic helps the customer avoid hiring into the same follow-through problem, then gives managers a practical way to coach the post-interaction routine so good customer conversations do not turn into stalled deals, missed next steps, unreliable pipeline, or customer loop closure issues.",
+  },
+  businessImpactLadder: {
+    observablePattern:
+      "Strong live conversations, weak follow-through.",
+    operationalConsequence:
+      "Notes are missing, next steps are unclear, CRM or case records do not reflect reality, managers chase updates.",
+    businessPain:
+      "Deals stall, customer loops stay open, pipeline confidence drops, service consistency suffers, manager time is wasted.",
+    wonderlicValue:
+      "Wonderlic helps identify follow-through risk before hire and gives managers a concrete post-interaction routine to coach after hire.",
   },
   coreStory: [
     "Derek is not a bad rep. That is why the story works.",

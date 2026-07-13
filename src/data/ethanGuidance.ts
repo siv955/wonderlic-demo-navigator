@@ -32,7 +32,7 @@ export const ETHAN_GUIDANCE = {
   },
   runThisDemo: {
     anchorOnThisPain:
-      "Reps are building positive relationships and keeping prospects engaged, but deals stall because they do not create urgency, make the direct ask, or move the buyer to a clear decision.",
+      "Reps are building positive relationships, but deals stall, sales cycles stretch, forecast confidence drops, and the team misses revenue because reps do not create urgency or move buyers to decisions.",
     select:
       "Use Select to catch the candidate who may interview well because they are warm, likable, and relationship-oriented, but may not have the commercial drive needed to create urgency, ask directly for commitment, and turn good conversations into closed business.",
     develop:
@@ -40,7 +40,17 @@ export const ETHAN_GUIDANCE = {
     teamDynamics:
       "Use Team Dynamics to show how different sellers are motivated differently, so the manager can coach the same sales outcome through the motivation that actually works for each rep.",
     valueClose:
-      "Wonderlic helps the customer avoid hiring into the same stalled-pipeline pattern, then gives managers a more practical way to coach urgency, direct asks, and decision movement when that behavior shows up on the team.",
+      "Wonderlic helps the customer avoid hiring into the same stalled-pipeline pattern, then gives managers a more practical way to coach urgency, direct asks, and decision movement so relationship-first reps do not turn into missed revenue, longer sales cycles, or weaker forecast confidence.",
+  },
+  businessImpactLadder: {
+    observablePattern:
+      "Relationship-first seller builds trust but avoids urgency and direct asks.",
+    operationalConsequence:
+      "Positive conversations do not convert into clear next steps, decisions, or closed business.",
+    businessPain:
+      "Pipeline looks active but revenue does not move, forecast confidence drops, sales cycles lengthen, quota attainment suffers.",
+    wonderlicValue:
+      "Wonderlic helps identify commercial-drive risk before hire and gives managers a clearer way to coach urgency, direct asks, and decision movement.",
   },
   coreStory: [
     "Ethan is not a bad salesperson. That is why the story works.",

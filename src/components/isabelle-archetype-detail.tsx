@@ -1,6 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { ISABELLE_GUIDANCE } from "@/data/isabelleGuidance";
 import { CopyButton } from "@/components/copy-button";
+import { BusinessImpactLadder } from "@/components/business-impact-ladder";
 import { StoryBadge } from "@/components/story-badge";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import {
@@ -834,50 +835,6 @@ function SectionCard({
         {actions}
       </div>
       {children}
-    </section>
-  );
-}
-
-function BusinessImpactLadder({
-  ladder,
-}: {
-  ladder: typeof ISABELLE_GUIDANCE.businessImpactLadder;
-}) {
-  const text = [
-    "Business Impact Ladder",
-    "",
-    `Observable pattern: ${ladder.observablePattern}`,
-    `Operational consequence: ${ladder.operationalConsequence}`,
-    `Business pain: ${ladder.businessPain}`,
-    `Wonderlic value: ${ladder.wonderlicValue}`,
-  ].join("\n");
-  const rows: Array<{ label: string; value: string; tone: string }> = [
-    { label: "Observable pattern", value: ladder.observablePattern, tone: "border-blue-lilac bg-soft-purple/40" },
-    { label: "Operational consequence", value: ladder.operationalConsequence, tone: "border-blue-lilac bg-card" },
-    { label: "Business pain", value: ladder.businessPain, tone: "border-select/50 bg-select-ice/60" },
-    { label: "Wonderlic value", value: ladder.wonderlicValue, tone: "border-develop/50 bg-develop-ice/60" },
-  ];
-  return (
-    <section className="rounded-2xl border border-border bg-card p-6">
-      <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
-        <div className="flex items-center gap-2">
-          <ArrowRight className="h-5 w-5 text-blurple" />
-          <h2 className="font-display text-2xl font-normal text-wonderlic-blue">
-            Business Impact Ladder
-          </h2>
-        </div>
-        <CopyButton text={text} label="Copy Business Impact Ladder" />
-      </div>
-      <div className="grid gap-3 md:grid-cols-2">
-        {rows.map((r) => (
-          <div key={r.label} className={`rounded-xl border p-4 ${r.tone}`}>
-            <p className="text-[11px] font-semibold uppercase tracking-wide text-blurple">
-              {r.label}
-            </p>
-            <p className="mt-1 text-sm leading-relaxed text-wonderlic-blue">{r.value}</p>
-          </div>
-        ))}
-      </div>
     </section>
   );
 }

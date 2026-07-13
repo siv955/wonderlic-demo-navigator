@@ -35,7 +35,7 @@ export const RILEY_GUIDANCE = {
   },
   runThisDemo: {
     anchorOnThisPain:
-      "Employees may know the work or have the right experience, but execution is inconsistent, steps get missed, quality varies, and managers or stronger employees have to inspect or clean up the result.",
+      "Execution is inconsistent, which creates rework, slower production, quality misses, supervisor over-inspection, and stronger employees cleaning up avoidable mistakes.",
     select:
       "Use Select to catch the candidate who may look viable based on experience, availability, or familiarity with similar work, but may not have the reliability, role interest, or problem-solving capacity to execute this role consistently to standard.",
     develop:
@@ -43,7 +43,17 @@ export const RILEY_GUIDANCE = {
     teamDynamics:
       "Use Team Dynamics to show who naturally drives work to completion, who may need clearer checkpoints, and how the manager should flex inspection and support across the team.",
     valueClose:
-      "Wonderlic helps the customer avoid hiring into the same rework and inconsistency problem, then gives managers a more practical way to coach quality, ownership, and execution when that behavior shows up on the team.",
+      "Wonderlic helps the customer avoid hiring into the same rework and inconsistency problem, then gives managers a more practical way to coach quality, ownership, and execution so inconsistent frontline work does not turn into slower production, higher costs, quality misses, or preventable turnover.",
+  },
+  businessImpactLadder: {
+    observablePattern:
+      "Skilled frontline employee can do the work but does not consistently execute to standard.",
+    operationalConsequence:
+      "Steps are missed, rework increases, stronger employees clean up mistakes, managers over-inspect.",
+    businessPain:
+      "Production slows, quality drops, costs increase, output is inconsistent, supervisor capacity gets consumed, turnover risk rises.",
+    wonderlicValue:
+      "Wonderlic helps identify consistency and role-fit risk before hire and gives managers a practical way to coach work-to-standard behavior.",
   },
   coreStory: [
     "Riley is not someone who cannot do anything. That is why the story works.",

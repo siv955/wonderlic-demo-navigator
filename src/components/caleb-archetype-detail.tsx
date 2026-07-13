@@ -1,6 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { CALEB_GUIDANCE } from "@/data/calebGuidance";
 import { CopyButton } from "@/components/copy-button";
+import { BusinessImpactLadder } from "@/components/business-impact-ladder";
 import { StoryBadge } from "@/components/story-badge";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import {
@@ -154,6 +155,9 @@ export function CalebArchetypeDetail() {
           <RunField label="Value close" value={g.runThisDemo.valueClose} full />
         </div>
       </section>
+
+      {/* BUSINESS IMPACT LADDER */}
+      <BusinessImpactLadder ladder={g.businessImpactLadder} />
 
       {/* CORE STORY — collapsible */}
       <section className="rounded-2xl border border-border bg-card">
