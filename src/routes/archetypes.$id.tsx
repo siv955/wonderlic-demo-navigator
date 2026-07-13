@@ -8,6 +8,7 @@ import { CopyButton } from "@/components/copy-button";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { ArrowLeft, AlertTriangle, PlayCircle, Megaphone, HelpCircle } from "lucide-react";
 import { DerekArchetypeDetail } from "@/components/derek-archetype-detail";
+import { EthanArchetypeDetail } from "@/components/ethan-archetype-detail";
 
 export const Route = createFileRoute("/archetypes/$id")({
   head: ({ params }) => {
@@ -44,6 +45,9 @@ function ArchetypeDetail() {
   const { archetype: a } = Route.useLoaderData();
   if (a.id === "derek") {
     return <DerekArchetypeDetail />;
+  }
+  if (a.id === "ethan") {
+    return <EthanArchetypeDetail />;
   }
   const g = guidanceFor(a.id as ArchetypeId);
   const r = runThisDemoFor(a.id as ArchetypeId);
