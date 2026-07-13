@@ -1,6 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { DEREK_GUIDANCE } from "@/data/derekGuidance";
 import { CopyButton } from "@/components/copy-button";
+import { BusinessImpactLadder } from "@/components/business-impact-ladder";
 import { StoryBadge } from "@/components/story-badge";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import {
