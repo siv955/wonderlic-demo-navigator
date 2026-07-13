@@ -2,20 +2,32 @@ import { Link } from "@tanstack/react-router";
 import { DEREK_GUIDANCE } from "@/data/derekGuidance";
 import { CopyButton } from "@/components/copy-button";
 import { StoryBadge } from "@/components/story-badge";
+import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 import {
   ArrowLeft,
   PlayCircle,
   BookOpen,
-  Search,
   ArrowRight,
-  Sparkles,
-  Users,
-  Flag,
-  ClipboardList,
   AlertTriangle,
   MessageCircle,
   HelpCircle,
+  Sparkles,
+  ClipboardList,
+  Flag,
+  Eye,
+  MessageSquare,
+  Target,
 } from "lucide-react";
+
+type ProductMoment = typeof DEREK_GUIDANCE.selectMoment;
+type DevelopMoment = typeof DEREK_GUIDANCE.developMoment;
+type TeamMoment = typeof DEREK_GUIDANCE.teamDynamicsMoment;
 
 export function DerekArchetypeDetail() {
   const g = DEREK_GUIDANCE;
@@ -40,6 +52,34 @@ export function DerekArchetypeDetail() {
     ...g.recap.futureState.map((b) => `• ${b}`),
   ].join("\n");
 
+  const fullScriptText = [
+    `${g.header.name} · Full Script`,
+    "",
+    "— Setup —",
+    g.coreStory.join(" "),
+    "",
+    "— Select —",
+    g.selectMoment.fullScript,
+    "",
+    "— Transition: Select to Develop —",
+    g.selectToDevelopTransition,
+    "",
+    "— Develop —",
+    g.developMoment.fullScript,
+    "",
+    "— Ask Wonderlic —",
+    g.developMoment.askWonderlicScript,
+    "",
+    "— Transition: Develop to Team Dynamics —",
+    g.developToTeamTransition,
+    "",
+    "— Team Dynamics —",
+    g.teamDynamicsMoment.fullScript,
+    "",
+    "— Full Close —",
+    g.fullClose,
+  ].join("\n");
+
   return (
     <div className="space-y-8">
       <Link
@@ -56,10 +96,10 @@ export function DerekArchetypeDetail() {
           Canonical archetype · Gold-standard demo guide
         </p>
         <div className="flex flex-wrap items-baseline gap-x-4 gap-y-1">
-          <h1 className="font-display text-5xl font-light leading-tight text-wonderlic-blue">
+          <h1 className="font-display text-4xl font-light leading-tight text-wonderlic-blue md:text-5xl">
             {g.header.name}
           </h1>
-          <p className="font-display text-2xl font-light text-blurple">
+          <p className="font-display text-xl font-light text-blurple md:text-2xl">
             Memory hook: {g.header.memoryHook}
           </p>
         </div>
@@ -73,11 +113,10 @@ export function DerekArchetypeDetail() {
         <p className="max-w-3xl text-base leading-relaxed text-wonderlic-blue">
           {g.header.oneSentence}
         </p>
-        <div className="grid gap-3 md:grid-cols-2">
+        <div className="grid gap-3 md:grid-cols-3">
           <MetaCard label="Story" value={g.header.story} />
           <MetaCard label="Develop anchor" value={g.header.developAnchor} />
           <MetaCard label="Team Dynamics path" value={g.header.teamDynamicsPath} />
-          <MetaCard label="Primary gap" value={g.header.primaryGap} tone="caution" />
         </div>
         <div className="grid gap-3 md:grid-cols-2">
           <ListCard
@@ -94,7 +133,10 @@ export function DerekArchetypeDetail() {
       </header>
 
       {/* RUN THIS DEMO */}
-      <section className="rounded-2xl border-2 border-blurple/40 bg-purple-chalk/60 p-6 shadow-sm">
+      <section
+        id="run-this-demo"
+        className="rounded-2xl border-2 border-blurple/40 bg-purple-chalk/60 p-6 shadow-sm"
+      >
         <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
           <div className="flex items-center gap-2">
             <PlayCircle className="h-5 w-5 text-blurple" />
@@ -113,315 +155,587 @@ export function DerekArchetypeDetail() {
         </div>
       </section>
 
-      {/* CORE STORY */}
-      <SectionCard icon={<BookOpen className="h-5 w-5 text-blurple" />} title="Core Story">
-        <div className="space-y-3 text-sm leading-relaxed text-wonderlic-blue">
-          {g.coreStory.map((p) => (
-            <p key={p}>{p}</p>
-          ))}
-        </div>
-        <p className="mt-4 text-sm font-semibold text-wonderlic-blue">
-          Wonderlic helps in three ways:
-        </p>
-        <div className="mt-2 grid gap-2 md:grid-cols-3">
-          {g.coreStoryHelps.map((h) => (
-            <div
-              key={h.label}
-              className="rounded-lg border border-blue-lilac bg-soft-purple/40 p-3"
-            >
-              <p className="text-[11px] font-semibold uppercase tracking-wide text-blurple">
-                {h.label}
+      {/* CORE STORY — collapsible */}
+      <section className="rounded-2xl border border-border bg-card">
+        <Accordion type="single" collapsible>
+          <AccordionItem value="core-story" className="border-none">
+            <AccordionTrigger className="px-6 py-4 hover:no-underline">
+              <div className="flex items-center gap-2 text-left">
+                <BookOpen className="h-5 w-5 text-blurple" />
+                <div>
+                  <p className="font-display text-xl font-normal text-wonderlic-blue">
+                    Core Story
+                  </p>
+                  <p className="text-xs text-muted-foreground">
+                    {g.coreStory[0]} {g.coreStory[1]}
+                  </p>
+                </div>
+              </div>
+            </AccordionTrigger>
+            <AccordionContent className="px-6 pb-6">
+              <div className="space-y-3 text-sm leading-relaxed text-wonderlic-blue">
+                {g.coreStory.map((p) => (
+                  <p key={p}>{p}</p>
+                ))}
+              </div>
+              <p className="mt-4 text-sm font-semibold text-wonderlic-blue">
+                Wonderlic helps in three ways:
               </p>
-              <p className="mt-1 text-sm text-wonderlic-blue">{h.body}</p>
-            </div>
-          ))}
+              <div className="mt-2 grid gap-2 md:grid-cols-3">
+                {g.coreStoryHelps.map((h) => (
+                  <div
+                    key={h.label}
+                    className="rounded-lg border border-blue-lilac bg-soft-purple/40 p-3"
+                  >
+                    <p className="text-[11px] font-semibold uppercase tracking-wide text-blurple">
+                      {h.label}
+                    </p>
+                    <p className="mt-1 text-sm text-wonderlic-blue">{h.body}</p>
+                  </div>
+                ))}
+              </div>
+            </AccordionContent>
+          </AccordionItem>
+        </Accordion>
+      </section>
+
+      {/* DEMO MOMENTS TABS */}
+      <section className="space-y-4">
+        <div className="flex items-center gap-2">
+          <Target className="h-5 w-5 text-blurple" />
+          <h2 className="font-display text-2xl font-normal text-wonderlic-blue">
+            Demo Moments
+          </h2>
         </div>
-      </SectionCard>
-
-      {/* SELECT DEMO MOMENT */}
-      <SectionCard
-        icon={<Search className="h-5 w-5 text-blurple" />}
-        title="Select Demo Moment"
-        badges={<StoryBadge variant="select">Select</StoryBadge>}
-      >
-        <SubSection label="What this part of the demo is doing">
-          <Paragraph>{g.selectMoment.purpose}</Paragraph>
-        </SubSection>
-
-        <SubSection label="What to show">
-          <Bullets items={g.selectMoment.whatToShow} />
-        </SubSection>
-
-        <SubSection label="Product basics to say">
-          <Paragraph italic>{g.selectMoment.productBasics}</Paragraph>
-        </SubSection>
-
-        <SubSection label="Derek story translation">
-          <Paragraph>{g.selectMoment.storyTranslation}</Paragraph>
-        </SubSection>
-
-        <SubSection label="In your own words, make these points">
-          <Bullets items={g.selectMoment.ownWords} />
-        </SubSection>
-
-        <SubSection label="Select signals to inspect">
-          <p className="mb-2 text-xs italic text-muted-foreground">
-            {g.selectMoment.signalsNote}
-          </p>
-          <div className="flex flex-wrap gap-1.5">
-            {g.selectMoment.signalsToInspect.map((s) => (
-              <StoryBadge key={s} variant="select">
-                {s}
-              </StoryBadge>
-            ))}
+        <Tabs defaultValue="select" className="w-full">
+          <div className="sticky top-0 z-20 -mx-2 bg-background/95 px-2 py-2 backdrop-blur supports-[backdrop-filter]:bg-background/70">
+            <TabsList className="flex h-auto w-full flex-wrap justify-start gap-1 bg-muted/40 p-1">
+              <TabsTrigger value="select">Select</TabsTrigger>
+              <TabsTrigger value="develop">Develop</TabsTrigger>
+              <TabsTrigger value="team">Team Dynamics</TabsTrigger>
+              <TabsTrigger value="recap">Recap Slide</TabsTrigger>
+              <TabsTrigger value="cautions">Cautions</TabsTrigger>
+              <TabsTrigger value="full">Full Script</TabsTrigger>
+            </TabsList>
           </div>
-        </SubSection>
 
-        <ScriptBlock
-          label="Full example script"
-          text={g.selectMoment.fullScript}
-          copyLabel="Copy Select script"
-          badge="Copyable Script"
-        />
+          <TabsContent value="select" className="mt-6">
+            <SelectPanel moment={g.selectMoment} />
+          </TabsContent>
 
-        <ScriptBlock
-          label="How to reference the Interview Guide"
-          text={g.selectMoment.interviewGuideReference}
-          copyLabel="Copy Interview Guide reference"
-          badge="Optional Moment"
-        />
-
-        <ScriptBlock
-          label="How to reference New Hire Success Tips"
-          text={g.selectMoment.newHireTipsReference}
-          copyLabel="Copy New Hire Tips reference"
-          badge="Optional Moment"
-        />
-
-        <MidDemoQuestions
-          items={g.selectMoment.midDemoQuestions}
-          copyPrefix="Select mid-demo question"
-        />
-
-        <ValueTieBack text={g.selectMoment.valueTieBack} />
-
-        <CautionCard
-          dontSay={g.selectMoment.caution.dontSay}
-          doSay={g.selectMoment.caution.doSay}
-        />
-      </SectionCard>
-
-      {/* TRANSITION: SELECT TO DEVELOP */}
-      <TransitionCard
-        title="Transition: Select to Develop"
-        text={g.selectToDevelopTransition}
-      />
-
-      {/* DEVELOP DEMO MOMENT */}
-      <SectionCard
-        icon={<Sparkles className="h-5 w-5 text-blurple" />}
-        title="Develop Demo Moment"
-        badges={<StoryBadge variant="develop">Develop</StoryBadge>}
-      >
-        <SubSection label="What this part of the demo is doing">
-          <Paragraph>{g.developMoment.purpose}</Paragraph>
-        </SubSection>
-
-        <SubSection label="What to show">
-          <Bullets items={g.developMoment.whatToShow} />
-        </SubSection>
-
-        <SubSection label="Product basics to say">
-          <Paragraph italic>{g.developMoment.productBasics}</Paragraph>
-        </SubSection>
-
-        <SubSection label="Derek story translation">
-          <Paragraph>{g.developMoment.storyTranslation}</Paragraph>
-        </SubSection>
-
-        <SubSection label="In your own words, make these points">
-          <Bullets items={g.developMoment.ownWords} />
-        </SubSection>
-
-        <ScriptBlock
-          label="Full example script"
-          text={g.developMoment.fullScript}
-          copyLabel="Copy Develop script"
-          badge="Copyable Script"
-        />
-
-        <div className="rounded-2xl border border-develop/40 bg-develop-ice/60 p-5">
-          <div className="mb-2 flex flex-wrap items-center justify-between gap-2">
-            <p className="text-[11px] font-semibold uppercase tracking-wide text-blurple">
-              Ask Wonderlic moment
-            </p>
-            <CopyButton
-              text={g.developMoment.askWonderlicPrompt}
-              label="Copy Ask Wonderlic prompt"
+          <TabsContent value="develop" className="mt-6 space-y-6">
+            <TransitionCard
+              title="Transition into Develop"
+              text={g.selectToDevelopTransition}
             />
-          </div>
-          <p className="whitespace-pre-line text-sm leading-relaxed text-wonderlic-blue">
-            {g.developMoment.askWonderlicScript}
-          </p>
-          <div className="mt-3 rounded-lg border border-blue-lilac bg-card p-3">
-            <p className="text-[11px] font-semibold uppercase tracking-wide text-blurple">
-              Ask Wonderlic prompt
-            </p>
-            <p className="mt-1 text-sm text-wonderlic-blue">
-              {g.developMoment.askWonderlicPrompt}
-            </p>
-          </div>
-        </div>
+            <DevelopPanel moment={g.developMoment} />
+          </TabsContent>
 
-        <ScriptBlock
-          label="Optional Action Planner mention"
-          text={g.developMoment.actionPlannerMention}
-          copyLabel="Copy Action Planner mention"
-          badge="Optional Moment"
-        />
+          <TabsContent value="team" className="mt-6 space-y-6">
+            <TransitionCard
+              title="Transition into Team Dynamics"
+              text={g.developToTeamTransition}
+            />
+            <TeamPanel moment={g.teamDynamicsMoment} />
+          </TabsContent>
 
-        <MidDemoQuestions
-          items={g.developMoment.midDemoQuestions}
-          copyPrefix="Develop mid-demo question"
-        />
-
-        <ValueTieBack text={g.developMoment.valueTieBack} />
-
-        <CautionCard
-          dontSay={g.developMoment.caution.dontSay}
-          doSay={g.developMoment.caution.doSay}
-        />
-      </SectionCard>
-
-      {/* TRANSITION: DEVELOP TO TEAM DYNAMICS */}
-      <TransitionCard
-        title="Transition: Develop to Team Dynamics"
-        text={g.developToTeamTransition}
-      />
-
-      {/* TEAM DYNAMICS DEMO MOMENT */}
-      <SectionCard
-        icon={<Users className="h-5 w-5 text-blurple" />}
-        title="Team Dynamics Demo Moment"
-        badges={<StoryBadge variant="team-dynamics">Team Dynamics</StoryBadge>}
-      >
-        <SubSection label="What this part of the demo is doing">
-          <Paragraph>{g.teamDynamicsMoment.purpose}</Paragraph>
-        </SubSection>
-
-        <SubSection label="What to show">
-          <Bullets items={g.teamDynamicsMoment.whatToShow} />
-        </SubSection>
-
-        <SubSection label="Product basics to say">
-          <Paragraph italic>{g.teamDynamicsMoment.productBasics}</Paragraph>
-        </SubSection>
-
-        <SubSection label="Derek story translation">
-          <Paragraph>{g.teamDynamicsMoment.storyTranslation}</Paragraph>
-        </SubSection>
-
-        <SubSection label="In your own words, make these points">
-          <Bullets items={g.teamDynamicsMoment.ownWords} />
-        </SubSection>
-
-        <ScriptBlock
-          label="Full example script"
-          text={g.teamDynamicsMoment.fullScript}
-          copyLabel="Copy Team Dynamics script"
-          badge="Copyable Script"
-        />
-
-        <MidDemoQuestions
-          items={g.teamDynamicsMoment.midDemoQuestions}
-          copyPrefix="Team Dynamics mid-demo question"
-        />
-
-        <ValueTieBack text={g.teamDynamicsMoment.valueTieBack} />
-
-        <div className="rounded-lg border border-blue-lilac bg-soft-purple/60 p-3 text-sm">
-          <p className="text-[11px] font-semibold uppercase tracking-wide text-blurple">
-            Proxy note (say once)
-          </p>
-          <p className="mt-1 text-wonderlic-blue">{g.teamDynamicsMoment.proxyNote}</p>
-        </div>
-
-        <div className="flex items-start gap-2 rounded-lg border border-select/50 bg-select-ice/60 p-3 text-sm">
-          <AlertTriangle className="mt-0.5 h-4 w-4 shrink-0 text-wonderlic-blue" />
-          <div>
-            <p className="text-[11px] font-semibold uppercase tracking-wide text-wonderlic-blue">
-              Use With Caution
-            </p>
-            <p className="mt-0.5 text-wonderlic-blue">{g.teamDynamicsMoment.caution}</p>
-          </div>
-        </div>
-      </SectionCard>
-
-      {/* FULL CLOSE */}
-      <SectionCard icon={<Flag className="h-5 w-5 text-blurple" />} title="Full Close">
-        <p className="whitespace-pre-line text-sm leading-relaxed text-wonderlic-blue">
-          {g.fullClose}
-        </p>
-        <div className="mt-3">
-          <CopyButton text={g.fullClose} label="Copy Full Close" />
-        </div>
-      </SectionCard>
-
-      {/* RECAP */}
-      <SectionCard
-        icon={<ClipboardList className="h-5 w-5 text-blurple" />}
-        title="Recap Slide Bullets"
-      >
-        <div className="grid gap-4 md:grid-cols-2">
-          <div>
-            <p className="mb-2 text-[11px] font-semibold uppercase tracking-wide text-blurple">
-              Current state / pain
-            </p>
-            <ul className="space-y-1.5 text-sm text-wonderlic-blue">
-              {g.recap.currentState.map((b) => (
-                <li key={b}>• {b}</li>
-              ))}
-            </ul>
-          </div>
-          <div>
-            <p className="mb-2 text-[11px] font-semibold uppercase tracking-wide text-blurple">
-              Future state / goals
-            </p>
-            <ul className="space-y-1.5 text-sm text-wonderlic-blue">
-              {g.recap.futureState.map((b) => (
-                <li key={b}>• {b}</li>
-              ))}
-            </ul>
-          </div>
-        </div>
-        <div className="mt-4">
-          <CopyButton text={recapText} label="Copy recap slide bullets" />
-        </div>
-      </SectionCard>
-
-      {/* CAUTIONS */}
-      <SectionCard
-        icon={<AlertTriangle className="h-5 w-5 text-blurple" />}
-        title="Cautions"
-        badges={<StoryBadge variant="caution">Use With Caution</StoryBadge>}
-      >
-        <ul className="space-y-2">
-          {g.cautions.map((c) => (
-            <li
-              key={c}
-              className="flex items-start gap-2 rounded-lg border border-select/40 bg-select-ice/50 p-3 text-sm text-wonderlic-blue"
+          <TabsContent value="recap" className="mt-6 space-y-4">
+            <SectionCard
+              icon={<ClipboardList className="h-5 w-5 text-blurple" />}
+              title="Recap Slide Bullets"
+              actions={<CopyButton text={recapText} label="Copy recap slide bullets" />}
             >
-              <AlertTriangle className="mt-0.5 h-4 w-4 shrink-0" />
-              <span>{c}</span>
-            </li>
-          ))}
-        </ul>
-      </SectionCard>
+              <div className="grid gap-4 md:grid-cols-2">
+                <div>
+                  <p className="mb-2 text-[11px] font-semibold uppercase tracking-wide text-blurple">
+                    Current state / pain
+                  </p>
+                  <ul className="space-y-1.5 text-sm text-wonderlic-blue">
+                    {g.recap.currentState.map((b) => (
+                      <li key={b}>• {b}</li>
+                    ))}
+                  </ul>
+                </div>
+                <div>
+                  <p className="mb-2 text-[11px] font-semibold uppercase tracking-wide text-blurple">
+                    Future state / goals
+                  </p>
+                  <ul className="space-y-1.5 text-sm text-wonderlic-blue">
+                    {g.recap.futureState.map((b) => (
+                      <li key={b}>• {b}</li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            </SectionCard>
+          </TabsContent>
+
+          <TabsContent value="cautions" className="mt-6">
+            <SectionCard
+              icon={<AlertTriangle className="h-5 w-5 text-amber-600" />}
+              title="Cautions"
+            >
+              <ul className="space-y-2">
+                {g.cautions.map((c) => (
+                  <li
+                    key={c}
+                    className="flex items-start gap-2 rounded-lg border border-amber-200 bg-amber-50 p-3 text-sm text-wonderlic-blue"
+                  >
+                    <AlertTriangle className="mt-0.5 h-4 w-4 shrink-0 text-amber-600" />
+                    <span>{c}</span>
+                  </li>
+                ))}
+              </ul>
+            </SectionCard>
+          </TabsContent>
+
+          <TabsContent value="full" className="mt-6">
+            <SectionCard
+              icon={<Flag className="h-5 w-5 text-blurple" />}
+              title="Full Script View"
+              actions={<CopyButton text={fullScriptText} label="Copy full script" />}
+            >
+              <p className="mb-4 text-xs text-muted-foreground">
+                The full stitched script for rehearsal or recording. Includes setup,
+                each moment, transitions, Ask Wonderlic, and the close.
+              </p>
+              <FullScriptBlock title="Setup" body={g.coreStory.join("\n\n")} />
+              <FullScriptBlock title="Select" body={g.selectMoment.fullScript} />
+              <FullScriptBlock
+                title="Transition: Select to Develop"
+                body={g.selectToDevelopTransition}
+              />
+              <FullScriptBlock title="Develop" body={g.developMoment.fullScript} />
+              <FullScriptBlock
+                title="Ask Wonderlic"
+                body={g.developMoment.askWonderlicScript}
+              />
+              <FullScriptBlock
+                title="Transition: Develop to Team Dynamics"
+                body={g.developToTeamTransition}
+              />
+              <FullScriptBlock
+                title="Team Dynamics"
+                body={g.teamDynamicsMoment.fullScript}
+              />
+              <FullScriptBlock title="Full Close" body={g.fullClose} />
+            </SectionCard>
+          </TabsContent>
+        </Tabs>
+      </section>
     </div>
   );
 }
 
-/* -------------- small presentational helpers -------------- */
+/* -------------- Product moment panels -------------- */
+
+function SelectPanel({ moment }: { moment: ProductMoment }) {
+  return (
+    <div className="space-y-4">
+      <AtAGlance
+        badge={<StoryBadge variant="select">Select</StoryBadge>}
+        purpose={moment.purpose}
+        storyTranslation={moment.storyTranslation}
+        valueTieBack={moment.valueTieBack}
+      />
+      <WhatToShow items={moment.whatToShow} />
+      <InYourOwnWords items={moment.ownWords} />
+      <SignalsCard signals={moment.signalsToInspect} note={moment.signalsNote} />
+      <ScriptAccordion
+        label="Full Select script"
+        text={moment.fullScript}
+        copyLabel="Copy Select script"
+      />
+      <OptionalMoments
+        items={[
+          {
+            label: "Interview Guide reference",
+            text: moment.interviewGuideReference,
+            copyLabel: "Copy Interview Guide reference",
+          },
+          {
+            label: "New Hire Success Tips reference",
+            text: moment.newHireTipsReference,
+            copyLabel: "Copy New Hire Tips reference",
+          },
+        ]}
+      />
+      <MidDemoQuestions items={moment.midDemoQuestions} copyPrefix="Select question" />
+      <ValueTieBack text={moment.valueTieBack} />
+      <CautionBox dontSay={moment.caution.dontSay} doSay={moment.caution.doSay} />
+    </div>
+  );
+}
+
+function DevelopPanel({ moment }: { moment: DevelopMoment }) {
+  return (
+    <div className="space-y-4">
+      <AtAGlance
+        badge={<StoryBadge variant="develop">Develop</StoryBadge>}
+        purpose={moment.purpose}
+        storyTranslation={moment.storyTranslation}
+        valueTieBack={moment.valueTieBack}
+      />
+      <WhatToShow items={moment.whatToShow} />
+      <InYourOwnWords items={moment.ownWords} />
+      <ScriptAccordion
+        label="Full Develop script"
+        text={moment.fullScript}
+        copyLabel="Copy Develop script"
+      />
+      <OptionalMoments
+        items={[
+          {
+            label: "Ask Wonderlic moment",
+            text: moment.askWonderlicScript,
+            copyLabel: "Copy Ask Wonderlic script",
+            extra: {
+              label: "Ask Wonderlic prompt",
+              text: moment.askWonderlicPrompt,
+              copyLabel: "Copy Ask Wonderlic prompt",
+            },
+          },
+          {
+            label: "Action Planner mention",
+            text: moment.actionPlannerMention,
+            copyLabel: "Copy Action Planner mention",
+          },
+        ]}
+      />
+      <MidDemoQuestions items={moment.midDemoQuestions} copyPrefix="Develop question" />
+      <ValueTieBack text={moment.valueTieBack} />
+      <CautionBox dontSay={moment.caution.dontSay} doSay={moment.caution.doSay} />
+    </div>
+  );
+}
+
+function TeamPanel({ moment }: { moment: TeamMoment }) {
+  return (
+    <div className="space-y-4">
+      <AtAGlance
+        badge={<StoryBadge variant="team-dynamics">Team Dynamics</StoryBadge>}
+        purpose={moment.purpose}
+        storyTranslation={moment.storyTranslation}
+        valueTieBack={moment.valueTieBack}
+      />
+      <WhatToShow items={moment.whatToShow} />
+      <InYourOwnWords items={moment.ownWords} />
+      <ScriptAccordion
+        label="Full Team Dynamics script"
+        text={moment.fullScript}
+        copyLabel="Copy Team Dynamics script"
+      />
+      <OptionalMoments
+        items={[
+          {
+            label: "Orderliness proxy note (say once)",
+            text: moment.proxyNote,
+            copyLabel: "Copy proxy note",
+          },
+        ]}
+      />
+      <MidDemoQuestions items={moment.midDemoQuestions} copyPrefix="Team question" />
+      <ValueTieBack text={moment.valueTieBack} />
+      <div className="flex items-start gap-2 rounded-lg border border-amber-200 bg-amber-50 p-3 text-sm">
+        <AlertTriangle className="mt-0.5 h-4 w-4 shrink-0 text-amber-600" />
+        <div>
+          <p className="text-[11px] font-semibold uppercase tracking-wide text-amber-700">
+            Caution
+          </p>
+          <p className="mt-0.5 text-wonderlic-blue">{moment.caution}</p>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/* -------------- Repeatable sub-cards -------------- */
+
+function AtAGlance({
+  badge,
+  purpose,
+  storyTranslation,
+  valueTieBack,
+}: {
+  badge: React.ReactNode;
+  purpose: string;
+  storyTranslation: string;
+  valueTieBack: string;
+}) {
+  return (
+    <section className="rounded-2xl border border-blue-lilac bg-soft-purple/40 p-5">
+      <div className="mb-3 flex items-center justify-between gap-2">
+        <div className="flex items-center gap-2">
+          <Sparkles className="h-4 w-4 text-blurple" />
+          <p className="text-[11px] font-semibold uppercase tracking-wide text-blurple">
+            At a glance
+          </p>
+        </div>
+        {badge}
+      </div>
+      <div className="grid gap-3 md:grid-cols-3">
+        <MiniField label="What this moment does" value={purpose} />
+        <MiniField label="Derek story translation" value={storyTranslation} />
+        <MiniField label="Value tie-back" value={valueTieBack} />
+      </div>
+    </section>
+  );
+}
+
+function MiniField({ label, value }: { label: string; value: string }) {
+  return (
+    <div className="rounded-lg border border-blue-lilac bg-card p-3">
+      <p className="text-[11px] font-semibold uppercase tracking-wide text-blurple">
+        {label}
+      </p>
+      <p className="mt-1 text-xs leading-relaxed text-wonderlic-blue">{value}</p>
+    </div>
+  );
+}
+
+function WhatToShow({ items }: { items: string[] }) {
+  return (
+    <SectionCard icon={<Eye className="h-5 w-5 text-blurple" />} title="What to show">
+      <ul className="space-y-2">
+        {items.map((s) => (
+          <li key={s} className="flex items-start gap-2 text-sm text-wonderlic-blue">
+            <span
+              aria-hidden
+              className="mt-0.5 inline-flex h-4 w-4 shrink-0 items-center justify-center rounded border border-blue-lilac bg-card text-[10px] text-blurple"
+            >
+              ☐
+            </span>
+            <span>{s}</span>
+          </li>
+        ))}
+      </ul>
+    </SectionCard>
+  );
+}
+
+function InYourOwnWords({ items }: { items: string[] }) {
+  return (
+    <SectionCard
+      icon={<MessageSquare className="h-5 w-5 text-blurple" />}
+      title="In your own words"
+    >
+      <ul className="space-y-1.5 text-sm text-wonderlic-blue">
+        {items.map((i) => (
+          <li key={i}>• {i}</li>
+        ))}
+      </ul>
+    </SectionCard>
+  );
+}
+
+function SignalsCard({ signals, note }: { signals: string[]; note: string }) {
+  return (
+    <SectionCard
+      icon={<Target className="h-5 w-5 text-blurple" />}
+      title="Select signals to inspect"
+    >
+      <p className="mb-2 text-xs italic text-muted-foreground">{note}</p>
+      <div className="flex flex-wrap gap-1.5">
+        {signals.map((s) => (
+          <StoryBadge key={s} variant="select">
+            {s}
+          </StoryBadge>
+        ))}
+      </div>
+    </SectionCard>
+  );
+}
+
+function ScriptAccordion({
+  label,
+  text,
+  copyLabel,
+}: {
+  label: string;
+  text: string;
+  copyLabel: string;
+}) {
+  const preview = text.slice(0, 180) + (text.length > 180 ? "…" : "");
+  return (
+    <section className="rounded-2xl border border-border bg-card">
+      <Accordion type="single" collapsible>
+        <AccordionItem value="script" className="border-none">
+          <AccordionTrigger className="px-5 py-4 hover:no-underline">
+            <div className="flex items-start gap-2 text-left">
+              <MessageCircle className="mt-0.5 h-4 w-4 shrink-0 text-blurple" />
+              <div>
+                <p className="text-[11px] font-semibold uppercase tracking-wide text-blurple">
+                  {label}
+                </p>
+                <p className="mt-0.5 text-xs text-muted-foreground">{preview}</p>
+              </div>
+            </div>
+          </AccordionTrigger>
+          <AccordionContent className="px-5 pb-5">
+            <div className="mb-3 flex justify-end">
+              <CopyButton text={text} label={copyLabel} />
+            </div>
+            <p className="whitespace-pre-line text-sm leading-relaxed text-wonderlic-blue">
+              {text}
+            </p>
+          </AccordionContent>
+        </AccordionItem>
+      </Accordion>
+    </section>
+  );
+}
+
+type OptionalItem = {
+  label: string;
+  text: string;
+  copyLabel: string;
+  extra?: { label: string; text: string; copyLabel: string };
+};
+
+function OptionalMoments({ items }: { items: OptionalItem[] }) {
+  if (items.length === 0) return null;
+  return (
+    <section className="rounded-2xl border border-dashed border-blue-lilac bg-card">
+      <Accordion type="single" collapsible>
+        <AccordionItem value="optional" className="border-none">
+          <AccordionTrigger className="px-5 py-4 hover:no-underline">
+            <div className="flex items-center gap-2 text-left">
+              <Sparkles className="h-4 w-4 text-blurple" />
+              <p className="text-sm font-semibold text-wonderlic-blue">
+                Optional moments ({items.length})
+              </p>
+            </div>
+          </AccordionTrigger>
+          <AccordionContent className="space-y-3 px-5 pb-5">
+            {items.map((it) => (
+              <div
+                key={it.label}
+                className="rounded-lg border border-blue-lilac bg-soft-purple/30 p-4"
+              >
+                <div className="mb-2 flex items-center justify-between gap-2">
+                  <p className="text-[11px] font-semibold uppercase tracking-wide text-blurple">
+                    {it.label}
+                  </p>
+                  <CopyButton text={it.text} label={it.copyLabel} />
+                </div>
+                <p className="whitespace-pre-line text-sm leading-relaxed text-wonderlic-blue">
+                  {it.text}
+                </p>
+                {it.extra && (
+                  <div className="mt-3 rounded-lg border border-blue-lilac bg-card p-3">
+                    <div className="mb-1 flex items-center justify-between gap-2">
+                      <p className="text-[11px] font-semibold uppercase tracking-wide text-blurple">
+                        {it.extra.label}
+                      </p>
+                      <CopyButton text={it.extra.text} label={it.extra.copyLabel} />
+                    </div>
+                    <p className="text-sm text-wonderlic-blue">{it.extra.text}</p>
+                  </div>
+                )}
+              </div>
+            ))}
+          </AccordionContent>
+        </AccordionItem>
+      </Accordion>
+    </section>
+  );
+}
+
+function MidDemoQuestions({
+  items,
+  copyPrefix,
+}: {
+  items: string[];
+  copyPrefix: string;
+}) {
+  return (
+    <SectionCard
+      icon={<HelpCircle className="h-5 w-5 text-blurple" />}
+      title="Mid-demo questions"
+    >
+      <ul className="space-y-2">
+        {items.map((q, i) => (
+          <li
+            key={q}
+            className="flex items-start justify-between gap-2 rounded-lg border border-blue-lilac bg-card p-3 text-sm text-wonderlic-blue"
+          >
+            <div className="flex items-start gap-2">
+              <HelpCircle className="mt-0.5 h-4 w-4 shrink-0 text-blurple" />
+              <span>{q}</span>
+            </div>
+            <CopyButton text={q} label={`${copyPrefix} ${i + 1} copied`} size="icon" />
+          </li>
+        ))}
+      </ul>
+    </SectionCard>
+  );
+}
+
+function ValueTieBack({ text }: { text: string }) {
+  return (
+    <div className="rounded-2xl border-l-4 border-develop bg-develop-ice/60 p-5">
+      <p className="text-[11px] font-semibold uppercase tracking-wide text-blurple">
+        Value tie-back
+      </p>
+      <p className="mt-2 text-sm leading-relaxed text-wonderlic-blue">{text}</p>
+    </div>
+  );
+}
+
+function CautionBox({ dontSay, doSay }: { dontSay: string; doSay: string }) {
+  return (
+    <div className="rounded-lg border border-amber-200 bg-amber-50 p-3 text-sm">
+      <div className="mb-1 flex items-center gap-2">
+        <AlertTriangle className="h-4 w-4 text-amber-600" />
+        <p className="text-[11px] font-semibold uppercase tracking-wide text-amber-700">
+          Caution
+        </p>
+      </div>
+      <div className="grid gap-2 md:grid-cols-2">
+        <p className="text-wonderlic-blue">
+          <span className="font-semibold">Do not say:</span> &ldquo;{dontSay}&rdquo;
+        </p>
+        <p className="text-wonderlic-blue">
+          <span className="font-semibold">Say:</span> &ldquo;{doSay}&rdquo;
+        </p>
+      </div>
+    </div>
+  );
+}
+
+function TransitionCard({ title, text }: { title: string; text: string }) {
+  return (
+    <section className="rounded-2xl border border-blue-lilac bg-gradient-to-r from-soft-purple/60 to-purple-chalk/60 p-5">
+      <div className="mb-2 flex items-center gap-2">
+        <ArrowRight className="h-4 w-4 text-blurple" />
+        <p className="text-[11px] font-semibold uppercase tracking-wide text-blurple">
+          {title}
+        </p>
+      </div>
+      <p className="whitespace-pre-line text-sm leading-relaxed text-wonderlic-blue">
+        {text}
+      </p>
+    </section>
+  );
+}
+
+function FullScriptBlock({ title, body }: { title: string; body: string }) {
+  return (
+    <div className="mb-4 rounded-lg border border-border bg-card p-4">
+      <div className="mb-2 flex items-center justify-between gap-2">
+        <p className="text-[11px] font-semibold uppercase tracking-wide text-blurple">
+          {title}
+        </p>
+        <CopyButton text={body} label={`Copy ${title}`} size="icon" />
+      </div>
+      <p className="whitespace-pre-line text-sm leading-relaxed text-wonderlic-blue">
+        {body}
+      </p>
+    </div>
+  );
+}
+
+/* -------------- shared helpers -------------- */
 
 function MetaCard({
   label,
@@ -457,7 +771,7 @@ function ListCard({
 }) {
   const border =
     tone === "caution"
-      ? "border-select/50 bg-select-ice/50"
+      ? "border-amber-200 bg-amber-50"
       : "border-blue-lilac bg-soft-purple/30";
   return (
     <div className={`rounded-lg border p-4 ${border}`}>
@@ -489,170 +803,26 @@ function RunField({ label, value, full }: { label: string; value: string; full?:
 function SectionCard({
   icon,
   title,
-  badges,
+  actions,
   children,
 }: {
   icon: React.ReactNode;
   title: string;
-  badges?: React.ReactNode;
+  actions?: React.ReactNode;
   children: React.ReactNode;
 }) {
   return (
-    <section className="rounded-2xl border border-border bg-card p-6">
-      <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
+    <section className="rounded-2xl border border-border bg-card p-5">
+      <div className="mb-3 flex flex-wrap items-center justify-between gap-3">
         <div className="flex items-center gap-2">
           {icon}
-          <h2 className="font-display text-2xl font-normal text-wonderlic-blue">
+          <h3 className="font-display text-lg font-normal text-wonderlic-blue">
             {title}
-          </h2>
+          </h3>
         </div>
-        {badges}
+        {actions}
       </div>
-      <div className="space-y-4">{children}</div>
-    </section>
-  );
-}
-
-function SubSection({
-  label,
-  children,
-}: {
-  label: string;
-  children: React.ReactNode;
-}) {
-  return (
-    <div className="rounded-xl border border-border/60 bg-background/60 p-4">
-      <p className="mb-2 text-[11px] font-semibold uppercase tracking-wide text-blurple">
-        {label}
-      </p>
       {children}
-    </div>
-  );
-}
-
-function Paragraph({
-  children,
-  italic,
-}: {
-  children: React.ReactNode;
-  italic?: boolean;
-}) {
-  return (
-    <p
-      className={`text-sm leading-relaxed text-wonderlic-blue ${italic ? "italic" : ""}`}
-    >
-      {children}
-    </p>
-  );
-}
-
-function Bullets({ items }: { items: string[] }) {
-  return (
-    <ul className="space-y-1.5 text-sm text-wonderlic-blue">
-      {items.map((i) => (
-        <li key={i}>• {i}</li>
-      ))}
-    </ul>
-  );
-}
-
-function ScriptBlock({
-  label,
-  text,
-  copyLabel,
-  badge,
-}: {
-  label: string;
-  text: string;
-  copyLabel: string;
-  badge?: string;
-}) {
-  return (
-    <div className="rounded-xl border border-blue-lilac bg-soft-purple/40 p-4">
-      <div className="mb-2 flex flex-wrap items-center justify-between gap-2">
-        <div className="flex items-center gap-2">
-          <MessageCircle className="h-4 w-4 text-blurple" />
-          <p className="text-[11px] font-semibold uppercase tracking-wide text-blurple">
-            {label}
-          </p>
-          {badge && <StoryBadge variant="neutral">{badge}</StoryBadge>}
-        </div>
-        <CopyButton text={text} label={copyLabel} />
-      </div>
-      <p className="whitespace-pre-line text-sm leading-relaxed text-wonderlic-blue">
-        {text}
-      </p>
-    </div>
-  );
-}
-
-function TransitionCard({ title, text }: { title: string; text: string }) {
-  return (
-    <section className="rounded-2xl border border-blue-lilac bg-gradient-to-r from-soft-purple/60 to-purple-chalk/60 p-6">
-      <div className="mb-3 flex items-center gap-2">
-        <ArrowRight className="h-5 w-5 text-blurple" />
-        <h2 className="font-display text-xl font-normal text-wonderlic-blue">{title}</h2>
-      </div>
-      <p className="whitespace-pre-line text-sm leading-relaxed text-wonderlic-blue">
-        {text}
-      </p>
     </section>
-  );
-}
-
-function MidDemoQuestions({
-  items,
-  copyPrefix,
-}: {
-  items: string[];
-  copyPrefix: string;
-}) {
-  return (
-    <SubSection label="Mid-demo questions">
-      <ul className="space-y-2">
-        {items.map((q, i) => (
-          <li
-            key={q}
-            className="flex items-start justify-between gap-2 rounded-lg border border-blue-lilac bg-card p-3 text-sm text-wonderlic-blue"
-          >
-            <div className="flex items-start gap-2">
-              <HelpCircle className="mt-0.5 h-4 w-4 shrink-0 text-blurple" />
-              <span>{q}</span>
-            </div>
-            <CopyButton text={q} label={`${copyPrefix} ${i + 1} copied`} size="icon" />
-          </li>
-        ))}
-      </ul>
-    </SubSection>
-  );
-}
-
-function ValueTieBack({ text }: { text: string }) {
-  return (
-    <div className="rounded-2xl border border-develop/40 bg-develop-ice/50 p-5">
-      <p className="text-[11px] font-semibold uppercase tracking-wide text-blurple">
-        Value tie-back
-      </p>
-      <p className="mt-2 text-sm leading-relaxed text-wonderlic-blue">{text}</p>
-    </div>
-  );
-}
-
-function CautionCard({ dontSay, doSay }: { dontSay: string; doSay: string }) {
-  return (
-    <div className="grid gap-2 md:grid-cols-2">
-      <div className="rounded-lg border border-select/50 bg-select-ice/60 p-3 text-sm">
-        <p className="text-[11px] font-semibold uppercase tracking-wide text-wonderlic-blue">
-          Do not say
-        </p>
-        <p className="mt-1 text-wonderlic-blue">"{dontSay}"</p>
-      </div>
-      <div className="rounded-lg border border-develop/40 bg-develop-ice/60 p-3 text-sm">
-        <p className="text-[11px] font-semibold uppercase tracking-wide text-blurple">
-          Say
-        </p>
-        <p className="mt-1 text-wonderlic-blue">"{doSay}"</p>
-      </div>
-    </div>
   );
 }
