@@ -104,17 +104,6 @@ export function SimonArchetypeDetail() {
             Memory hook: {g.header.memoryHook}
           </p>
         </div>
-        <div className="flex flex-wrap gap-2">
-          <StoryBadge variant="core">Core Archetype</StoryBadge>
-          <StoryBadge variant="caution">Primary gap: {g.header.primaryGap}</StoryBadge>
-          <StoryBadge variant="select">Select</StoryBadge>
-          <StoryBadge variant="develop">Develop</StoryBadge>
-          <StoryBadge variant="team-dynamics">Team Dynamics</StoryBadge>
-          <StoryBadge variant="core">Copyable Script</StoryBadge>
-          <StoryBadge variant="core">Optional Moment</StoryBadge>
-          <StoryBadge variant="develop">Business Impact</StoryBadge>
-          <StoryBadge variant="caution">Use With Caution</StoryBadge>
-        </div>
         <p className="max-w-3xl text-base leading-relaxed text-wonderlic-blue">
           {g.header.oneSentence}
         </p>
