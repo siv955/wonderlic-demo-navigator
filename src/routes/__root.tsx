@@ -30,11 +30,19 @@ const NAV = [
 
 function BrandMark() {
   return (
-    <Link to="/" className="flex items-center" aria-label="Wonderlic Demo Story Finder">
-      <img src={wonderlicW.url} alt="Wonderlic" className="h-9 w-auto" />
+    <Link to="/" className="flex items-center gap-2.5" aria-label="Wonderlic Demo Navigator">
+      <img
+        src={wonderlicW.url}
+        alt="Wonderlic"
+        className="h-9 w-auto max-w-none object-contain"
+      />
+      <span className="font-display text-base font-normal leading-tight text-wonderlic-blue">
+        Wonderlic Demo Navigator
+      </span>
     </Link>
   );
 }
+
 
 function TopNav() {
   const pathname = useRouterState({ select: (s) => s.location.pathname });
