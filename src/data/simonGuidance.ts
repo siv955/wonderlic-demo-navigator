@@ -39,13 +39,13 @@ export const SIMON_GUIDANCE = {
     anchorOnThisPain:
       "Managers may know the work and have high standards, but under pressure they become the bottleneck: decisions slow down, work routes back through them, the team waits for approval, and production, service, or execution targets suffer.",
     select:
-      "Use Select to catch the manager candidate or promotion candidate who may look strong because they know the work, solve problems quickly, and hold a high standard, but may not naturally bring the steadiness, flexibility, and delegation behavior needed to lead through pressure.",
+      "Use Select to catch the external manager candidate who may look strong because they know the work, solve problems quickly, and hold a high standard, but may not naturally bring the steadiness, flexibility, and delegation behavior needed to lead through pressure.",
     develop:
       "Use Develop to help the manager coach the pressure response: define decision rights, delegate before pressure spikes, stay steady when work gets messy, and inspect without pulling everything back.",
     teamDynamics:
       "Use Team Dynamics to show how the manager's approach affects different people on the team, so leaders can reduce dependency, increase ownership, and keep work moving without managing everyone with the same level of control.",
     valueClose:
-      "Wonderlic helps the customer avoid putting capable operators into manager roles where the team becomes dependent on them, then gives leaders a practical way to coach steadier delegation, clearer decision rights, and better execution under pressure.",
+      "Wonderlic helps avoid hiring external manager candidates whose teams could become dependent on them, and helps leaders coach the managers they already have on steadier delegation, clearer decision rights, and better execution under pressure.",
   },
   businessImpactLadder: {
     observablePattern:
@@ -55,7 +55,7 @@ export const SIMON_GUIDANCE = {
     businessPain:
       "Production slows, numbers are missed, decisions are delayed, strong employees get frustrated, manager leverage drops, and preventable turnover risk increases.",
     wonderlicValue:
-      "Wonderlic helps identify pressure-response and delegation risk before manager hire or promotion and gives leaders a practical way to coach steadier execution, clearer decision rights, and better team ownership.",
+      "Wonderlic helps identify pressure-response and delegation risk before hiring external manager candidates, and helps leaders coach the managers they already have on steadier execution, clearer decision rights, and better team ownership.",
   },
   coreStory: [
     "Simon is not an incapable manager. That is why the story works.",
@@ -90,17 +90,17 @@ export const SIMON_GUIDANCE = {
       "Key indicators tied to stress tolerance, adaptability, delegation, structure, and role fit.",
       "Candidate Compare if showing tradeoffs between two manager candidates.",
       "Interview Guide if you want to show how the insight becomes a better manager interview.",
-      "New Hire Success Tips if you want to show leader handoff after hire or promotion.",
+      "New Hire Success Tips if you want to show leader handoff after the hiring decision.",
     ],
     productBasics:
       "Every active job can live here, and each job has its own candidate pool. The important thing is that candidates are not being ranked against a generic benchmark. They are being evaluated against what success looks like in this specific role.",
     storyTranslation:
-      "For Simon, the hiring or promotion question is not does this person know the work. The question is: would this person look strong because they are capable, high-standard, and technically trusted, but still carry the same pressure-response or delegation risk that is already slowing execution?",
+      "For Simon, the external hiring question is not does this person know the work. The question is: would this candidate look strong because they are capable, high-standard, and technically trusted, but still carry the same pressure-response or delegation risk that is already slowing execution?",
     ownWords: [
       "The interview may overvalue Simon's technical credibility, history as a strong individual contributor, or ability to jump in and solve problems.",
       "Select helps pressure-test the parts of management that are easier to miss when someone already knows the work.",
       "For Simon, inspect capability and pressure-response signals together.",
-      "The value is avoiding a manager hire or promotion where the person can do the work, but the team does not scale through them.",
+      "The value is avoiding an external manager hire where the person can do the work, but the team does not scale through them.",
       "The business reason this matters is that manager bottlenecks create slowed production, delayed decisions, missed targets, and team dependency.",
     ],
     signalsToInspect: [
@@ -114,7 +114,7 @@ export const SIMON_GUIDANCE = {
       "Related Select signals are directional story inputs, not one-to-one equivalents.",
     fullScript: `On the Select side, this is where Wonderlic helps before a capable operator becomes a manager bottleneck.
 
-I would think about Simon as the person who could absolutely look strong in a manager interview or promotion conversation. He may know the work. He may have high standards. He may be the person leaders already trust when something needs to get fixed. The hiring manager or senior leader may think, "He understands the operation. People will respect him."
+I would think about Simon as the candidate who could absolutely look strong in a manager interview. He may know the work. He may have high standards. He may be the person leaders already trust when something needs to get fixed. The hiring manager or senior leader may think, "He understands the operation. People will respect him."
 
 And that may be true.
 
@@ -126,30 +126,24 @@ So when I am looking at a candidate in Select, I am not using this as a replacem
 
 The overall fit helps you prioritize where to spend time. But once I open the individual result, this is where I want to understand the tradeoffs. If someone has strong capability signals, that may explain why they look credible for the role. But if this manager role requires staying steady under pressure, delegating work, adapting when things change, and keeping decisions moving, I also want to inspect the signals related to stress tolerance, openness, structure, and problem-solving.
 
-That is the hidden risk Simon represents. He may look strong because he can do the work, but if the job requires leading the work through other people, this gives the hiring team a way to pressure-test that before they make the hire or promotion decision.`,
-    interviewGuideReference: `I would also use this to shape the interview. If manager bottlenecks are the business pain, I do not want the hiring manager asking only, "Do you know the operation?" or "How would you handle a busy shift?" Those questions matter, but they do not fully get at the risk.
+That is the hidden risk Simon represents. He may look strong because he can do the work, but if the job requires leading the work through other people, this gives the hiring team a way to pressure-test that before they make the hiring decision.`,
+    interviewGuideReference: `Behavioral Interview Guides are where I would show how the assessment becomes a more consistent manager interview. If manager bottlenecks are the concern, the value is not that the hiring manager only asks whether the candidate knows the operation. The value is that Wonderlic gives them prebuilt, role-related behavioral questions tied to relevant competencies, so every candidate can be evaluated more consistently against the same success criteria.
 
-I would want the interview guide to help them ask for evidence.
+For Simon, that means the hiring team can probe pressure response, delegation, decision rights, and leading through others instead of relying only on technical credibility or operational experience.`,
+    newHireTipsReference: `New Hire Success Tips are where I would show the handoff from selection into onboarding. Once you decide to hire someone, Wonderlic can help the manager understand how to support that person earlier, so the first 30, 60, and 90 days are more intentional.
 
-Something like: "Tell me about a time you had to let someone else own a decision even though you could have done it faster yourself."
+The value is faster ramping, more efficient onboarding, and fewer surprises after the person is already in seat.
 
-Or: "Walk me through a time your team was under pressure and you had to decide what to delegate versus what to handle personally."
-
-Or: "Tell me about a time you realized you were becoming the bottleneck. What did you change?"
-
-That is a much better use of the assessment. It does not make the decision for the manager. It shows the manager what to probe.`,
-    newHireTipsReference: `And if you do hire or promote someone where delegation and pressure response may need more structure, the value does not stop at the decision. The leader can use the new hire guidance to onboard the manager more intentionally.
-
-For Simon, that might mean setting expectations early around decision rights, escalation rules, delegation routines, and how to inspect work without taking it back. You do not wait until every decision routes through the manager and production slows. You manage to the behavior from the beginning.`,
+For Simon, that might mean setting expectations early around decision rights, escalation rules, delegation routines, and how to inspect work without taking it back. The leader does not have to wait until every decision routes through the manager. They can build delegation and pressure-response routines into onboarding.`,
     midDemoQuestions: [
       "Does that mirror what happens today, where someone is promoted because they know the work, but the bottleneck issue only shows up once they are leading a team?",
       "Are your hiring managers currently probing delegation and pressure response, or does the interview mostly focus on experience and operational knowledge?",
       "When work slows down today, is the bigger issue that managers do not care, or that they jump in too quickly and keep decisions too close?",
       "What does manager bottlenecking usually turn into for you: missed numbers, slowed production, delayed decisions, strong employees getting frustrated, or turnover?",
-      "Would this be more useful for external manager hiring, internal promotions, or both?",
+      "Would this be more useful for external manager hiring, or would your current-manager use case be better served through Develop and Team Dynamics?",
     ],
     valueTieBack:
-      "This is where Wonderlic helps you avoid putting someone into a manager role who can do the work but may unintentionally slow the team down. It gives the hiring team objective, job-specific evidence before they spend interview time, ramp time, leader time, and team trust on someone who may recreate the same bottleneck pattern and allow pressure-response issues to turn into missed numbers, production drag, delayed decisions, or preventable turnover.",
+      "This is where Wonderlic helps the hiring team pressure-test role fit before investing interview time, ramp time, leader time, and team trust in an external manager candidate who can do the work but may unintentionally slow the team down and recreate the same bottleneck pattern that turns into missed numbers, production drag, delayed decisions, or preventable turnover.",
     caution: {
       dontSay:
         "This person cannot manage. Or: Low Stability means they are unstable.",
@@ -157,11 +151,11 @@ For Simon, that might mean setting expectations early around decision rights, es
         "This is a risk area to understand and probe before moving forward. For this role, pressure response and steadiness are meaningful areas to inspect because the job requires keeping the team moving when work gets messy.",
     },
   },
-  selectToDevelopTransition: `So that is the pre-hire or promotion version of Simon.
+  selectToDevelopTransition: `So that is the pre-hire version of Simon.
 
 But a lot of organizations already have Simon on the team. And that is where the conversation changes.
 
-We are no longer asking, "Should we put Simon into the manager role?" We already did. Now the question is, "How do we help him stay steady, delegate clearly, and keep work moving through the team instead of back through himself?"
+We are no longer asking, "Should we hire Simon into the manager role?" We already did. Now the question is, "How do we help him stay steady, delegate clearly, and keep work moving through the team instead of back through himself?"
 
 And this is where I think Develop is really useful, because leaders often know the behavior they are frustrated by, but they do not always know how to coach it specifically. They say things like, "you need to delegate more," "stop micromanaging," or "you need to trust your team."
 
@@ -295,13 +289,13 @@ That is the value of Team Dynamics. It helps the leader stop treating delegation
   },
   fullClose: `So if I pull this all the way back up, Simon is the same human pattern across the platform, but the use case changes.
 
-In Select, the question is: would this person look strong in the hiring or promotion process because they know the work and hold a high standard, but carry the pressure-response and delegation risk that is already slowing execution?
+In Select, the question is: would this external candidate look strong in the hiring process because they know the work and hold a high standard, but carry the pressure-response and delegation risk that is already slowing execution?
 
 In Develop, the question is: if this person is already managing people, how do we coach the delegation and pressure-response behavior specifically enough that it can actually change?
 
 And in Team Dynamics, the question is: how does the manager adapt across the team so decisions, ownership, and execution keep moving without everything routing back through one person?
 
-That is the reason this matters beyond the assessment score. You are not just getting a profile. You are getting a more consistent way to make the hire or promotion decision, coach the behavior, and manage the team around the business problem you actually described.
+That is the reason this matters beyond the assessment score. You are not just getting a profile. You are getting a more consistent way to make the external hiring decision, coach the managers you already have, and manage the team around the business problem you actually described.
 
 For a team dealing with capable managers becoming bottlenecks, slowed production, delayed decisions, missed numbers, or strong employees getting frustrated because they are not trusted, this gives you a way to catch the risk earlier and manage the behavior more consistently when it shows up.`,
   recap: {
@@ -311,7 +305,7 @@ For a team dealing with capable managers becoming bottlenecks, slowed production
       "Bottlenecked management creates business drag: slowed production, missed numbers, delayed decisions, strong employees getting frustrated, and preventable turnover risk.",
     ],
     futureState: [
-      "Identify manager candidates or promotion candidates who bring both capability and the steadiness required to lead through pressure.",
+      "Identify external manager candidates who bring both capability and the steadiness required to lead through pressure.",
       "Give leaders a more precise way to coach decision rights, delegation routines, and steady inspection.",
       "Help leaders flex across the team so capable managers can protect standards while building team ownership and reducing dependency.",
     ],

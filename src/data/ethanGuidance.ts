@@ -118,20 +118,14 @@ So when I am looking at a candidate in Select, I am not using this as a replacem
 The overall fit helps you prioritize where to spend time. But once I open the individual result, this is where I want to understand the tradeoffs. If someone has strong relationship signals, that may explain why they come across well in an interview or on a first call. But if this sales role requires commercial push, urgency, and ownership of the next step, I also want to inspect Enterprising Interest and the related signals that tell us whether the person is likely to be energized by that part of the work.
 
 That is the hidden risk Ethan represents. He may look good enough live, but if the job requires moving a buyer to a decision, this gives the hiring team a way to pressure-test that before they make the hire.`,
-    interviewGuideReference: `I would also use this to shape the interview. If commercial urgency is the business pain, I do not want the hiring manager asking generic questions like, "Are you comfortable selling?" or "Are you motivated by goals?" Everyone knows how to answer that.
+    interviewGuideReference: `Behavioral Interview Guides are where I would show how the assessment becomes a more consistent sales interview. If commercial urgency is the concern, the value is not that the hiring manager just asks whether someone is motivated or comfortable selling. The value is that Wonderlic gives them prebuilt, role-related behavioral questions tied to relevant competencies, so every candidate can be evaluated more consistently against the same success criteria.
 
-I would want the interview guide to help them ask for evidence.
+For Ethan, that means the hiring team can probe commercial drive, decision movement, and direct asks instead of relying only on warmth, rapport, or interview presence.`,
+    newHireTipsReference: `New Hire Success Tips are where I would show the handoff from selection into onboarding. Once you decide to hire someone, Wonderlic can help the manager understand how to support that person earlier, so the first 30, 60, and 90 days are more intentional.
 
-Something like: "Walk me through a time a prospect liked the solution but was hesitant to commit. How did you create urgency?"
+The value is faster ramping, more efficient onboarding, and fewer surprises after the person is already in seat.
 
-Or: "Tell me about a time you had to ask directly for a next step, even though the conversation felt positive but noncommittal."
-
-Or: "How do you decide when a buyer needs more relationship-building versus when they need a clear recommendation and next step?"
-
-That is a much better use of the assessment. It does not make the decision for the manager. It shows the manager what to probe.`,
-    newHireTipsReference: `And if you do hire someone where there is a commercial-drive risk, the value does not stop at the hiring decision. The manager can use the new hire guidance to onboard more intentionally.
-
-For Ethan, that might mean setting the expectation early: every opportunity needs a clear next step, every discovery call needs a decision question, and every proposal conversation needs a specific ask. You do not wait until the pipeline is full of nice conversations and soft next steps. You manage to the behavior from the beginning.`,
+For Ethan, that might mean setting expectations early around clear next steps, direct decision questions, and connecting the commercial ask back to customer value. The manager does not have to wait until the pipeline fills with positive conversations and soft commitments. They can build the behavior into onboarding.`,
     midDemoQuestions: [
       "Does that mirror what happens today, where a candidate or rep can come across really well live, but the urgency gap does not show up until they are carrying pipeline?",
       "Are your hiring managers currently probing for commercial drive and direct asks consistently, or does that depend on who is interviewing?",

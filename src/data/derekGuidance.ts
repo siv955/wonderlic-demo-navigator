@@ -116,16 +116,14 @@ So when I am looking at a candidate in Select, I am not using this as a replacem
 The overall fit helps you prioritize where to spend time. But once I open the individual result, this is where I want to understand the tradeoffs. If someone has strong customer-facing signals, that may explain why they come across well live. But if the role requires consistent follow-through, documentation, and loop closure, I also want to inspect Dependability and Structured Interest.
 
 That is the hidden risk Derek represents. He may look good enough live, but if the job requires repeatable ownership after the interaction, this gives the hiring team a way to pressure-test that before they make the hire.`,
-    interviewGuideReference: `I would also use this to shape the interview. If follow-through is the business pain, I do not want the hiring manager asking generic questions like, "Are you organized?" Everyone knows how to answer that.
+    interviewGuideReference: `Behavioral Interview Guides are where I would show how the assessment becomes a more consistent interview process. If follow-through is the concern, the value is not that the hiring manager invents a better question on the fly. The value is that Wonderlic gives them prebuilt, role-related behavioral questions tied to relevant competencies, so every candidate can be evaluated more consistently against the same success criteria.
 
-I would want the interview guide to help them ask for evidence.
+For Derek, that means the hiring team can probe the follow-through and structure required for the role instead of relying only on whether the candidate came across well live.`,
+    newHireTipsReference: `New Hire Success Tips are where I would show the handoff from selection into onboarding. Once you decide to hire someone, Wonderlic can help the manager understand how to support that person earlier, so the first 30, 60, and 90 days are more intentional.
 
-Something like: "Walk me through what you do in the 30 minutes after an important customer call." Or: "Tell me about a time a deal or customer issue stalled because the next step was not clear. What did you do?"
+The value is faster ramping, more efficient onboarding, and fewer surprises after the person is already in seat.
 
-That is a much better use of the assessment. It does not make the decision for the manager. It shows the manager what to probe.`,
-    newHireTipsReference: `And if you do hire someone where there is a follow-through risk, the value does not stop at the hiring decision. The manager can use the new hire guidance to onboard more intentionally.
-
-For Derek, that might mean setting the expectation early: after every call, notes are logged, follow-up is sent, and the next step is confirmed before moving to the next thing. You do not wait 60 days to discover that the pattern is there. You manage to it from the beginning.`,
+For Derek, that might mean setting expectations early around post-call notes, follow-up timing, documented next steps, and CRM or case updates. The manager does not have to wait until follow-through breaks down. They can build the routine into onboarding.`,
     midDemoQuestions: [
       "Does that mirror what happens today, where the person can present well in the process but the follow-through issue does not show up until they are already in seat?",
       "Are your hiring managers currently probing for follow-up and documentation in a consistent way, or does that depend on who is interviewing?",

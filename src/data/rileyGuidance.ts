@@ -119,20 +119,14 @@ So when I am looking at a candidate in Select, I am not using this as a replacem
 The overall fit helps you prioritize where to spend time. But once I open the individual result, this is where I want to understand the tradeoffs. If someone has experience or availability, that may explain why they look like a practical option. But if this role requires consistent execution, hands-on work, routine, quality checks, and problem-solving, I also want to inspect Dependability, Structured Interest, Applied Interest, and Cognitive Ability.
 
 That is the hidden risk Riley represents. They may look workable enough to hire, but if the job requires driving the work to standard every day, this gives the hiring team a way to pressure-test that before they invest the training time, supervisor time, and team capacity.`,
-    interviewGuideReference: `I would also use this to shape the interview. If inconsistent execution is the business pain, I do not want the hiring manager asking only, "Have you done this kind of work before?" or "Are you comfortable with the schedule?" Those questions matter, but they do not fully get at the risk.
+    interviewGuideReference: `Behavioral Interview Guides are where I would show how the assessment becomes a more consistent frontline interview. If inconsistent execution is the concern, the value is not that the hiring manager only asks whether someone has done similar work before. The value is that Wonderlic gives them prebuilt, role-related behavioral questions tied to relevant competencies, so every candidate can be evaluated more consistently against the same success criteria.
 
-I would want the interview guide to help them ask for evidence.
+For Riley, that means the hiring team can probe reliability, work-to-standard behavior, routine, quality checks, and escalation judgment instead of relying only on availability or experience.`,
+    newHireTipsReference: `New Hire Success Tips are where I would show the handoff from selection into onboarding. Once you decide to hire someone, Wonderlic can help the manager understand how to support that person earlier, so the first 30, 60, and 90 days are more intentional.
 
-Something like: "Tell me about a time you caught an error before it affected the next step in the process. What did you do?"
+The value is faster ramping, more efficient onboarding, and fewer surprises after the person is already in seat.
 
-Or: "Walk me through how you make sure repetitive work is done correctly when the day gets busy."
-
-Or: "Tell me about a time you did not know whether something met the standard. How did you decide whether to ask for help or keep going?"
-
-That is a much better use of the assessment. It does not make the decision for the manager. It shows the manager what to probe.`,
-    newHireTipsReference: `And if you do hire someone where consistency or quality may need more structure, the value does not stop at the hiring decision. The manager can use the new hire guidance to onboard more intentionally.
-
-For Riley, that might mean setting expectations early around what done-right looks like, when to check quality, what needs escalation, and how the person should ask for help before passing an issue downstream. You do not wait until rework piles up or stronger employees are frustrated. You manage to the behavior from the beginning.`,
+For Riley, that might mean setting expectations early around what done-right looks like, where to check quality, when to escalate, and how to prevent rework before it moves downstream. The manager does not have to wait until supervisors or stronger employees are cleaning up avoidable mistakes. They can build the standard into onboarding.`,
     midDemoQuestions: [
       "Does that mirror what happens today, where someone looks workable during hiring but the consistency issue shows up after they are trained?",
       "Are your hiring managers currently probing for quality checks, routine tolerance, and escalation judgment, or does that depend on who is interviewing?",
