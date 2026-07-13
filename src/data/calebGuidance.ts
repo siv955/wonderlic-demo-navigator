@@ -119,20 +119,14 @@ So when I am looking at a candidate in Select, I am not using this as a replacem
 The overall fit helps you prioritize where to spend time. But once I open the individual result, this is where I want to understand the tradeoffs. If someone has strong technical or problem-solving indicators, that may explain why they look good on paper or in the interview. But if this role requires collaboration, coaching others, cross-functional handoffs, or knowledge sharing, I also want to inspect the signals related to cooperation, communication, and openness.
 
 That is the hidden risk Caleb represents. He may look strong enough technically, but if the job requires the team to use his expertise, this gives the hiring team a way to pressure-test that before they make the hire.`,
-    interviewGuideReference: `I would also use this to shape the interview. If collaboration around technical expertise is the business pain, I do not want the hiring manager only asking technical questions. A technically strong person may still struggle to bring others along.
+    interviewGuideReference: `Behavioral Interview Guides are where I would show how the assessment becomes a more consistent technical interview. If collaboration around expertise is the concern, the value is not that the hiring manager only asks technical questions or invents a teamwork question on the fly. The value is that Wonderlic gives them prebuilt, role-related behavioral questions tied to relevant competencies, so every candidate can be evaluated more consistently against the same success criteria.
 
-I would want the interview guide to help them ask for evidence.
+For Caleb, that means the hiring team can probe how technical expertise shows up in handoffs, collaboration, and communication, not just whether the candidate knows the work.`,
+    newHireTipsReference: `New Hire Success Tips are where I would show the handoff from selection into onboarding. Once you decide to hire someone, Wonderlic can help the manager understand how to support that person earlier, so the first 30, 60, and 90 days are more intentional.
 
-Something like: "Tell me about a time you had to explain a technical decision to someone who did not have your same background. How did you make sure they understood?"
+The value is faster ramping, more efficient onboarding, and fewer surprises after the person is already in seat.
 
-Or: "Walk me through a time a teammate disagreed with your approach. What did you do?"
-
-Or: "Tell me about a handoff that did not go well. What did you learn from it?"
-
-That is a much better use of the assessment. It does not make the decision for the manager. It shows the manager what to probe.`,
-    newHireTipsReference: `And if you do hire someone where there is a collaboration risk, the value does not stop at the hiring decision. The manager can use the new hire guidance to onboard more intentionally.
-
-For Caleb, that might mean setting expectations early around how decisions get documented, how handoffs happen, when teammates should be brought in, and how the person shares expertise with less experienced employees. You do not wait until everyone is avoiding the expert. You manage to the behavior from the beginning.`,
+For Caleb, that might mean setting expectations early around handoffs, documentation, explaining reasoning, and checking for understanding. The manager does not have to wait until teammates start avoiding the expert. They can build the collaboration routine into onboarding.`,
     midDemoQuestions: [
       "Does that mirror what happens today, where someone can look technically strong but the collaboration issue only shows up once they are working with the team?",
       "Are your hiring managers currently probing how technical candidates communicate and hand off work, or does the interview mostly focus on whether they know the work?",
