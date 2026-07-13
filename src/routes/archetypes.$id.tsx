@@ -10,6 +10,7 @@ import { ArrowLeft, AlertTriangle, PlayCircle, Megaphone, HelpCircle } from "luc
 import { DerekArchetypeDetail } from "@/components/derek-archetype-detail";
 import { EthanArchetypeDetail } from "@/components/ethan-archetype-detail";
 import { CalebArchetypeDetail } from "@/components/caleb-archetype-detail";
+import { RileyArchetypeDetail } from "@/components/riley-archetype-detail";
 
 export const Route = createFileRoute("/archetypes/$id")({
   head: ({ params }) => {
@@ -52,6 +53,9 @@ function ArchetypeDetail() {
   }
   if (a.id === "caleb") {
     return <CalebArchetypeDetail />;
+  }
+  if (a.id === "riley") {
+    return <RileyArchetypeDetail />;
   }
   const g = guidanceFor(a.id as ArchetypeId);
   const r = runThisDemoFor(a.id as ArchetypeId);
