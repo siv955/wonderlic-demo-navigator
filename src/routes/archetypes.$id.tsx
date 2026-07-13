@@ -2,17 +2,11 @@ import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { archetypeById, profileById, type ArchetypeId } from "@/data";
 import { guidanceFor } from "@/data/archetypeGuidance";
 import { runThisDemoFor } from "@/data/runThisDemo";
-import { normalizeSelectLabel } from "@/lib/selectLabels";
+import { productMomentsFor, type ProductMoment, type DevelopMoment, type TeamDynamicsMoment } from "@/data/productMoments";
 import { StoryBadge } from "@/components/story-badge";
 import { CopyButton } from "@/components/copy-button";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
-import { ArrowLeft, ArrowRight, User, AlertTriangle, PlayCircle, Megaphone } from "lucide-react";
+import { ArrowLeft, AlertTriangle, PlayCircle, Megaphone, HelpCircle } from "lucide-react";
 
 export const Route = createFileRoute("/archetypes/$id")({
   head: ({ params }) => {
@@ -49,18 +43,21 @@ function ArchetypeDetail() {
   const { archetype: a } = Route.useLoaderData();
   const g = guidanceFor(a.id as ArchetypeId);
   const r = runThisDemoFor(a.id as ArchetypeId);
+  const m = productMomentsFor(a.id as ArchetypeId);
   const profile = profileById(a.demoProfileId);
 
   const runCardText = [
     `${a.memoryHook} · Run This Demo`,
+    profile ? `Profile: ${profile.name}` : "",
     "",
     `Anchor on this pain: ${r.anchorOnThisPain}`,
-    `Open this profile: ${r.openThisProfile}`,
-    `Select point: ${r.selectPoint}`,
-    `Develop point: ${r.developAttribute}`,
-    `Team Dynamics point: ${r.teamDynamics}`,
-    `Close with this value line: ${r.closeWith}`,
-  ].join("\n");
+    `Select: ${r.selectPoint}`,
+    `Develop: ${r.developAttribute}`,
+    `Team Dynamics: ${r.teamDynamics}`,
+    `Value close: ${r.closeWith}`,
+  ]
+    .filter(Boolean)
+    .join("\n");
 
   const recapText = [
     `${a.memoryHook} · Recap`,
@@ -95,11 +92,24 @@ function ArchetypeDetail() {
         <div className="flex flex-wrap gap-2">
           <StoryBadge variant="caution">Primary gap: {r.primaryGapLabel}</StoryBadge>
           <StoryBadge variant="core">Canonical archetype</StoryBadge>
+          {profile && (
+            <span className="inline-flex items-center rounded-full border border-blue-lilac bg-soft-purple px-2.5 py-0.5 text-[11px] font-semibold text-blurple">
+              Demo profile: {profile.name}
+            </span>
+          )}
         </div>
         <p className="max-w-3xl text-base text-muted-foreground">{r.shortDefinition}</p>
+        <div className="grid gap-3 rounded-2xl border border-border bg-card p-4 md:grid-cols-3">
+          <MetaLine label="Use when" value={g.bestUseCase} />
+          <MetaLine label="Not this if" value={g.doNotUseWhen} tone="caution" />
+          <MetaLine
+            label="Develop anchor / TD path"
+            value={`${g.develop.primaryDirection === "low" ? "Low " : "High "}${g.develop.primary} · ${g.teamDynamics.section} → ${g.teamDynamics.page}`}
+          />
+        </div>
       </header>
 
-      {/* RUN THIS DEMO */}
+      {/* Section 1: RUN THIS DEMO */}
       <section className="rounded-2xl border-2 border-blurple/40 bg-purple-chalk/60 p-6 shadow-sm">
         <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
           <div className="flex items-center gap-2">
@@ -110,19 +120,18 @@ function ArchetypeDetail() {
         </div>
         <div className="grid gap-3 md:grid-cols-2">
           <RunField label="Anchor on this pain" value={r.anchorOnThisPain} />
-          <RunField label="Open this profile" value={r.openThisProfile} />
-          <RunField label="Select point" value={r.selectPoint} />
-          <RunField label="Develop point" value={r.developAttribute} />
-          <RunField label="Team Dynamics point" value={r.teamDynamics} />
-          <RunField label="Close with this value line" value={r.closeWith} />
+          <RunField label="Select" value={r.selectPoint} />
+          <RunField label="Develop" value={r.developAttribute} />
+          <RunField label="Team Dynamics" value={r.teamDynamics} />
+          <RunField label="Value close" value={r.closeWith} full />
         </div>
       </section>
 
-      {/* Strength / Gap / How Develop Helps */}
+      {/* Section 2: Strength / Gap / How Wonderlic Helps */}
       <div className="grid gap-4 md:grid-cols-3">
         <GuidanceCard tone="strength" title="The Strength" body={g.strength} />
         <GuidanceCard tone="gap" title="The Gap" body={g.gap} />
-        <GuidanceCard tone="develop" title="How Develop Helps" body={g.developHelps} />
+        <GuidanceCard tone="develop" title="How Wonderlic Helps" body={g.developHelps} />
       </div>
 
       {/* Say this out loud */}
@@ -139,241 +148,72 @@ function ArchetypeDetail() {
         <p className="text-base leading-relaxed text-wonderlic-blue">{r.sayThisOutLoud}</p>
       </section>
 
-      {/* Snapshot with profile link, use/do-not-use */}
-      <section className="grid gap-4 rounded-2xl border border-border bg-card p-6 md:grid-cols-[minmax(0,2fr)_minmax(0,1fr)]">
-        <div className="space-y-3">
-          <div className="rounded-lg border border-border bg-soft-purple/40 p-3 text-sm">
-            <p className="text-[11px] font-semibold uppercase tracking-wide text-blurple">
-              Use when
-            </p>
-            <p className="mt-1 text-sm leading-relaxed text-wonderlic-blue">{g.bestUseCase}</p>
-          </div>
-          <div className="flex items-start gap-2 rounded-lg border border-select/50 bg-select-ice/70 p-3 text-sm">
-            <AlertTriangle className="mt-0.5 h-4 w-4 shrink-0 text-wonderlic-blue" />
-            <div>
-              <p className="text-[11px] font-semibold uppercase tracking-wide text-wonderlic-blue">
-                Do not use when
-              </p>
-              <p className="mt-0.5 text-sm text-wonderlic-blue">{g.doNotUseWhen}</p>
-            </div>
-          </div>
+      {/* Section 3: Quick Discovery Fit */}
+      <section className="rounded-2xl border border-border bg-card p-6">
+        <div className="mb-3 flex items-center gap-2">
+          <HelpCircle className="h-5 w-5 text-blurple" />
+          <h2 className="font-display text-xl font-normal text-wonderlic-blue">
+            Quick Discovery Fit
+          </h2>
         </div>
-        {profile && (
-          <Link
-            to="/profiles"
-            className="flex h-full flex-col justify-between rounded-xl border border-blue-lilac bg-soft-purple p-4 transition-colors hover:bg-purple-chalk"
-          >
-            <div>
-              <p className="text-xs font-semibold uppercase tracking-wide text-blurple">
-                Demo profile
-              </p>
-              <div className="mt-3 flex items-center gap-3">
-                <div className="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-blurple text-white">
-                  <User className="h-5 w-5" />
-                </div>
-                <div className="min-w-0">
-                  <p className="truncate font-display text-lg font-normal text-wonderlic-blue">
-                    {profile.name}
-                  </p>
-                  <p className="truncate text-xs text-muted-foreground">{profile.email}</p>
-                </div>
-              </div>
-            </div>
-            <span className="mt-4 inline-flex items-center gap-1 text-xs font-semibold text-blurple">
-              Open in directory <ArrowRight className="h-3 w-3" />
-            </span>
-          </Link>
-        )}
+        <p className="text-xs font-semibold uppercase tracking-wide text-blurple">
+          Use this story when the customer says…
+        </p>
+        <ul className="mt-2 grid gap-2 sm:grid-cols-2">
+          {m.quickDiscovery.triggers.map((t) => (
+            <li
+              key={t}
+              className="rounded-lg border border-border bg-soft-purple/30 px-3 py-2 text-sm text-wonderlic-blue"
+            >
+              &ldquo;{t}&rdquo;
+            </li>
+          ))}
+        </ul>
+        <div className="mt-4 rounded-lg border border-blue-lilac bg-soft-purple/60 p-3 text-sm">
+          <p className="text-[11px] font-semibold uppercase tracking-wide text-blurple">
+            Clarifying question if ambiguous
+          </p>
+          <p className="mt-1 text-wonderlic-blue">{m.quickDiscovery.clarifyingQuestion}</p>
+        </div>
       </section>
 
-      {/* Deeper guidance tabs */}
+      {/* Product moment tabs */}
       <Tabs defaultValue="select" className="w-full">
         <TabsList className="flex h-auto w-full flex-wrap justify-start gap-1 bg-muted/40 p-1">
           <TabsTrigger value="select">Select</TabsTrigger>
           <TabsTrigger value="develop">Develop</TabsTrigger>
           <TabsTrigger value="td">Team Dynamics</TabsTrigger>
-          <TabsTrigger value="tracks">Talk Tracks</TabsTrigger>
-          <TabsTrigger value="ask">Ask Wonderlic</TabsTrigger>
-          <TabsTrigger value="arc">Demo arc & screens</TabsTrigger>
+          <TabsTrigger value="recap">Recap Slide</TabsTrigger>
           <TabsTrigger value="cautions">Cautions</TabsTrigger>
-          <TabsTrigger value="recap">Recap slide</TabsTrigger>
         </TabsList>
 
         {/* SELECT */}
-        <TabsContent value="select" className="mt-6 space-y-4">
-          <Section title="Screen-out angle">
-            <p className="text-sm leading-relaxed text-wonderlic-blue">{g.select.screenOut}</p>
-          </Section>
-          <Section title="Screen-in angle">
-            <p className="text-sm leading-relaxed text-wonderlic-blue">{g.select.screenIn}</p>
-          </Section>
-          <Section title="How to say it">
-            <p className="text-sm leading-relaxed text-wonderlic-blue">{g.select.howToSayIt}</p>
-            <div className="mt-3">
-              <CopyButton text={g.select.howToSayIt} label="Copy Select framing" />
-            </div>
-          </Section>
-          <CautionBox text={g.select.caution} />
-          <Accordion type="single" collapsible>
-            <AccordionItem value="signals" className="rounded-lg border border-border">
-              <AccordionTrigger className="px-4 text-sm font-semibold text-muted-foreground">
-                Related Select signals to inspect
-              </AccordionTrigger>
-              <AccordionContent className="px-4">
-                <p className="mb-2 text-xs italic text-muted-foreground">
-                  Related Select signals are directional story inputs, not one-to-one equivalents.
-                </p>
-                <div className="flex flex-wrap gap-1.5">
-                  {g.select.supportingSignals.map((s) => (
-                    <StoryBadge key={s} variant="select">
-                      {normalizeSelectLabel(s)}
-                    </StoryBadge>
-                  ))}
-                </div>
-              </AccordionContent>
-            </AccordionItem>
-          </Accordion>
+        <TabsContent value="select" className="mt-6">
+          <ProductMomentPanel
+            momentLabel="Select"
+            moment={m.select}
+            supportingSignals={g.select.supportingSignals}
+          />
         </TabsContent>
 
         {/* DEVELOP */}
-        <TabsContent value="develop" className="mt-6 space-y-4">
-          <Section title={`Primary attribute · ${g.develop.primaryDirection === "low" ? "Low" : "High"} ${g.develop.primary}`}>
-            <p className="text-sm leading-relaxed text-wonderlic-blue">{g.develop.whyAnchor}</p>
-          </Section>
-          <Section title="In plain English">
-            <p className="text-sm leading-relaxed text-wonderlic-blue">{g.develop.plainEnglish}</p>
-          </Section>
-          <Section title="Coaching action">
-            <p className="text-sm leading-relaxed text-wonderlic-blue">{g.develop.coachingAction}</p>
-            <div className="mt-3">
-              <CopyButton text={g.develop.coachingAction} label="Copy coaching action" />
-            </div>
-          </Section>
-          <CautionBox text={g.develop.dontSay} label="Do not say" />
-          <Accordion type="single" collapsible>
-            <AccordionItem value="supporting" className="rounded-lg border border-border">
-              <AccordionTrigger className="px-4 text-sm font-semibold text-muted-foreground">
-                Supporting attributes
-              </AccordionTrigger>
-              <AccordionContent className="px-4">
-                <div className="flex flex-wrap gap-1.5">
-                  {g.develop.supporting.map((s) => (
-                    <StoryBadge key={s} variant="develop">
-                      {s}
-                    </StoryBadge>
-                  ))}
-                </div>
-              </AccordionContent>
-            </AccordionItem>
-          </Accordion>
+        <TabsContent value="develop" className="mt-6">
+          <ProductMomentPanel
+            momentLabel="Develop"
+            moment={m.develop}
+            askWonderlicPrompt={m.develop.askWonderlicPrompt}
+            primaryAttribute={`${g.develop.primaryDirection === "low" ? "Low " : "High "}${g.develop.primary}`}
+          />
         </TabsContent>
 
         {/* TEAM DYNAMICS */}
-        <TabsContent value="td" className="mt-6 space-y-4">
-          <Section title={`${g.teamDynamics.section} → ${g.teamDynamics.page}`}>
-            <p className="text-sm leading-relaxed text-wonderlic-blue">
-              {g.teamDynamics.whyThisPage}
-            </p>
-          </Section>
-          <Section title="Manager insight">
-            <p className="text-sm leading-relaxed text-wonderlic-blue">
-              {g.teamDynamics.managerInsight}
-            </p>
-          </Section>
-          <Section title="How to explain high vs low">
-            <p className="text-sm leading-relaxed text-wonderlic-blue">
-              {g.teamDynamics.howToExplain}
-            </p>
-          </Section>
-          <Section title="What to say out loud">
-            <p className="text-sm leading-relaxed text-wonderlic-blue">
-              {g.teamDynamics.whatToSay}
-            </p>
-            <div className="mt-3">
-              <CopyButton text={g.teamDynamics.whatToSay} label="Copy TD framing" />
-            </div>
-          </Section>
-          <CautionBox text={g.teamDynamics.dontOverclaim} label="Do not overclaim" />
-        </TabsContent>
-
-        {/* TALK TRACKS */}
-        <TabsContent value="tracks" className="mt-6 space-y-4">
-          <TrackCard title="30-second version" body={g.talkTracks.thirtySecond} />
-          <TrackCard title="3-minute version" body={g.talkTracks.threeMinute} />
-          <TrackCard title="10–15 minute recording guide" body={g.talkTracks.recordingGuide} />
-        </TabsContent>
-
-        {/* ASK WONDERLIC */}
-        <TabsContent value="ask" className="mt-6 space-y-4">
-          <Section title="Prewritten Ask Wonderlic prompt">
-            <p className="whitespace-pre-line text-sm leading-relaxed text-wonderlic-blue">
-              {g.askWonderlic}
-            </p>
-            <div className="mt-3">
-              <CopyButton text={g.askWonderlic} label="Copy Ask Wonderlic prompt" />
-            </div>
-          </Section>
-        </TabsContent>
-
-        {/* DEMO ARC & SCREENS */}
-        <TabsContent value="arc" className="mt-6 space-y-4">
-          <Section title="Discovery triggers" subtitle="Use this story when the customer says…">
-            <ul className="grid gap-2 sm:grid-cols-2">
-              {g.discoveryTriggers.map((t) => (
-                <li key={t} className="rounded-lg border border-border bg-card px-3 py-2 text-sm text-wonderlic-blue">
-                  &ldquo;{t}&rdquo;
-                </li>
-              ))}
-            </ul>
-            <div className="mt-4 rounded-lg border border-blue-lilac bg-soft-purple/50 p-3 text-sm">
-              <p className="text-[11px] font-semibold uppercase tracking-wide text-blurple">
-                Clarifying question if ambiguous
-              </p>
-              <p className="mt-1 text-wonderlic-blue">{g.clarifyingQuestion}</p>
-            </div>
-          </Section>
-          <Section title="Full demo arc">
-            <p className="whitespace-pre-line text-sm leading-relaxed text-wonderlic-blue">
-              {g.demoArc}
-            </p>
-          </Section>
-          <Section title="Screens to show / skip">
-            <div className="grid gap-4 md:grid-cols-2">
-              <div>
-                <p className="text-[11px] font-semibold uppercase tracking-wide text-blurple">Show</p>
-                <ul className="mt-2 space-y-1.5 text-sm text-wonderlic-blue">
-                  {g.screensToShow.map((s) => (
-                    <li key={s}>• {s}</li>
-                  ))}
-                </ul>
-              </div>
-              <div>
-                <p className="text-[11px] font-semibold uppercase tracking-wide text-muted-foreground">Skip</p>
-                <ul className="mt-2 space-y-1.5 text-sm text-muted-foreground">
-                  {g.screensToSkip.map((s) => (
-                    <li key={s}>• {s}</li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-          </Section>
-        </TabsContent>
-
-        {/* CAUTIONS */}
-        <TabsContent value="cautions" className="mt-6">
-          <Section title="What not to say">
-            <ul className="space-y-2">
-              {g.cautions.map((c) => (
-                <li
-                  key={c}
-                  className="flex items-start gap-2 rounded-lg border border-select/40 bg-select-ice/50 p-3 text-sm text-wonderlic-blue"
-                >
-                  <AlertTriangle className="mt-0.5 h-4 w-4 shrink-0" />
-                  <span>{c}</span>
-                </li>
-              ))}
-            </ul>
-          </Section>
+        <TabsContent value="td" className="mt-6">
+          <ProductMomentPanel
+            momentLabel="Team Dynamics"
+            moment={m.teamDynamics}
+            pageToOpen={m.teamDynamics.pageToOpen}
+            proxyNote={m.teamDynamics.proxyNote}
+          />
         </TabsContent>
 
         {/* RECAP */}
@@ -396,14 +236,144 @@ function ArchetypeDetail() {
             <CopyButton text={recapText} label="Copy recap slide bullets" />
           </div>
         </TabsContent>
+
+        {/* CAUTIONS */}
+        <TabsContent value="cautions" className="mt-6">
+          <Section title="What not to say">
+            <ul className="space-y-2">
+              {g.cautions.map((c) => (
+                <li
+                  key={c}
+                  className="flex items-start gap-2 rounded-lg border border-select/40 bg-select-ice/50 p-3 text-sm text-wonderlic-blue"
+                >
+                  <AlertTriangle className="mt-0.5 h-4 w-4 shrink-0" />
+                  <span>{c}</span>
+                </li>
+              ))}
+            </ul>
+          </Section>
+        </TabsContent>
       </Tabs>
     </div>
   );
 }
 
-function RunField({ label, value }: { label: string; value: string }) {
+function ProductMomentPanel({
+  momentLabel,
+  moment,
+  supportingSignals,
+  askWonderlicPrompt,
+  pageToOpen,
+  proxyNote,
+  primaryAttribute,
+}: {
+  momentLabel: string;
+  moment: ProductMoment | DevelopMoment | TeamDynamicsMoment;
+  supportingSignals?: string[];
+  askWonderlicPrompt?: string;
+  pageToOpen?: string;
+  proxyNote?: string;
+  primaryAttribute?: string;
+}) {
   return (
-    <div className="rounded-xl border border-blue-lilac bg-card p-3">
+    <div className="space-y-4">
+      <Section title={`What ${momentLabel} is doing in this demo`}>
+        <p className="text-sm leading-relaxed text-wonderlic-blue">{moment.whatItDoes}</p>
+        {primaryAttribute && (
+          <p className="mt-2 text-xs font-semibold text-blurple">
+            Primary attribute: {primaryAttribute}
+          </p>
+        )}
+        {pageToOpen && (
+          <p className="mt-2 text-xs font-semibold text-blurple">Page to open: {pageToOpen}</p>
+        )}
+        {proxyNote && <p className="mt-2 text-xs italic text-muted-foreground">{proxyNote}</p>}
+      </Section>
+
+      <Section title="What to show">
+        <ul className="space-y-1.5 text-sm text-wonderlic-blue">
+          {moment.whatToShow.map((s) => (
+            <li key={s}>• {s}</li>
+          ))}
+        </ul>
+        {supportingSignals && supportingSignals.length > 0 && (
+          <div className="mt-4">
+            <p className="mb-2 text-[11px] font-semibold uppercase tracking-wide text-blurple">
+              Related Select signals to inspect
+            </p>
+            <p className="mb-2 text-xs italic text-muted-foreground">
+              Related Select signals are directional story inputs, not one-to-one equivalents.
+            </p>
+            <div className="flex flex-wrap gap-1.5">
+              {supportingSignals.map((s) => (
+                <StoryBadge key={s} variant="select">
+                  {s}
+                </StoryBadge>
+              ))}
+            </div>
+          </div>
+        )}
+      </Section>
+
+      <Section title="In your own words, make these points">
+        <ul className="space-y-1.5 text-sm text-wonderlic-blue">
+          {moment.inYourOwnWords.map((s) => (
+            <li key={s}>• {s}</li>
+          ))}
+        </ul>
+      </Section>
+
+      <Section title="Example script">
+        <p className="text-sm leading-relaxed text-wonderlic-blue">{moment.exampleScript}</p>
+        <div className="mt-3">
+          <CopyButton text={moment.exampleScript} label={`Copy ${momentLabel} script`} />
+        </div>
+      </Section>
+
+      {askWonderlicPrompt && (
+        <Section title="Ask Wonderlic prompt">
+          <p className="whitespace-pre-line text-sm leading-relaxed text-wonderlic-blue">
+            {askWonderlicPrompt}
+          </p>
+          <div className="mt-3">
+            <CopyButton text={askWonderlicPrompt} label="Copy Ask Wonderlic prompt" />
+          </div>
+        </Section>
+      )}
+
+      <section className="rounded-2xl border border-develop/40 bg-develop-ice/50 p-5">
+        <p className="text-[11px] font-semibold uppercase tracking-wide text-blurple">
+          Value tie-back
+        </p>
+        <p className="mt-2 text-sm leading-relaxed text-wonderlic-blue">{moment.valueTieBack}</p>
+      </section>
+
+      <CautionBox text={moment.caution} />
+    </div>
+  );
+}
+
+function MetaLine({
+  label,
+  value,
+  tone,
+}: {
+  label: string;
+  value: string;
+  tone?: "caution";
+}) {
+  const border = tone === "caution" ? "border-select/50 bg-select-ice/60" : "border-blue-lilac bg-soft-purple/40";
+  return (
+    <div className={`rounded-lg border p-3 ${border}`}>
+      <p className="text-[11px] font-semibold uppercase tracking-wide text-blurple">{label}</p>
+      <p className="mt-1 text-xs leading-relaxed text-wonderlic-blue">{value}</p>
+    </div>
+  );
+}
+
+function RunField({ label, value, full }: { label: string; value: string; full?: boolean }) {
+  return (
+    <div className={`rounded-xl border border-blue-lilac bg-card p-3 ${full ? "md:col-span-2" : ""}`}>
       <p className="text-[11px] font-semibold uppercase tracking-wide text-blurple">{label}</p>
       <p className="mt-1 text-sm leading-relaxed text-wonderlic-blue">{value}</p>
     </div>
@@ -449,18 +419,6 @@ function Section({
         {subtitle && <p className="text-xs text-muted-foreground">{subtitle}</p>}
       </div>
       {children}
-    </section>
-  );
-}
-
-function TrackCard({ title, body }: { title: string; body: string }) {
-  return (
-    <section className="rounded-2xl border border-border bg-card p-5">
-      <div className="mb-3 flex items-center justify-between gap-3">
-        <h3 className="font-display text-lg font-normal text-wonderlic-blue">{title}</h3>
-        <CopyButton text={body} label={`Copy ${title.toLowerCase()}`} />
-      </div>
-      <p className="whitespace-pre-line text-sm leading-relaxed text-wonderlic-blue">{body}</p>
     </section>
   );
 }

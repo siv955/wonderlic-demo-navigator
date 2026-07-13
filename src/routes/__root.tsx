@@ -122,9 +122,9 @@ function PrinciplesDrawer() {
               text: "Develop is best for believable, coachable behavior gaps.",
             },
             {
-              text: "Use Develop for coachable behavior gaps. Use Select for baseline fit, role alignment, and screen-out risks.",
+              text: "Use Develop for coachable behavior gaps. Use Select for baseline fit, role alignment, and hiring risk.",
               helper:
-                "Avoid making Develop the main story for extreme termination issues like theft, chronic no-call / no-show, or total inability to perform the work.",
+                "Extreme termination issues may be better framed as hiring risk or process risk, not as the primary Develop story.",
             },
             {
               text: "Team Dynamics should show manager flexibility across the team, not just spotting one outlier.",
@@ -136,11 +136,12 @@ function PrinciplesDrawer() {
               text: "Prepare Ask Wonderlic prompts before the demo.",
             },
             {
-              text: "Usually skip the Index unless the buyer is IO, consultant, coach, or highly technical L&D / HR.",
+              text: "Usually skip the Index unless the buyer has a technical, IO, consultant, or advanced L&D reason to go there.",
             },
             {
-              text: "Reference Action Planner lightly by default. Go deeper only when goal-setting, manager follow-through, or action tracking is a known pain.",
+              text: "Reference Action Planner lightly by default. Go deeper when the customer cares about manager follow-through, goal tracking, employee development plans, or post-demo adoption.",
             },
+
           ].map((p, i) => (
             <li key={i} className="flex gap-3">
               <span className="mt-0.5 inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-soft-purple text-xs font-semibold text-blurple">
